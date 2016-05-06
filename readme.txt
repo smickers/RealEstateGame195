@@ -1,3 +1,7 @@
-# Welcome to COSA195 #
-***
-You are the RED group
+Welcome to COSA195 RED group!
+Developers:
+Cameron
+Hilary
+Nathan
+Stephanie
+Travis
