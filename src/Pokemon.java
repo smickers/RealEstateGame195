@@ -4,13 +4,13 @@ import java.awt.Image;
  *  [File header includes information about the file being submitted.]
  *  Date submitted:
  *  Assignment number:
- *  Course name:  COSC 190
+ *  Course name:  CPMG
  *  Instructors: Sharon McDonald, Nelson Wong
  * 
  */
 
 /**
- * @author cst123
+ * @author Nathan MacNeil cst123
  *
  */
 public class Pokemon
@@ -75,5 +75,10 @@ public class Pokemon
     public void addToAttackPoints( int pointsToAdd )
     {
         
+    }
+    
+    public boolean isMaxEvolution()
+    {
+        return false;
     }
 }
