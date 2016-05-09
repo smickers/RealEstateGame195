@@ -36,78 +36,10 @@ public class MainWindow extends Application
     @Override
     public void start( Stage stage )
     {
-//        VBox main = new VBox();
-//        main.setAlignment(Pos.CENTER);
-//
-//        // Set up ImageView for logo
-//        ImageView logo = new ImageView(new Image("img/logo.png"));
-//
-//        Button btnNewGame = new Button("New Game");
-//        Button btnLoadGame = new Button("Load");
-//        Button btnExit = new Button("Exit");
-//
-//        btnNewGame.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-//        btnLoadGame.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-//        btnExit.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-//
-//        btnNewGame.setFont(BUTTON_FONT);
-//        btnLoadGame.setFont(BUTTON_FONT);
-//        btnExit.setFont(BUTTON_FONT);
-//
-//        main.setSpacing(10.0);
-//
-//        main.getChildren().addAll(logo, btnNewGame, btnLoadGame, btnExit);
-//
-//        Scene scene = new Scene(main);
-//        stage.setScene(scene);
-//        stage.show();
-//
-//        btnNewGame.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//            public void handle( ActionEvent event )
-//            {
-//                // TODO Start a new game
-//            }
-//
-//        });
-//
-//        btnLoadGame.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//
-//            @Override
-//            public void handle( ActionEvent event )
-//            {
-//                // Attempt to load an existing game file
-//                try
-//                {
-//                    Object game = LoadFile.load("Pokemon.opoly");
-//                }
-//                catch ( Exception e )
-//                {
-//                    // TODO Auto-generated catch block
-//                    btnLoadGame.setDisable(true);
-//                    Alert alert = new Alert(AlertType.ERROR, "No save file was found!");
-//                    alert.show();
-//                }
-//            }
-//
-//        });
-//
-//        btnExit.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//            public void handle( ActionEvent event )
-//            {
-//                try
-//                {
-//                    System.out.println("Stopping");
-//                    stage.close();
-//                }
-//                catch ( Exception e )
-//                {
-//                    System.out.println("Exception caught!");
-//                }
-//            }
-//        });
+//       setScene(SplashScreen.buildSplashScreen(stage));
+        setScene(TrainerSelectScreen.displayScreen());
+       stage.setScene(scene);
+       stage.show();
     }
 
     public static void setScene( Pane newPane )

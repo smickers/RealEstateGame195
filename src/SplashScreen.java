@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -19,12 +20,7 @@ public class SplashScreen
     private static final int BUTTON_HEIGHT = 40;
     private static final Font BUTTON_FONT = new Font("Comic Sans MS", 26.0);
     
-    public SplashScreen(Stage toUpdate)
-    {
-        buildSplashScreen();
-    }
-    
-    public void buildSplashScreen()
+    public static Pane buildSplashScreen(Stage stage)
     {
         VBox main = new VBox();
         main.setAlignment(Pos.CENTER);
@@ -47,10 +43,6 @@ public class SplashScreen
         main.setSpacing(10.0);
 
         main.getChildren().addAll(logo, btnNewGame, btnLoadGame, btnExit);
-
-        Scene scene = new Scene(main);
-//        stage.setScene(scene);
-//        stage.show();
 
         btnNewGame.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -91,7 +83,7 @@ public class SplashScreen
                 {
                     System.out.println("Stopping");
                     // TODO Pass a stage into this class' constructor
-//                    stage.close();
+                    stage.close();
                 }
                 catch ( Exception e )
                 {
@@ -99,5 +91,7 @@ public class SplashScreen
                 }
             }
         });
+        
+        return main;
     }
 }
