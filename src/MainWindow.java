@@ -69,7 +69,7 @@ public class MainWindow extends Application
 //                // TODO Start a new game
 //            }
 //
-//        });
+//        }); 
 //
 //        btnLoadGame.setOnAction(new EventHandler<ActionEvent>()
 //        {
