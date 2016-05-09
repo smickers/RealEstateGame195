@@ -1,5 +1,5 @@
 Welcome to COSA195 RED group!
-Developers:
+Developers Red group:
 Cameron
 Hilary
 Nathan
