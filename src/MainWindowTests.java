@@ -23,6 +23,6 @@ public class MainWindowTests
         MainWindow.setScene(newPane);
         
         assertFalse(MainWindow.scene.getRoot().equals(newPane));
-    } 
+    }
 
 }
