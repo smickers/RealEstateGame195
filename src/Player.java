@@ -18,6 +18,7 @@ public class Player
     public Pokecard[] pokeCardsInHand;
     private int balance;
     public int winPoints;
+    public int currentLocation;
     
     public Player(Trainer trainer)
     {
