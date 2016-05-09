@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # A .gitignore file tells git to ignore certain files and
 # not track them. You can add to this, but do be cautious.
 
@@ -26,4 +27,34 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+=======
+# A .gitignore file tells git to ignore certain files and
+# not track them. You can add to this, but do be cautious.
+
+*target*
+*.jar
+*.war
+*.ear
+*.class
+
+# eclipse specific git ignore
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+>>>>>>> refs/remotes/origin/master
 /bin/

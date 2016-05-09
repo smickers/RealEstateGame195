@@ -1,5 +1,7 @@
-# Welcome to COSA195 #
-***
-You are the RED group
-
-Steph: mccallum0513@saskpolytech.ca
+Welcome to COSA195 RED group!
+Developers Red group:
+Cameron
+Hilary
+Nathan
+Stephanie
+Travis
