@@ -1,3 +1,4 @@
+
 import java.awt.Image;
 
 /*
@@ -57,7 +58,7 @@ public class Pokemon
         return false;
     }
     
-    public boolean devolve()
+    public boolean devolve() 
     {
         return false;
     }
@@ -82,3 +83,4 @@ public class Pokemon
         return false;
     }
 }
+

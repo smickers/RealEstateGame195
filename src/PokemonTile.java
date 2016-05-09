@@ -7,18 +7,23 @@ public class PokemonTile
     //Variable holding the player that currently owns the current PokemonTile. 
     private Player owner;
     
-    
+    //Variable holding the Pokemon for this tile.
     public Pokemon relatedPokemon;
     
-    public PokemonTile( Pokemon relatedPokemon, int cost )
+    private GameBoard board;
+    
+    public PokemonTile( Pokemon relatedPokemon, int cost, GameBoard board )
     {
         this.relatedPokemon = relatedPokemon;
         this.cost = cost;
+        this.board = board;
     }
     
     public void action( Player player )
     {
-        
+        this.board.updateCenterView( 
+                new BuyingPokemonPane(player, this.relatedPokemon, 
+                        this.cost, this) );
     }
     
     public void purchase( Player player )
