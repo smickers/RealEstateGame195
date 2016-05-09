@@ -70,7 +70,6 @@ public class MainWindow extends Application
 //            }
 //
 //        });
-        
 //
 //        btnLoadGame.setOnAction(new EventHandler<ActionEvent>()
 //        {

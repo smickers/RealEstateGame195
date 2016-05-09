@@ -24,6 +24,5 @@ public class MainWindowTests
         
         assertFalse(MainWindow.scene.getRoot().equals(newPane));
     }
-    
 
 }
