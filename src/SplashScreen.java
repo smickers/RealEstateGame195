@@ -83,6 +83,7 @@ public class SplashScreen
 
         });
 
+        
         btnExit.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle( ActionEvent event )
