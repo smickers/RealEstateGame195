@@ -1,9 +1,11 @@
 import java.util.Vector;
-
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
+
 
 
 public class Die
@@ -12,6 +14,7 @@ public class Die
     private Vector<Image> faces;
     private Thread dieOne, dieTwo;
     private static ImageView dice1, dice2;
+    private Button spinBtn;
 
     public Die()
     {
@@ -21,6 +24,21 @@ public class Die
         
         dice1.setImage(faces.get((int)(Math.random() * 6)));
         dice2.setImage(faces.get((int)(Math.random() * 6)));
+        
+        spinBtn.setOnMouseClicked(new EventHandler<MouseEvent>()
+                {
+                    @Override
+                    public void handle(MouseEvent event)
+                    {
+                        dieOne = new Spinners(dice1, 1);
+                        dieTwo = new Spinners(dice2, 2);
+                        //winnerWinner = new ChickenDinner(dice1, dice2, slot3, winMsg);
+                        dieOne.start();                
+                        dieTwo.start();
+                    }
+                });
+        
+        
     }
     
     public static int rollTwoDie()
@@ -85,42 +103,44 @@ public class Die
             }
         }
     }
-    
-    private class ChickenDinner extends Thread implements Runnable
-    {
-        ImageView one, two, three;
-        Text text;
-        public ChickenDinner(ImageView one, ImageView two, Text text)
-        {
-            this.one = one;
-            this.two = two;
-            this.text = text; 
-        }
-        @Override
-        public void run()
-        {
-            while(true)
-            {
-                try
-                {
-                    dieOne.join();
-                    dieTwo.join();
-                }
-                catch (InterruptedException e)
-                {
-                    System.out.println("Whoops, " + e + ".");
-                }
-                
-                try
-                {
-                    Thread.currentThread();
-                    Thread.sleep(5000);
-                }
-                catch (InterruptedException e)
-                {}
-            }
-        } 
-    }
+    //|||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
+    //||                  WIN MSG THREADING                ||\\
+    //|||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
+//    private class ChickenDinner extends Thread implements Runnable
+//    {
+//        ImageView one, two, three;
+//        Text text;
+//        public ChickenDinner(ImageView one, ImageView two, Text text)
+//        {
+//            this.one = one;
+//            this.two = two;
+//            this.text = text; 
+//        }
+//        @Override
+//        public void run()
+//        {
+//            while(true)
+//            {
+//                try
+//                {
+//                    dieOne.join();
+//                    dieTwo.join();
+//                }
+//                catch (InterruptedException e)
+//                {
+//                    System.out.println("Whoops, " + e + ".");
+//                }
+//                
+//                try
+//                {
+//                    Thread.currentThread();
+//                    Thread.sleep(5000);
+//                }
+//                catch (InterruptedException e)
+//                {}
+//            }
+//        } 
+//    }
     
     private void obtainImages()
     {
@@ -130,4 +150,6 @@ public class Die
             faces.add(new Image("img" + i + ".png"));
         }
     }
+    
+    
 }

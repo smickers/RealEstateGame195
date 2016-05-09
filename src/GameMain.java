@@ -82,6 +82,10 @@ public class GameMain
                 currentPlayer.currentLocation = (currentPlayer.currentLocation
                         + roll) % 40;
                 
+                //Player's token lands on a tile
+                
+                //Player takes an action based on the type of tile they handed on
+                
             }
         }
     }
