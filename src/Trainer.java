@@ -1,4 +1,5 @@
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /*
  *  [File header includes information about the file being submitted.]
@@ -17,10 +18,10 @@ public class Trainer
 {
 
     public String name;
-    public Image trainerImage;
-    public Image trainerToken;
+    public ImageView trainerImage;
+    public ImageView trainerToken;
     
-    public Trainer(String name, Image trainerImage, Image trainerToken)
+    public Trainer(String name, ImageView trainerImage, ImageView trainerToken)
     {
         this.name = name;
         this.trainerImage = trainerImage;

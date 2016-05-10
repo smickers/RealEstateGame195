@@ -21,8 +21,8 @@ public class GameMain
     private Pokemon[] pokemon;
     private GameBoard gameBoard;
     private UpdateCenterView centerViewUpdater;
-    private int currentPlayer;
     private int wPToWin;
+    private int currentPlayer;
 
     
     public GameMain(Player[] players)
@@ -84,6 +84,9 @@ public class GameMain
                 
                 //Player's token lands on a tile
                 
+                
+                
+                //GameBoard.gameTiles[currentPlayer.currentLocation];
                 //Player takes an action based on the type of tile they handed on
                 
             }

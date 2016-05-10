@@ -25,5 +25,23 @@ public class Player
         this.trainer = trainer;
     }
     
+    public void changeBalance(int amountToChange)
+    {
+        amountToChange += balance;
+    }
+    
+    public boolean sufficientBalance(int amountToChange)
+    {
+        return (amountToChange -= balance) >= 50;   
+    }
+    
+    public void addPokeCard(Pokecard pokecard)
+    {
+        Pokecard[]temp = pokeCardsInHand;
+        pokeCardsInHand = new Pokecard[temp.length+1];
+        System.arraycopy(temp, 0, pokeCardsInHand, 0, temp.length);
+        ///NEED TO FIX THE BELOW LINE///
+        //pokeCardsInHand[temp.length] = new Pokecard(pokecard);
+    }
 
 }
