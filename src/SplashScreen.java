@@ -50,14 +50,15 @@ public class SplashScreen
 
         btnNewGame.setOnAction(new EventHandler<ActionEvent>()
         {
-            public void handle( ActionEvent event )
+            @SuppressWarnings("static-access")
+			public void handle( ActionEvent event )
             {
 			
 
             	TrainerSelectScreen tss = new TrainerSelectScreen();
 				MainWindow mw = new MainWindow();
 				Stage stage1 = new Stage();
-				mw.newStart(stage1, tss.displayScreen());
+				mw.newStart(stage1, tss.displayScreen(stage1), "opening.mp3");
 				stage.close();
             }
 

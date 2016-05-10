@@ -28,8 +28,10 @@ public class MainWindow extends Application
 
     public static Scene scene = new Scene(new StackPane());
 
+    
     public static void main( String[] args )
     {
+    	
         Application.launch(args);
     }
 
@@ -59,12 +61,13 @@ public class MainWindow extends Application
      * @param stage
      * @param pane
      */
-    public void newStart(Stage stage, Pane pane)
+    public void newStart(Stage stage, Pane pane, String song)
     {
+    	sound.stop();
     	setScene(pane);
     	stage.setScene(scene);
     	stage.show();
-    	sound.playSound("opening.mp3");
+    	sound.playSound(song);
     	
     }
     

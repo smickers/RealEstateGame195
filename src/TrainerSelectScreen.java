@@ -25,7 +25,7 @@ public class TrainerSelectScreen
 	static Button button;
 
 	
-    public static Pane displayScreen()
+    public static Pane displayScreen(Stage stage)
     {
         VBox main = new VBox();
         HBox trainerImages = new HBox();
@@ -169,9 +169,11 @@ public class TrainerSelectScreen
 						MainWindow mw = new MainWindow();
 						
 
-						Stage stage = new Stage();
-						mw.newStart(stage, GameBoard.displayScreen());
+						Stage stage1 = new Stage();
 					
+						stage.close();
+						mw.newStart(stage1, GameBoard.displayScreen(), "palette-town.mp3");
+						
 
 					
 			
