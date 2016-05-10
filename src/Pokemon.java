@@ -48,6 +48,8 @@ public class Pokemon
     // pokemon. 
     public int defaultAttackPoints;
     
+    private int currentIndex = 0;
+    
     
     public Pokemon( String[] titles, Image[] pokemonImages, 
             int evolutionPointsToEvolve, int defaultAttackPoints )
@@ -66,12 +68,32 @@ public class Pokemon
     
     public boolean evolve()
     {
+        boolean result = false;
+        if( !this.isMaxEvolution() )
+        {
+            this.currentIndex++;
+            
+            this.currentName = this.titles[this.currentIndex];
+            this.currentImage = this.pokemonImages[this.currentIndex];
+            
+            this.resetEvolutionPoints();
+            
+            result = true;
+        }
         
-        return false;
+        
+        return result;
     }
     
     public boolean devolve() 
     {
+        boolean result = false;
+        
+        if( !(this.currentIndex == 0) )
+        {
+            
+        }
+               
         return false;
     }
     

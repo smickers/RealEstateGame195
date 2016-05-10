@@ -11,10 +11,14 @@ public class TestPokemon
 {
     private Pokemon singleEvolution;
     private String[] singleTitles = {"Magikarp", "Gyarados" };
+
+    //Need actual pictures to test 
     private Image[] singleImages = {new Image("pic"), new Image("pic")};
 
     private Pokemon doubleEvolution; 
     private String[] doubleTitles = {"Charmander", "Charmeleon", "Charizard" };
+    
+    //Need actual pictures to test 
     private Image[] doubleImages = {new Image(""), new Image("")};
     
     

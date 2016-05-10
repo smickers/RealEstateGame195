@@ -42,6 +42,11 @@ public class GameMain
         {
             wPToWin = 2;
         }
+        
+        initializeBoard();
+        initializePokemon();
+//        play();
+       
     }
     
     private void initializeBoard()
@@ -54,10 +59,10 @@ public class GameMain
         
     }
     
-    public void initializeGame()
-    {
-        
-    }
+//    public void initializeGame()
+//    {
+//        
+//    }
     
     public void play()
     {
@@ -82,6 +87,9 @@ public class GameMain
                 currentPlayer.currentLocation = (currentPlayer.currentLocation
                         + roll) % 40;
                 
+                // Run the action method on that tile for the player that
+                // just rolled and moved
+                gameBoard.tileAtIndex(currentPlayer.currentLocation).action(currentPlayer);
             }
         }
     }

@@ -1,5 +1,10 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
-public class PokemonTile
+
+public class PokemonTile extends Tile
 {
     //Variable holding the cost to purchase the current PokemonTile.
     public int cost;
@@ -12,8 +17,9 @@ public class PokemonTile
     
     public GameBoard board;
     
-    public PokemonTile( Pokemon relatedPokemon, int cost, GameBoard board )
+    public PokemonTile( Pokemon relatedPokemon, int cost, GameBoard board, String name, Image image )
     {
+        super(name, image);
         this.relatedPokemon = relatedPokemon;
         this.cost = cost;
         this.board = board;
@@ -21,24 +27,39 @@ public class PokemonTile
     
     public void action( Player player )
     {
-        this.board.updateCenterView( 
-                new BuyingPokemonPane(player, this.relatedPokemon, 
-                        this.cost, this) );
+        if (owner != null)
+        {
+            // do a battle
+        }
+        else
+        {
+            // tile is up for sale
+            purchase(player);
+        }
     }
     
     public void purchase( Player player )
     {
-        if( player.sufficientBalance( this.cost ) )
+//        if( player.sufficientBalance( this.cost ) )
+//        {
+//            player.pokedex.addPokemon( this.relatedPokemon );
+//            
+//            changeOwner( player );
+            
+        if (player.sufficientBalance(cost))
         {
-            player.pokedex.addPokemon( this.relatedPokemon );
+            BorderPane toShow = new BorderPane();
             
-            changeOwner( player );
+            Text topMessage = new Text("Do you want to purchase " + super.name + "?");
             
+            toShow.setTop(topMessage);
+            
+            toShow.setCenter(new ImageView(super.image));
             //Update the GUI
         }
         else
         {
-            //Update the GUI with the 
+            //Update the GUI with the not enough money message
         }
     }
     
