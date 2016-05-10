@@ -10,7 +10,7 @@ public class PokemonTile
     //Variable holding the Pokemon for this tile.
     public Pokemon relatedPokemon;
     
-    private GameBoard board;
+    public GameBoard board;
     
     public PokemonTile( Pokemon relatedPokemon, int cost, GameBoard board )
     {
@@ -33,10 +33,12 @@ public class PokemonTile
             player.pokedex.addPokemon( this.relatedPokemon );
             
             changeOwner( player );
+            
+            //Update the GUI
         }
         else
         {
-            
+            //Update the GUI with the 
         }
     }
     

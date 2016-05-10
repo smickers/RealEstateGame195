@@ -1,5 +1,7 @@
+import javafx.scene.image.Image;
 
-import java.awt.Image;
+
+
 
 /*
  *  [File header includes information about the file being submitted.]
@@ -32,7 +34,7 @@ public class Pokemon
     
     //Variable holding the number of evolution point required for this pokemon
     // to evolve.
-    public int evolutionsPointsToEvolve;
+    public int evolutionPointsToEvolve;
     
     //Variable holding the current amount of evolution points for the current 
     // pokemon.
@@ -50,11 +52,21 @@ public class Pokemon
     public Pokemon( String[] titles, Image[] pokemonImages, 
             int evolutionPointsToEvolve, int defaultAttackPoints )
     {
+        this.titles = titles;
+        this.currentName = this.titles[0];
+        
+        this.pokemonImages = pokemonImages;
+        this.currentImage = this.pokemonImages[0];
+        
+        this.evolutionPointsToEvolve = evolutionPointsToEvolve;
+        this.defaultAttackPoints = defaultAttackPoints;
+        this.evolutionPoints = 0;
         
     }
     
     public boolean evolve()
     {
+        
         return false;
     }
     
@@ -65,22 +77,29 @@ public class Pokemon
     
     public void addEvolutionPoint()
     {
-        
+        this.evolutionPoints++;
     }
     
     public void resetEvolutionPoints()
     {
-        
+        this.evolutionPoints = 0;
     }
     
     public void addToAttackPoints( int pointsToAdd )
     {
-        
+        this.attackPoints += pointsToAdd;
     }
     
     public boolean isMaxEvolution()
     {
-        return false;
+        boolean result = false;
+        
+        if( this.currentName.equals( this.titles[this.titles.length-1] ) )
+        { 
+            result = true;
+        }
+        
+        return result;
     }
 }
 
