@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 
 public class TrainerSelectScreen
@@ -161,9 +163,17 @@ public class TrainerSelectScreen
 						}
 						
 						System.out.println(trainers.toString());
-					//	GameMain gameMain = new GameMain(trainers);
 						
-						b B = new b();
+						GameBoard gb = new GameBoard();
+						MainWindow mw = new MainWindow();
+						
+
+						Stage stage = new Stage();
+						mw.newStart(stage, GameBoard.displayScreen());
+					
+
+					
+			
 						
 					}
         	
@@ -186,4 +196,6 @@ public class TrainerSelectScreen
         	button.setDisable(true);
         }
     }
+
+
 }

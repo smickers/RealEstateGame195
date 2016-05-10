@@ -48,7 +48,13 @@ public class SplashScreen
         {
             public void handle( ActionEvent event )
             {
-                // TODO Start a new game
+			
+
+            	TrainerSelectScreen tss = new TrainerSelectScreen();
+				MainWindow mw = new MainWindow();
+				Stage stage = new Stage();
+				mw.newStart(stage, tss.displayScreen());
+	
             }
 
         });

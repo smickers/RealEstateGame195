@@ -33,11 +33,15 @@ public class MainWindow extends Application
         Application.launch(args);
     }
 
+    /**
+     * Purpose: Initial start screen
+     */
     @Override
     public void start( Stage stage )
     {
- //      setScene(SplashScreen.buildSplashScreen(stage));
-        setScene(TrainerSelectScreen.displayScreen());
+     setScene(SplashScreen.buildSplashScreen(stage));
+//      setScene(TrainerSelectScreen.displayScreen());
+      // setScene(GameBoard.displayScreen());
        stage.setScene(scene);
        stage.show();
     }
@@ -49,5 +53,19 @@ public class MainWindow extends Application
             scene = new Scene(newPane);
         }
     }
+    
+    /**
+     * Purpose: additional start screens
+     * @param stage
+     * @param pane
+     */
+    public void newStart(Stage stage, Pane pane)
+    {
+    	setScene(pane);
+    	stage.setScene(scene);
+    	stage.show();
+    	
+    }
+    
 
 }
