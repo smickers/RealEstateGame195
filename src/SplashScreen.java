@@ -52,9 +52,9 @@ public class SplashScreen
 
             	TrainerSelectScreen tss = new TrainerSelectScreen();
 				MainWindow mw = new MainWindow();
-				Stage stage = new Stage();
-				mw.newStart(stage, tss.displayScreen());
-	
+				Stage stage1 = new Stage();
+				mw.newStart(stage1, tss.displayScreen());
+				stage.close();
             }
 
         });

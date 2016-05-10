@@ -23,6 +23,7 @@ public class TrainerSelectScreen
     
 	static	int count;
 	static Button button;
+
 	
     public static Pane displayScreen()
     {
@@ -59,7 +60,7 @@ public class TrainerSelectScreen
 			public void handle(MouseEvent me) {
 			
 				
-				DropShadow ds = new DropShadow( 20, Color.CHARTREUSE );
+				DropShadow ds = new DropShadow( 20, Color.RED );
 		
 				if (trainerOne.getEffect() == null)
 				{
@@ -81,7 +82,7 @@ public class TrainerSelectScreen
 			@Override
 			public void handle(MouseEvent me) {
 			
-				DropShadow ds = new DropShadow( 20, Color.CHARTREUSE );
+				DropShadow ds = new DropShadow( 25, Color.PURPLE );
 		
 				if (trainerTwo.getEffect() == null)
 				{
@@ -102,7 +103,7 @@ public class TrainerSelectScreen
 			@Override
 			public void handle(MouseEvent me) {
 			
-				DropShadow ds = new DropShadow( 20, Color.CHARTREUSE );
+				DropShadow ds = new DropShadow( 30, Color.rgb(51,171,149) );
 		
 				if (trainerThree.getEffect() == null)
 				{
@@ -123,7 +124,7 @@ public class TrainerSelectScreen
 			@Override
 			public void handle(MouseEvent me) {
 			
-				DropShadow ds = new DropShadow( 20, Color.CHARTREUSE );
+				DropShadow ds = new DropShadow( 20, Color.rgb(255,84,167) );
 		
 				if (trainerFour.getEffect() == null)
 				{
