@@ -1,14 +1,15 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -40,6 +41,9 @@ public class SplashScreen
         btnLoadGame.setFont(BUTTON_FONT);
         btnExit.setFont(BUTTON_FONT);
 
+
+        
+        
         main.setSpacing(10.0);
 
         main.getChildren().addAll(logo, btnNewGame, btnLoadGame, btnExit);
@@ -97,6 +101,7 @@ public class SplashScreen
                 }
             }
         });
+        
         
         return main;
     }

@@ -64,6 +64,7 @@ public class MainWindow extends Application
     	setScene(pane);
     	stage.setScene(scene);
     	stage.show();
+    	sound.playSound("opening.mp3");
     	
     }
     
