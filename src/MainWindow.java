@@ -36,7 +36,7 @@ public class MainWindow extends Application
     @Override
     public void start( Stage stage )
     {
-//       setScene(SplashScreen.buildSplashScreen(stage));
+ //      setScene(SplashScreen.buildSplashScreen(stage));
         setScene(TrainerSelectScreen.displayScreen());
        stage.setScene(scene);
        stage.show();
