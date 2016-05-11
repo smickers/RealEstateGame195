@@ -20,7 +20,7 @@ public class Die
     {
         dice1 = new ImageView();
         dice2 = new ImageView();
-        obtainImages();
+        getImages();
         
         dice1.setImage(faces.get((int)(Math.random() * 6)));
         dice2.setImage(faces.get((int)(Math.random() * 6)));
@@ -142,7 +142,7 @@ public class Die
 //        } 
 //    }
     
-    private void obtainImages()
+    private void getImages()
     {
         faces = new Vector<Image>(MAX_SLOT_PICS);
         for(int i = 0; i < MAX_SLOT_PICS; i++)

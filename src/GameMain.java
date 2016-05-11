@@ -1,41 +1,46 @@
 import java.util.ArrayList;
-import java.util.List;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-/*
- *  [File header includes information about the file being submitted.]
- *  Date submitted:
- *  Assignment number:
- *  Course name:  COSC 190
- *  Instructors: Sharon McDonald, Nelson Wong
- * 
- */
 
-/**
+/**CLASS: GameMain
+ * @info: Creates the main state of the game, allows users to play PokeMonopoly.
  * @author cst104
  *
  */
 public class GameMain
 {
-
+    //Array of Players playing the game
     private ArrayList<Player> players;
+    //List of Pokemon available in the game
     private Pokemon[] pokemon;
+    //Game Board to use
     private GameBoard gameBoard;
     private UpdateCenterView centerViewUpdater;
+    //number indicating Win Points required to win
     private int wPToWin;
     private int currentPlayer;
-    //
+    //For Demo-ing functionality - not tied to anything
     private Button rollDieBtn;
 
+///////////////////////////////////////////////////////////////////////////////    
+/////////////////////////////////////////////////////////////////////////////// 
     
+    /**
+     * CONSTRUCTOR : GameMain
+     * FUNCTIONALITY: Creates the game state with the given number of players/
+     *                  Sets the wPToWin based on the number of players.
+     * @param players: the list of players that will be playing the game
+     */
     public GameMain(Player[] players)
     {
         //The main game should not only set up the players, but
         //it should also set up the number of WinPoints necessary to win
         //the game (based on how many players are playing the game)
+        //////////////////////////
+        //   NOT FOR RELEASE 1  //
+        //////////////////////////
         if(players.length == 2)
         {
             wPToWin = 4;
@@ -50,21 +55,32 @@ public class GameMain
         }
     }
     
+    //NOT FOR RELEASE 1
     private void initializeBoard()
     {
         
     }
     
+    //NOT FOR RELEASE 1
     private void initializePokemon()
     {
         
     }
     
+    //NOT FOR RELEASE 1
     public void initializeGame()
     {
         
     }
     
+    /**
+     * METHOD: play
+     * @info: Provides gameplay function. Allows users to click a button
+     *          to roll the dice, and then will move their token to the new
+     *          location specified.
+     *          RELEASE 1 INFO: functionality only. Does not talk to the GUI.
+     *          rollDieBtn is only to demo functionality. No animation.
+     */
     public void play()
     {
         //While there is a player to play, and the current player does not have
