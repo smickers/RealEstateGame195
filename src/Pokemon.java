@@ -58,7 +58,8 @@ public class Pokemon
         this.currentName = this.titles[0];
         
         this.pokemonImages = pokemonImages;
-        this.currentImage = this.pokemonImages[0];
+        // Uncomment when we have images
+//        this.currentImage = this.pokemonImages[0];
         
         this.evolutionPointsToEvolve = evolutionPointsToEvolve;
         this.defaultAttackPoints = defaultAttackPoints;
@@ -122,6 +123,11 @@ public class Pokemon
         }
         
         return result;
+    }
+    
+    public String toString()
+    {
+        return this.currentName;
     }
 }
 

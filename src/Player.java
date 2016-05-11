@@ -26,18 +26,21 @@ public class Player
     {
         this.trainer = trainer;
         pokecardsInHand = new Vector<Pokecard>();
-        pokedex = new Pokedex();
+        pokedex = new Pokedex(this);
+        balance = 0;
+        System.out.println("Current balance: " + balance);
     }
     
     public void addPokemon(Pokemon pokemon)
     {
-//        pokedex.addPokemon(pokemon);
+        pokedex.addPokemon(pokemon);
+        System.out.println("Balance after add: " + balance);
     }
     
-//    public boolean removePokemon(Pokemon pokemon)
-//    {
-////        return pokedex.removePokemon(pokemon);
-//    }
+    public boolean removePokemon(Pokemon pokemon)
+    {
+        return pokedex.removePokemon(pokemon);
+    }
     
     public void addToBalance(int toAdd)
     {
