@@ -36,7 +36,6 @@ public class GameMainTest
     {
         fail("Not yet implemented");
         //SUCCESS CASES
-        assert
         //FAILURE CASES
         //BOUNDARY CASES
     }
