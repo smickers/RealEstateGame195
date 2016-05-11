@@ -9,19 +9,24 @@ public class sound {
 
 	
 	public static MediaPlayer player;
-	
+	/**
+	 * Purpose: Takes in file name, creates a new media player
+	 * 		    and plays audio file
+	 * @param fileName
+	 */
 	public static void playSound(String fileName){
         Media m = new Media(Paths.get("src/audio/" + fileName).toUri().toString());
         player = new MediaPlayer(m);
         player.play();
         
     }
-	
+	/**
+	 * Purpose: stops media player
+	 */
 	public static void stop()
 	{
 		if (player != null)
 		{
-			//fadeOut();
 			player.stop();
 		}
 
@@ -31,8 +36,4 @@ public class sound {
 		}
 	}
 	
-	public static void fadeOut()
-	{
-		// player.setVolume();		
-	}
 }

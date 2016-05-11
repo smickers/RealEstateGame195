@@ -24,7 +24,11 @@ public class TrainerSelectScreen
 	static	int count;
 	static Button button;
 
-	
+	/**
+	 * Purpose: Creates and returns the Trainer Select Screen layout
+	 * @param stage
+	 * @return Pane
+	 */
     public static Pane displayScreen(Stage stage)
     {
         VBox main = new VBox();
@@ -56,6 +60,9 @@ public class TrainerSelectScreen
       
         trainerOne.setOnMouseClicked(new EventHandler <MouseEvent>()
         		{
+        	/**
+        	 * Purpose: Gives selected trainer a glow effect
+        	 */
 			@Override
 			public void handle(MouseEvent me) {
 			
@@ -79,6 +86,9 @@ public class TrainerSelectScreen
         
         trainerTwo.setOnMouseClicked(new EventHandler <MouseEvent>()
         		{
+        	/**
+        	 * Purpose: Gives selected trainer a glow effect
+        	 */
 			@Override
 			public void handle(MouseEvent me) {
 			
@@ -100,6 +110,9 @@ public class TrainerSelectScreen
         
         trainerThree.setOnMouseClicked(new EventHandler <MouseEvent>()
         		{
+        	/**
+        	 * Purpose: Gives selected trainer a glow effect
+        	 */
 			@Override
 			public void handle(MouseEvent me) {
 			
@@ -121,6 +134,9 @@ public class TrainerSelectScreen
         
         trainerFour.setOnMouseClicked(new EventHandler <MouseEvent>()
         		{
+        	/**
+        	 * Purpose: Gives selected trainer a glow effect
+        	 */
 			@Override
 			public void handle(MouseEvent me) {
 			
@@ -142,7 +158,10 @@ public class TrainerSelectScreen
         
         button.setOnMouseClicked(new EventHandler <MouseEvent>()
         		{
-
+        			/** 
+        			 * Purpose: Adds selected trainer to trainers array
+        			 * 			Closes trainer select window and opens game board
+        			 */
 					@Override
 					public void handle(MouseEvent arg0) {
 					
@@ -188,6 +207,10 @@ public class TrainerSelectScreen
         return main;
     }
     
+    /**
+     * Purpose: Enables and disables continue button according to number
+     * 			of selected players
+     */
     public static void enableContinueButton()
     {
         if (count >= 2)

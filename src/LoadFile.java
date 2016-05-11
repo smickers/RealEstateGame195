@@ -20,7 +20,9 @@ public class LoadFile {
         // We'll grab the object in the file, and then convert it to a Stack
         // I know this won't ever throw an error, since only Stacks will ever
         // be saved to this file
+        
         Object toReturn = ois.readObject();
+        
         // Return the stack
         return toReturn;
     }

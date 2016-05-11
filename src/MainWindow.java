@@ -28,7 +28,10 @@ public class MainWindow extends Application
 
     public static Scene scene = new Scene(new StackPane());
 
-    
+    /**
+     * Purpose: Launches initial window
+     * @param args
+     */
     public static void main( String[] args )
     {
     	
@@ -48,6 +51,10 @@ public class MainWindow extends Application
        stage.show();
     }
 
+    /**
+     * Purpose: Validates newPane and sets scene to newPane
+     * @param newPane
+     */
     public static void setScene( Pane newPane )
     {
         if ( newPane != null )

@@ -16,11 +16,17 @@ import javafx.stage.Stage;
 
 public class SplashScreen
 {
+	
     public static final String SAVE_FILE_NAME = "Pokemon.opoly";
     private static final int BUTTON_WIDTH = 200;
     private static final int BUTTON_HEIGHT = 40;
     private static final Font BUTTON_FONT = new Font("Comic Sans MS", 26.0);
     
+    /**
+     * Purpose: Builds and returns splash screen pane
+     * @param stage
+     * @return Pane
+     */
     public static Pane buildSplashScreen(Stage stage)
     {
         VBox main = new VBox();
@@ -28,7 +34,7 @@ public class SplashScreen
 
         // Set up ImageView for logo
         ImageView logo = new ImageView(new Image("img/logo.png"));
-
+        //Set up buttons
         Button btnNewGame = new Button("New Game");
         Button btnLoadGame = new Button("Load");
         Button btnExit = new Button("Exit");
@@ -48,8 +54,12 @@ public class SplashScreen
 
         main.getChildren().addAll(logo, btnNewGame, btnLoadGame, btnExit);
 
+        
         btnNewGame.setOnAction(new EventHandler<ActionEvent>()
         {
+        	/**
+        	 * Purpose: Handles New Game button functionality
+        	 */
             @SuppressWarnings("static-access")
 			public void handle( ActionEvent event )
             {
@@ -66,17 +76,17 @@ public class SplashScreen
 
         btnLoadGame.setOnAction(new EventHandler<ActionEvent>()
         {
-
+        	/**
+        	 * Purpose: Loads previous game file
+        	 */
             @Override
             public void handle( ActionEvent event )
             {
                 // Attempt to load an existing game file
                 try
                 {
-                   // Object game = LoadFile.load("Pokemon.opoly");
-                	String s = (String) LoadFile.load("loadTest.txt");
-                    Alert alert = new Alert(AlertType.INFORMATION, s);
-                    alert.show();
+                   Object game = LoadFile.load("Pokemon.opoly");
+                	
 
                 }
                 catch ( Exception e )
@@ -85,6 +95,7 @@ public class SplashScreen
                     btnLoadGame.setDisable(true);
                     Alert alert = new Alert(AlertType.ERROR, "No save file was found!");
                     alert.show();
+                    e.printStackTrace();
                 }
             }
 
@@ -92,6 +103,9 @@ public class SplashScreen
 
         btnExit.setOnAction(new EventHandler<ActionEvent>()
         {
+        	/**
+        	 * Purpose: Handles Exit button functionality
+        	 */
             public void handle( ActionEvent event )
             {
                 try
