@@ -75,7 +75,8 @@ public class SplashScreen
                 {
                    // Object game = LoadFile.load("Pokemon.opoly");
                 	String s = (String) LoadFile.load("loadTest.txt");
-                    Alert alert = new Alert(AlertType.ERROR, "No save file was found!");
+                    Alert alert = new Alert(AlertType.INFORMATION, s);
+                    alert.show();
 
                 }
                 catch ( Exception e )
