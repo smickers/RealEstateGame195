@@ -19,6 +19,7 @@ public class Player
     private int balance;
     public int winPoints;
     public int currentLocation;
+    public int newLocation;
     
     public Player(Trainer trainer)
     {
@@ -42,6 +43,11 @@ public class Player
         System.arraycopy(temp, 0, pokeCardsInHand, 0, temp.length);
         ///NEED TO FIX THE BELOW LINE///
         //pokeCardsInHand[temp.length] = new Pokecard(pokecard);
+    }
+    
+    public Tile getLocation()
+    {
+        return GameBoard.gameTiles[currentLocation];
     }
 
 }
