@@ -13,7 +13,7 @@ public class TestPokemonTile
     
     private Pokemon pokemon;
         private String[] evols = {"Magikarp", "Gyarados" };
-        private Image[] imgs = {null, null};
+        //private Image[] imgs = {null, null};
     
     private PokemonTile tile;
     
@@ -55,6 +55,18 @@ public class TestPokemonTile
         int result = this.player.currentBalance();
         
         assertEquals(50, result);
+    }
+    
+    @Test
+    public void testThatPurchaseDoesntDeductFromPlayersIFBalanceIs1Under()
+    {
+        this.player.addToBalance( 99 );
+        
+        this.tile.purchase( this.player );
+        
+        int result = this.player.currentBalance();
+        
+        assertEquals(99, result);
     }
     
 //    @Test

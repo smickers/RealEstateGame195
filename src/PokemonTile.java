@@ -7,9 +7,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-
+/**
+ * 
+ *  Purpose: This class will handle the functionality for when a player lands on
+ *   a PokemonTile.
+ *
+ * @author Nathan MacNeil CST123 Cameron Auser CST102
+ * @version 1.0
+ */
 public class PokemonTile extends Tile
 {
     //Variable holding the cost to purchase the current PokemonTile.
@@ -23,6 +31,15 @@ public class PokemonTile extends Tile
     
     public GameBoard board;
     
+    /**
+     * Constructor 
+     * Constructor for the PokemonTile class.
+     * @param relatedPokemon
+     * @param cost
+     * @param board
+     * @param name
+     * @param image
+     */
     public PokemonTile( Pokemon relatedPokemon, int cost, GameBoard board, String name, Image image )
     {
         super(name, image);
@@ -31,8 +48,13 @@ public class PokemonTile extends Tile
         this.board = board;
     }
     
+    /**
+     * The purpose of this method is to run through purchasing a pokemon
+     *  when a player lands on the tile.
+     */
     public void action( Player player )
     {
+        //If the Tile is owned there will be a battle.
         if (owner != null)
         {
 //            StackPane toShow = new StackPane();
@@ -44,103 +66,107 @@ public class PokemonTile extends Tile
         else
         {
             // tile is up for sale
-            purchase(player);
-        }
-    }
-    
+            //purchase(player);
+         //Setting up the User interface for buying a Pokemon.   
+            
+         BorderPane toShow = new BorderPane();
+              
+          Text topMessage = new Text("Do you want to purchase " + super.name + "?");
+          toShow.setTop(topMessage);
+          
+          toShow.setCenter(new ImageView(super.image));
+          
+          Button btnYes = new Button("Yes");
+          Button btnNo = new Button("No");
+          
+          HBox buttons = new HBox();
+          buttons.getChildren().addAll(btnYes, btnNo);
+          
+          toShow.setBottom(buttons);
+          
+          btnYes.setOnAction(new EventHandler<ActionEvent>()
+                  {
+                      public void handle(ActionEvent event)
+                      {
+                          //If the player has enough money buy the tile.
+                          if (player.sufficientBalance(cost))
+                          {
+                              purchase(player);
+                             // player.removeFromBalance(cost);
+                              //changeOwner(player);
+                              StackPane toShow = new StackPane();
+                              Text notBought = new Text("Pokemon purchased and added to inventory!");
+                              
+                              toShow.getChildren().add(notBought);
+                              UpdateCenterView.updateScene(toShow);
+                              System.out.println("Pokemon purchased and added to inventory!");
+                          }
+                          //If not don't buy the tile.
+                          else
+                          {
+                              StackPane toShow = new StackPane();
+                              Text notBought = new Text("You don't have enough money to purchase the Pokemon!");
+                              toShow.getChildren().add(notBought);
+                              UpdateCenterView.updateScene(toShow);
+                              System.out.println("You don't have enough money to purchase the Pokemon!");
+                          }
+                          System.out.println("Balance=" + player.currentBalance());
+                      }
+                  });
+          
+          btnNo.setOnAction(new EventHandler<ActionEvent>()
+                  {
+                      //If the player doesn't want to buy the tile, nothing happens.
+                      public void handle(ActionEvent event)
+                      {
+                          StackPane toShow = new StackPane();
+                          Text notBought = new Text("Pokemon not purchased!");
+                          toShow.getChildren().add(notBought);
+                          UpdateCenterView.updateScene(toShow);
+                          System.out.println("Pokemon not purchased!");
+                      }
+                  });
+          
+          UpdateCenterView.updateScene(toShow);
+          System.out.println("Scene update called");
+          //Update the GUI
+      }
+
+  }
+        
+   
+    /**
+     * 
+     * Purpose: manages purchasing the pokemon for the player.
+     * @param player Player who landed on the tile.
+     */
     public void purchase( Player player )
     {
-//        if (player.sufficientBalance(cost))
-//        {
-//            BorderPane toShow = new BorderPane();
-//            
-//            Text topMessage = new Text("Do you want to purchase " + super.name + "?");
-            
-            System.out.println("Do you want to purchase " + super.name + "?");
-            Scanner in = new Scanner(System.in);
-            char result = in.next().charAt(0);
-            
-            if (result == 'y')
-            {
+                //If player has enough money, buy the pokemon.
                 if (player.sufficientBalance(cost))
                 {
                     player.removeFromBalance(cost);
                     changeOwner(player);
 
-                    System.out.println("Pokemon purchased and added to inventory!");
+                    //System.out.println("Pokemon purchased and added to inventory!");
                 }
+                //If not, nothing happens
                 else
                 {
                     System.out.println("You don't have enough money to purchase the Pokemon!");
+                    
                 }
+                System.out.println("Balance= " + player.currentBalance());
             }
-            else if (result == 'n')
-            {
-                System.out.println("Pokemon not purchased!");
-            }
-            
-//            toShow.setTop(topMessage);
-//            
-//            toShow.setCenter(new ImageView(super.image));
-//            
-//            Button btnYes = new Button("Yes");
-//            Button btnNo = new Button("No");
-//            
-//            HBox buttons = new HBox();
-//            buttons.getChildren().addAll(btnYes, btnNo);
-//            
-//            toShow.setBottom(buttons);
-//            
-//            btnYes.setOnAction(new EventHandler<ActionEvent>()
-//                    {
-//                        public void handle(ActionEvent event)
-//                        {
-//                            if (player.sufficientBalance(cost))
-//                            {
-////                                player.removeFromBalance(cost);
-////                                changeOwner(player);
-////                                StackPane toShow = new StackPane();
-////                                Text notBought = new Text("Pokemon purchased and added to inventory!");
-////                                toShow.getChildren().add(notBought);
-////                                UpdateCenterView.updateScene(toShow);
-//                                System.out.println("Pokemon purchased and added to inventory!");
-//                            }
-//                            else
-//                            {
-////                                StackPane toShow = new StackPane();
-////                                Text notBought = new Text("You don't have enough money to purchase the Pokemon!");
-////                                toShow.getChildren().add(notBought);
-////                                UpdateCenterView.updateScene(toShow);
-//                                System.out.println("You don't have enough money to purchase the Pokemon!");
-//                            }
-//                        }
-//                    });
-//            
-//            btnNo.setOnAction(new EventHandler<ActionEvent>()
-//                    {
-//                        public void handle(ActionEvent event)
-//                        {
-////                            StackPane toShow = new StackPane();
-////                            Text notBought = new Text("Pokemon not purchased!");
-////                            toShow.getChildren().add(notBought);
-////                            UpdateCenterView.updateScene(toShow);
-//                            System.out.println("Pokemon not purchased!");
-//                        }
-//                    });
-//            
-//            UpdateCenterView.updateScene(toShow);
-//            System.out.println("Scene update called");
-            //Update the GUI
-        }
-//        else
-//        { 
-//            StackPane toShow = new StackPane();
-//            Text notBought = new Text("You don't have enough money to purchase the Pokemon!");
-//            toShow.getChildren().add(notBought);
-//            UpdateCenterView.updateScene(toShow);
-//        }
-//    }
+
+  
     
+    /**
+     * 
+     * Purpose: changes the owner of the current tile.
+     * @param newPlayer the player who is replacing the current
+     *  owner.
+     */
     public void changeOwner( Player newPlayer )
     {
         // Remove from the current owner's Pokedex

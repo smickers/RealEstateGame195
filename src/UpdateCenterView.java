@@ -5,22 +5,22 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-public class UpdateCenterView
+public class UpdateCenterView extends Application
 {
-//    private static Scene scene;
-//    private static Stage stage;
+    private static Scene scene;
+    private static Stage stage;
     
     public static void main(String[] args)
     {
-        runTests();
+        Application.launch(args);
     }
-    public static void runTests()
+    public void start(Stage stage)
     {
-//        this.stage = stage;
-//        StackPane main = new StackPane();
-//        scene = new Scene(main);
-//        stage.setScene(scene);
-//        stage.show();
+        this.stage = stage;
+        StackPane main = new StackPane();
+        scene = new Scene(main);
+        stage.setScene(scene);
+        stage.show();
         
         
         /////////////////////////////////////////////////
@@ -47,9 +47,9 @@ public class UpdateCenterView
         ////////////////////////////////////////////////////////
     }
     
-//    public static void updateScene(Pane newPane)
-//    {
-//        stage.setScene(new Scene(newPane));
-//    }
+    public static void updateScene(Pane newPane)
+    {
+        stage.setScene(new Scene(newPane));
+    }
     
 }
