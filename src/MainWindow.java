@@ -15,17 +15,15 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * 
- * Purpose: This holds the main method, and is pretty much used to start the
- * game and update the center view of the board.
+ * Purpose: This holds the main method, and is  used to start the
+ * game and update the GUI
  *
- * @author Red Group
- * @version 1.0
+ * Date: May 9 2016
+ * @author cst109 Hilary, cst152 Travis, cstCAM
  */
 public class MainWindow extends Application
 {
     
-
     public static Scene scene = new Scene(new StackPane());
 
     /**
@@ -44,9 +42,7 @@ public class MainWindow extends Application
     @Override
     public void start( Stage stage )
     {
-     setScene(SplashScreen.buildSplashScreen(stage));
-//      setScene(TrainerSelectScreen.displayScreen());
-      // setScene(GameBoard.displayScreen());
+       setScene(SplashScreen.buildSplashScreen(stage));
        stage.setScene(scene);
        stage.show();
     }
@@ -67,6 +63,7 @@ public class MainWindow extends Application
      * Purpose: additional start screens
      * @param stage
      * @param pane
+     * @param song - path name of audio
      */
     public void newStart(Stage stage, Pane pane, String song)
     {

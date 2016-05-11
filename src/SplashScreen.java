@@ -13,13 +13,22 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Purpose: Creates the SplashScreen pane, to be passed into the Main Window
+ * The Pane Allows the GameMaster to start a new game, or load a saved game
+ * Date: May 10, 2016	
+ * @author cst109 Hilary, cst152 Travis, cstCAM
 
+ */
 public class SplashScreen
 {
-	
-    public static final String SAVE_FILE_NAME = "Pokemon.opoly";
+	//The name of save file
+    public static final String SAVE_FILE_NAME = "Pokemon.opoly"; 
+    //The uniform button width
     private static final int BUTTON_WIDTH = 200;
+    //The uniform button height
     private static final int BUTTON_HEIGHT = 40;
+    //The uniform button font
     private static final Font BUTTON_FONT = new Font("Comic Sans MS", 26.0);
     
     /**
@@ -47,14 +56,10 @@ public class SplashScreen
         btnLoadGame.setFont(BUTTON_FONT);
         btnExit.setFont(BUTTON_FONT);
 
-
-        
-        
         main.setSpacing(10.0);
 
         main.getChildren().addAll(logo, btnNewGame, btnLoadGame, btnExit);
 
-        
         btnNewGame.setOnAction(new EventHandler<ActionEvent>()
         {
         	/**
@@ -64,7 +69,6 @@ public class SplashScreen
 			public void handle( ActionEvent event )
             {
 			
-
             	TrainerSelectScreen tss = new TrainerSelectScreen();
 				MainWindow mw = new MainWindow();
 				Stage stage1 = new Stage();
@@ -93,7 +97,8 @@ public class SplashScreen
                 {
                     // TODO Auto-generated catch block
                     btnLoadGame.setDisable(true);
-                    Alert alert = new Alert(AlertType.ERROR, "No save file was found!");
+                    Alert alert = new Alert(AlertType.ERROR,
+                    		"No save file was found!");
                     alert.show();
                     e.printStackTrace();
                 }
