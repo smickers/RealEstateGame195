@@ -73,7 +73,10 @@ public class SplashScreen
                 // Attempt to load an existing game file
                 try
                 {
-                    Object game = LoadFile.load("Pokemon.opoly");
+                   // Object game = LoadFile.load("Pokemon.opoly");
+                	String s = (String) LoadFile.load("loadTest.txt");
+                    Alert alert = new Alert(AlertType.ERROR, "No save file was found!");
+
                 }
                 catch ( Exception e )
                 {

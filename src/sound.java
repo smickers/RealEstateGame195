@@ -21,12 +21,18 @@ public class sound {
 	{
 		if (player != null)
 		{
+			//fadeOut();
 			player.stop();
 		}
 
 		else
 		{
-			System.out.println("too fuckiin bad");
+			System.out.println("Media Player cannot be stopped at this time");
 		}
+	}
+	
+	public static void fadeOut()
+	{
+		// player.setVolume();		
 	}
 }
