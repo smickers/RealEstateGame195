@@ -89,7 +89,8 @@ public class GameMain
                 
                 // Run the action method on that tile for the player that
                 // just rolled and moved
-                gameBoard.tileAtIndex(currentPlayer.currentLocation).action(currentPlayer);
+                // TODO Uncomment line below this once GameBoard has been finished
+                //gameBoard.tileAtIndex(currentPlayer.currentLocation).action(currentPlayer);
             }
         }
     }
