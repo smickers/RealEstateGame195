@@ -43,13 +43,15 @@ public class BattleGUITest extends Application
 
         String[] names = new String[] { "a", "b", "c" };
         Pokemon testChallenger = new Pokemon(names, null, 5, 3);
-        Player challenger = new Player(new Trainer("Test trainer", new Image("img/trainers/ash.png"), null));
+        Player challenger = new Player(new Trainer("Ash", new Image("img/trainers/ash.png"), null));
         challenger.addToBalance(5000);
 //        test.action(challenger);
         
-        Player defender = new Player(new Trainer("Test trainer", new Image("img/trainers/hilda.png"), null));
+        Player defender = new Player(new Trainer("Gary", new Image("img/trainers/hilda.png"), null));
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
-        Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender, 100);
+        defender.addToBalance(5000);
+        Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender, 200);
+        
         newBattle.battle();
         // //////////////////////////////////////////////////
 

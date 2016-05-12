@@ -45,6 +45,8 @@ public class Battle
     private Pokemon challengingPokemon;
     private Pokemon defendingPokemon;
     private int amountToPay;
+    
+        
 
     public Battle(Player challengingPlayer,
             Player defendingPlayer, Pokemon challengingPokemon,
@@ -166,8 +168,10 @@ public class Battle
     
     private void rollScreen()
     {
-        //Die die = new Die();
+       
         
+        // TODO testing
+        System.out.println("\n ");
         int challengerAttack = challengingPokemon.attackPoints + 
                 Die.rollBattleDie();
         
@@ -176,18 +180,23 @@ public class Battle
         
         if( challengerAttack > defendingAttack )
         {
+         // TODO testing
+            System.out.println("challenger wins");
             challengerWins();
         }
         else if( challengerAttack < defendingAttack )
         {
+         // TODO testing
+            System.out.println("defender wins");
             defenderWins();
         }
         else
         {
+         // TODO testing
+            System.out.println("tie");
             tie();
         }
         
-        System.out.println("Roll screen called!");
     }
     
     private void challengerWins()
@@ -228,16 +237,67 @@ public class Battle
         
     }
     
-    //Splash
+    
     private void tie()
     {
-        
+        resultScreen(null, "", true);
     }
     
     public void moneyExchange(Player winner, Player loser)
     {
         winner.addToBalance( amountToPay );
         loser.removeFromBalance( amountToPay );
+        
+        String.valueOf(amountToPay);
+        
+        resultScreen( winner, String.valueOf(amountToPay), false );
+    }
+    
+    private void resultScreen( Player winner, String winnings, boolean isTie)
+    {
+        // Create a new view for the ready screen
+        // TODO Change these to the Pokemon's images once we have
+        // Pokemon images
+        
+        VBox resultScreen = new VBox();
+        
+        HBox trainers = new HBox(50);
+        ImageView firstTrainer = new ImageView(
+                challengingPlayer.trainer.trainerImage);
+
+        ImageView secondTrainer = new ImageView(
+                defendingPlayer.trainer.trainerImage);
+
+        firstTrainer.setPreserveRatio(true);
+        secondTrainer.setPreserveRatio(true);
+        firstTrainer.setFitHeight(150);
+        secondTrainer.setFitHeight(150);
+        
+        trainers.getChildren().addAll(firstTrainer, secondTrainer);
+        
+        Text results;
+       
+        
+        if( isTie )
+        {
+            results = new Text("The Battle has resulted in a tie");
+        }
+        else
+        {
+            results = new Text(winner.trainer.name + " wins " + winnings + 
+                    " Yen");
+        }
+
+        results.setFont(GameFont.GAME_FONT);
+
+        System.out.println("Challenger: \t" + challengingPlayer.currentBalance());
+        System.out.println("Defender: \t" + defendingPlayer.currentBalance());
+        
+        resultScreen.getChildren().addAll(trainers, results);
+        
+        
+        // TODO this is only for testing until the board is done.
+        BattleGUITest.updateScene(resultScreen);
     }
     
     
