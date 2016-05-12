@@ -47,7 +47,7 @@ public class BattleGUITest extends Application
         challenger.addToBalance(5000);
 //        test.action(challenger);
         
-        Player defender = new Player(new Trainer("Gary", new Image("img/trainers/hilda.png"), null));
+        Player defender = new Player(new Trainer("Hidla", new Image("img/trainers/hilda.png"), null));
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
         defender.addToBalance(5000);
         Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender, 200);
