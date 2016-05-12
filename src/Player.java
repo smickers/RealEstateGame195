@@ -169,5 +169,15 @@ public class Player
         // Just return their balance
         return balance;
     }
+    
+    public String pokedexString()
+    {
+        return pokedex.pokemonOwned.toString();
+    }
+    
+    public int numberOfPokemonOwned()
+    {
+        return pokedex.pokemonOwned.size();
+    }
 
 }

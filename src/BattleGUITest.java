@@ -31,6 +31,9 @@ public class BattleGUITest extends Application
         Application.launch(args);
     }
 
+    /**
+     * Default start method to start the GUI.
+     */
     public void start( Stage stage )
     {
         this.stage = stage;
@@ -43,14 +46,27 @@ public class BattleGUITest extends Application
 
         String[] names = new String[] { "a", "b", "c" };
         Pokemon testChallenger = new Pokemon(names, null, 5, 3);
-        Player challenger = new Player(new Trainer("Test trainer", new Image("img/trainers/ash.png"), null));
+        Player challenger = new Player(new Trainer("Test trainer A", new Image(
+                "img/trainers/ash.png"), null));
         challenger.addToBalance(5000);
-//        test.action(challenger);
-        
-        Player defender = new Player(new Trainer("Test trainer", new Image("img/trainers/hilda.png"), null));
+        challenger.addPokemon(testChallenger);
+        // test.action(challenger);
+
+        Player defender = new Player(new Trainer("Test trainer B", new Image(
+                "img/trainers/hilda.png"), null));
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
-        Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender);
-        newBattle.battle();
+        defender.addPokemon(testDefender);
+        Battle newBattle = new Battle(challenger, defender, testChallenger,
+                testDefender);
+        // newBattle.battle();
+        newBattle.pokemonExchange(defender, challenger);
+
+        System.out.println("\n\n\n\n\n\n");
+        // Create a method to print out the trainer's current hand
+        System.out.println("Trainer A Pokemon owned: "
+                + challenger.numberOfPokemonOwned());
+        System.out
+                .println("Trainer B hand: " + defender.numberOfPokemonOwned());
         // //////////////////////////////////////////////////
 
         // Test when Pokemon is already owned
