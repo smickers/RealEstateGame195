@@ -44,15 +44,17 @@ public class Battle
     private Player defendingPlayer;
     private Pokemon challengingPokemon;
     private Pokemon defendingPokemon;
+    private int amountToPay;
 
     public Battle(Player challengingPlayer,
             Player defendingPlayer, Pokemon challengingPokemon,
-            Pokemon defendingPokemon)
+            Pokemon defendingPokemon, int tileCost )
             {
                 this.challengingPlayer = challengingPlayer;
                 this.defendingPlayer = defendingPlayer;
                 this.challengingPokemon = challengingPokemon;
                 this.defendingPokemon = defendingPokemon;
+                this.amountToPay = tileCost / 2;
             }
     public void battle()
     {
@@ -164,6 +166,80 @@ public class Battle
     
     private void rollScreen()
     {
+        //Die die = new Die();
+        
+        int challengerAttack = challengingPokemon.attackPoints + 
+                Die.rollBattleDie();
+        
+        int defendingAttack = defendingPokemon.attackPoints + 
+                Die.rollBattleDie();
+        
+        if( challengerAttack > defendingAttack )
+        {
+            challengerWins();
+        }
+        else if( challengerAttack < defendingAttack )
+        {
+            defenderWins();
+        }
+        else
+        {
+            tie();
+        }
+        
         System.out.println("Roll screen called!");
     }
+    
+    private void challengerWins()
+    {
+        
+        if(defendingPlayer.sufficientBalance( amountToPay ) )
+        {
+            moneyExchange( challengingPlayer, defendingPlayer );
+        }
+        else if( defendingPokemon.currentIndex == 0 )
+        {
+            // TODO
+            //pokemonExchange();
+        }
+        else 
+        {
+            //devolvePokemon();
+        }
+        
+    }
+    
+    private void defenderWins()
+    {
+        if(defendingPlayer.sufficientBalance( amountToPay ) )
+        {
+            moneyExchange( defendingPlayer, challengingPlayer );
+        }
+        else if( defendingPokemon.currentIndex == 0 )
+        {
+            //TODO
+            //pokemonExchange();
+        }
+        else 
+        {
+            //devolvePokemon();
+        }
+        
+        
+    }
+    
+    //Splash
+    private void tie()
+    {
+        
+    }
+    
+    public void moneyExchange(Player winner, Player loser)
+    {
+        winner.addToBalance( amountToPay );
+        loser.removeFromBalance( amountToPay );
+    }
+    
+    
+    
 }

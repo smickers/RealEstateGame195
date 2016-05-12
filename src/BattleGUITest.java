@@ -49,7 +49,7 @@ public class BattleGUITest extends Application
         
         Player defender = new Player(new Trainer("Test trainer", new Image("img/trainers/hilda.png"), null));
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
-        Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender);
+        Battle newBattle = new Battle(challenger, defender, testChallenger, testDefender, 100);
         newBattle.battle();
         // //////////////////////////////////////////////////
 

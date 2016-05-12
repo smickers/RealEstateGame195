@@ -45,7 +45,7 @@ public class Pokemon
     // pokemon.
     public int defaultAttackPoints;
 
-    private int currentIndex = 0;
+    public int currentIndex = 0;
 
     /**
      * 
