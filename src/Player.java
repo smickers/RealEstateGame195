@@ -170,11 +170,23 @@ public class Player
         return balance;
     }
     
+    /**
+     * 
+     * Purpose: Return a nicely formatted String of all the Pokemon
+     * owned by a player
+     * @return A string with all of the player's owned Pokemon
+     */
     public String pokedexString()
     {
         return pokedex.pokemonOwned.toString();
     }
     
+    /**
+     * 
+     * Purpose: A simple method to return the number of Pokemon
+     * a player currently owns.
+     * @return The number of Pokemon currently owned by the player.
+     */
     public int numberOfPokemonOwned()
     {
         return pokedex.pokemonOwned.size();
