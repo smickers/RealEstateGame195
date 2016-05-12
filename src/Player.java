@@ -1,12 +1,3 @@
-/*
- *  [File header includes information about the file being submitted.]
- *  Date submitted:
- *  Assignment number:
- *  Course name:  COSC 190
- *  Instructors: Sharon McDonald, Nelson Wong
- * 
- */
-
 /**CLASS: Player
  * @info: Creates an individual Player object
  * @author cst104
