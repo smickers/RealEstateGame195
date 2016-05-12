@@ -64,7 +64,7 @@ public class Pokemon
 
         this.pokemonImages = pokemonImages;
         // TODO Uncomment when we have images
-        // this.currentImage = this.pokemonImages[0];
+        this.currentImage = this.pokemonImages[0];
 
         this.evolutionPointsToEvolve = evolutionPointsToEvolve;
         this.defaultAttackPoints = defaultAttackPoints;
@@ -108,10 +108,17 @@ public class Pokemon
 
         if ( !(this.currentIndex == 0) )
         {
+        	this.currentIndex--;
 
+            this.currentName = this.titles[this.currentIndex];
+            this.currentImage = this.pokemonImages[this.currentIndex];
+
+            this.resetEvolutionPoints();
+
+            result = true;
         }
 
-        return false;
+        return result;
     }
 
     /**
