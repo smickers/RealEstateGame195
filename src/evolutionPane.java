@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -15,9 +16,8 @@ public class evolutionPane extends Thread implements Runnable{
 	private static String devolutionSong = "devolutionCut.mp3";
 	private static Pokemon pokemon;
 	private static ImageView iv1;
-	static Image pokemonFirstImage;
-	private Thread evolveDevolveAnimation;
-
+	private static Image pokemonFirstImage;
+	private static Thread evolveDevolveAnimation;
 	public static Pane buildEvolutionPane(Pokemon p)
 	{
 		pokemon = p;
@@ -39,6 +39,10 @@ public class evolutionPane extends Thread implements Runnable{
 		vbox.getChildren().add(t);
 		vbox.getChildren().add(button);
 		
+		pokemon.evolve();
+		
+		
+		evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1, pokemon, pokemonFirstName, pokemonFirstImage, pokemon.currentImage, t));
 		//Alert alert = new Alert(AlertType.INFORMATION, "Woah, " + pokemon.currentName + " is evolving!" );
 		//alert.show();
 		vbox.setAlignment(Pos.CENTER);
@@ -51,9 +55,7 @@ public class evolutionPane extends Thread implements Runnable{
             @SuppressWarnings("static-access")
 			public void handle( ActionEvent event )
             {
-            	pokemon.evolve();
-            	t.setText(pokemonFirstName + " evolved into " + pokemon.currentName +"!");
-            	iv1.setImage(pokemon.currentImage);
+            	evolveDevolveAnimation.start();
             }
 
         });
@@ -80,6 +82,10 @@ public class evolutionPane extends Thread implements Runnable{
 		vbox.getChildren().add(t);
 		vbox.getChildren().add(button);
 		
+pokemon.devolve();
+		
+		
+		evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1, pokemon, pokemonFirstName, pokemonFirstImage, pokemon.currentImage, t));
 		//Alert alert = new Alert(AlertType.INFORMATION, "Woah, " + pokemon.currentName + " is evolving!" );
 		//alert.show();
 		vbox.setAlignment(Pos.CENTER);
@@ -87,17 +93,12 @@ public class evolutionPane extends Thread implements Runnable{
 		button.setOnAction(new EventHandler<ActionEvent>()
         {
         	/**
-        	 * Purpose: shows the devolution when button is pressed
+        	 * Purpose: shows the evolution when button is pressed
         	 */
             @SuppressWarnings("static-access")
 			public void handle( ActionEvent event )
             {
-            	pokemon.devolve();
-            	t.setText(pokemonFirstName + " devolved into " + pokemon.currentName +"!");
-            	iv1.setImage(pokemon.currentImage);
-//            	music.stop();
-//            	music.playSound("");
-            	//run();
+            	evolveDevolveAnimation.start();
             }
 
         });
@@ -106,33 +107,6 @@ public class evolutionPane extends Thread implements Runnable{
 	}
 	
 	
-	private class animation extends Thread implements Runnable
-	{
-		
-		public animation()
-		{
-			
-		}
-		
-		@Override
-		public void run() {
-			
-			for (int i = 0; i < 100; i ++)
-			{
-				iv1.setImage(pokemon.currentImage);
-				try 
-				{
-					Thread.sleep(20);
-					
-				} catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-				iv1.setImage(pokemonFirstImage);
-			}
-			
-		}
-		
-	}
+    
 	
 }
