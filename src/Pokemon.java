@@ -107,7 +107,7 @@ public class Pokemon
     {
         boolean result = false;
 
-        if ( !(this.currentIndex == 0) )
+        if ( !(this.currentIndex == 0) && this.evolutionPoints == -1 )
         {
         	this.currentIndex--;
 
@@ -137,10 +137,6 @@ public class Pokemon
     public void removeEvolutionPoint()
     {
         this.evolutionPoints--;
-        if(this.evolutionPoints == 4 || this.evolutionPoints == 9)
-        {
-            devolve();
-        }
     }
     
 

@@ -13,13 +13,13 @@ public class TestPokemon
     private String[] singleTitles = {"Magikarp", "Gyarados" };
 
     //Need actual pictures to test 
-    private Image[] singleImages = {new Image("pic"), new Image("pic")};
+    private Image[] singleImages = {null, null};
 
     private Pokemon doubleEvolution; 
     private String[] doubleTitles = {"Charmander", "Charmeleon", "Charizard" };
     
     //Need actual pictures to test 
-    private Image[] doubleImages = {new Image(""), new Image("")};
+    private Image[] doubleImages = {null, null, null};
     
     
     @Before
@@ -35,12 +35,15 @@ public class TestPokemon
     @Test
     public void testThatEvolveAndDevolveChangeTheNameAndImageOfThePokemon()
     {
+        this.singleEvolution.evolutionPoints = 5;
         this.singleEvolution.evolve();
         String result = this.singleEvolution.currentName;
         
+        this.doubleEvolution.evolutionPoints = 5;
         this.doubleEvolution.evolve();
         String result2 = this.doubleEvolution.currentName;
         
+        this.doubleEvolution.evolutionPoints = 5;
         this.doubleEvolution.evolve();
         String result3 = this.doubleEvolution.currentName;
         
@@ -65,6 +68,7 @@ public class TestPokemon
     @Test
     public void testThatAddEvolutionPointsIncrementsTheAmountOfEvolutionPoints()
     {
+
         this.singleEvolution.addEvolutionPoint();
         int result = this.singleEvolution.evolutionPoints;
         
@@ -108,10 +112,13 @@ public class TestPokemon
     @Test
     public void testThatIsMaxEvolutionReturnsTrueIfPokemonIsAtLastEvolution()
     {
+        this.singleEvolution.evolutionPoints = 5;
         this.singleEvolution.evolve();
         boolean result = this.singleEvolution.isMaxEvolution();
         
+        this.doubleEvolution.evolutionPoints = 5;
         this.doubleEvolution.evolve();
+        this.doubleEvolution.evolutionPoints = 5;
         this.doubleEvolution.evolve();
         boolean result2 = this.doubleEvolution.isMaxEvolution();
         
@@ -128,5 +135,23 @@ public class TestPokemon
         
         assertEquals(false, result);
         assertEquals(false, result2);
+    }
+    
+    @Test
+    public void addEvolutionPoint()
+    {
+        singleEvolution.addEvolutionPoint();
+        assertEquals(1, singleEvolution.evolutionPoints);
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        assertEquals(5, singleEvolution.evolutionPoints);
+        
+        
+        //If evolve is called, check their evolution points are equal to 0
+        //singleEvolution.evolve();
+        assertEquals(0, singleEvolution.evolutionPoints);
+
     }
 }

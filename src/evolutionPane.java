@@ -68,6 +68,7 @@ public class evolutionPane extends Thread implements Runnable
         // After testing is complete.
         Button button = new Button("Add Evolution Point");
         Button button2 = new Button("Remove Evolution Point");
+        button2.setDisable(true);
         Text title = new Text("EVOLUTION!");
         // Adding everything to the pane.
         vbox.getChildren().add(title);
@@ -99,9 +100,9 @@ public class evolutionPane extends Thread implements Runnable
             @SuppressWarnings("static-access")
             public void handle(ActionEvent event)
             {
-                p.addEvolutionPoint();
-                System.out.println(p.evolutionPoints);
-                if(p.evolutionPoints == 5)
+                pokemon.addEvolutionPoint();
+                System.out.println(pokemon.evolutionPoints);
+                if(pokemon.evolutionPoints == 5)
                 {
                     pokemon.evolve();
                     
@@ -146,19 +147,19 @@ public class evolutionPane extends Thread implements Runnable
         iv1.setFitHeight(200);
         iv1.setFitWidth(200);
         // Temporary button for testing.
-        Button button = new Button("Continue");
         Text title = new Text("DEVOLUTION! I didn't know that could happen");
+        Button button = new Button("Add Evolution Point");
+        Button button2 = new Button("Remove Evolution Point");
+        button.setDisable(true);
         vbox.getChildren().add(title);
         vbox.getChildren().add(iv1);
         vbox.getChildren().add(t);
         vbox.getChildren().add(button);
+        vbox.getChildren().add(button2);
 
         // Calling the devolution
-        pokemon.devolve();
         // Creating the new thread with the pokemon being devolved.
-        evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
-                pokemon, pokemonFirstName, pokemonFirstImage,
-                pokemon.currentImage, t, DEVOLVE_TEXT));
+        
         // Alert alert = new Alert(AlertType.INFORMATION, "Woah, " +
         // pokemon.currentName + " is evolving!" );
         // alert.show();
@@ -167,7 +168,7 @@ public class evolutionPane extends Thread implements Runnable
         /**
          * Temporary anonymous button handler to test
          */
-        button.setOnAction(new EventHandler<ActionEvent>()
+        button2.setOnAction(new EventHandler<ActionEvent>()
         {
             /**
              * Purpose: shows the evolution when button is pressed
@@ -175,8 +176,19 @@ public class evolutionPane extends Thread implements Runnable
             @SuppressWarnings("static-access")
             public void handle(ActionEvent event)
             {
-                evolveDevolveAnimation.start();
-                button.setDisable(true);
+                pokemon.removeEvolutionPoint();
+                System.out.println(pokemon.evolutionPoints);
+                if(pokemon.evolutionPoints == -1)
+                {
+                    pokemon.devolve();
+                    evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
+                            pokemon, pokemonFirstName, pokemonFirstImage,
+                            pokemon.currentImage, t, DEVOLVE_TEXT));
+                    evolveDevolveAnimation.start();
+                    System.out.println("Pokemons Evo point after DEvolution: " + pokemon.evolutionPoints);
+                }
+                
+                //button.setDisable(true);
             }
 
         });
