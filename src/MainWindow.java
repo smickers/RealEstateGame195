@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  */
 public class MainWindow extends Application
 {
-    
+	
     public static Scene scene = new Scene(new StackPane());
 
     /**

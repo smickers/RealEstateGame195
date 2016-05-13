@@ -206,7 +206,7 @@ public class TrainerSelectScreen
 				Stage stage1 = new Stage();
 
 				stage.close();
-				mw.newStart(stage1, GameBoard.displayScreen(), 
+				mw.newStart(stage1, new GameBoard(), 
 						"palette-town.mp3");
 
 			}
