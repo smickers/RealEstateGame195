@@ -81,7 +81,8 @@ public class Pokemon
     public boolean evolve()
     {
         boolean result = false;
-        if ( !this.isMaxEvolution() )
+        
+        if ( !this.isMaxEvolution() && this.evolutionPoints == 5 )
         {
             this.currentIndex++;
 
@@ -129,6 +130,19 @@ public class Pokemon
     {
         this.evolutionPoints++;
     }
+    
+    /**
+     * PurposE: remove evolution point
+     */
+    public void removeEvolutionPoint()
+    {
+        this.evolutionPoints--;
+        if(this.evolutionPoints == 4 || this.evolutionPoints == 9)
+        {
+            devolve();
+        }
+    }
+    
 
     /**
      * 

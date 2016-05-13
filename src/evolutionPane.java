@@ -66,22 +66,22 @@ public class evolutionPane extends Thread implements Runnable
         iv1.setFitWidth(200);
         // TODO Test button, this code will run automatically without the button
         // After testing is complete.
-        Button button = new Button("Continue");
+        Button button = new Button("Add Evolution Point");
+        Button button2 = new Button("Remove Evolution Point");
         Text title = new Text("EVOLUTION!");
         // Adding everything to the pane.
         vbox.getChildren().add(title);
         vbox.getChildren().add(iv1);
         vbox.getChildren().add(t);
         vbox.getChildren().add(button);
+        vbox.getChildren().add(button2);
 
         // Calling the evolve of the pokemon
-        pokemon.evolve();
+        
 
         // Creating the thread to change the images, passing in everything
         // needed
-        evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
-                pokemon, pokemonFirstName, pokemonFirstImage,
-                pokemon.currentImage, t, EVOLVE_TEXT));
+        
         // Alert alert = new Alert(AlertType.INFORMATION, "Woah, " +
         // pokemon.currentName + " is evolving!" );
         // alert.show();
@@ -99,10 +99,21 @@ public class evolutionPane extends Thread implements Runnable
             @SuppressWarnings("static-access")
             public void handle(ActionEvent event)
             {
-                evolveDevolveAnimation.start();
+                p.addEvolutionPoint();
+                System.out.println(p.evolutionPoints);
+                if(p.evolutionPoints == 5)
+                {
+                    pokemon.evolve();
+                    
+                    evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
+                            pokemon, pokemonFirstName, pokemonFirstImage,
+                            pokemon.currentImage, t, EVOLVE_TEXT));
+                    evolveDevolveAnimation.start();
+                }
             }
 
         });
+        
 
         return vbox;
     }
@@ -165,6 +176,7 @@ public class evolutionPane extends Thread implements Runnable
             public void handle(ActionEvent event)
             {
                 evolveDevolveAnimation.start();
+                button.setDisable(true);
             }
 
         });
