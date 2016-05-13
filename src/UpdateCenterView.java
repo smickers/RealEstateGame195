@@ -45,8 +45,13 @@ public class UpdateCenterView extends Application
         PokemonTile test = new PokemonTile(testPokemon, 50, null,
                 "Test Pokemon", null);
         Player testPlayer = new Player(new Trainer("Test trainer", null, null));
+        
+//        Comment the next line out to see what happens when the user doesn't
+//        have enough money to buy a Pokemon
         testPlayer.addToBalance(5000);
         test.action(testPlayer);
+        
+        
         // //////////////////////////////////////////////////
 
         // Test when Pokemon is already owned
