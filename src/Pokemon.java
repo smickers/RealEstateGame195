@@ -82,7 +82,7 @@ public class Pokemon
     {
         boolean result = false;
         
-        if ( !this.isMaxEvolution() && this.evolutionPoints == 5 )
+        if ( !this.isMaxEvolution() && this.evolutionPoints == evolutionPointsToEvolve )
         {
             this.currentIndex++;
 
@@ -107,14 +107,14 @@ public class Pokemon
     {
         boolean result = false;
 
-        if ( !(this.currentIndex == 0) && this.evolutionPoints == -1 )
+        if ( !(this.currentIndex == 0))
         {
         	this.currentIndex--;
 
             this.currentName = this.titles[this.currentIndex];
             this.currentImage = this.pokemonImages[this.currentIndex];
 
-            this.resetEvolutionPoints();
+            this.evolutionPoints = evolutionPointsToEvolve -1;
 
             result = true;
         }
@@ -129,6 +129,10 @@ public class Pokemon
     public void addEvolutionPoint()
     {
         this.evolutionPoints++;
+        if(this.evolutionPoints == evolutionPointsToEvolve)
+        {
+            evolve();
+        }
     }
     
     /**
@@ -137,6 +141,10 @@ public class Pokemon
     public void removeEvolutionPoint()
     {
         this.evolutionPoints--;
+        if(this.evolutionPoints == -1)
+        {
+            devolve();
+        }
     }
     
 

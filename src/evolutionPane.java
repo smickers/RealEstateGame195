@@ -102,9 +102,9 @@ public class evolutionPane extends Thread implements Runnable
             {
                 pokemon.addEvolutionPoint();
                 System.out.println(pokemon.evolutionPoints);
-                if(pokemon.evolutionPoints == 5)
+                if(pokemon.evolutionPoints == 0)
                 {
-                    pokemon.evolve();
+                    //pokemon.evolve();
                     
                     evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
                             pokemon, pokemonFirstName, pokemonFirstImage,
@@ -178,7 +178,7 @@ public class evolutionPane extends Thread implements Runnable
             {
                 pokemon.removeEvolutionPoint();
                 System.out.println(pokemon.evolutionPoints);
-                if(pokemon.evolutionPoints == -1)
+                if(pokemon.evolutionPoints == pokemon.evolutionPointsToEvolve - 1)
                 {
                     pokemon.devolve();
                     evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,

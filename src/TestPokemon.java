@@ -145,13 +145,36 @@ public class TestPokemon
         singleEvolution.addEvolutionPoint();
         singleEvolution.addEvolutionPoint();
         singleEvolution.addEvolutionPoint();
+        assertEquals(4, singleEvolution.evolutionPoints);
+        
+        //Check that after an evolution their evolution points are 0
         singleEvolution.addEvolutionPoint();
-        assertEquals(5, singleEvolution.evolutionPoints);
-        
-        
-        //If evolve is called, check their evolution points are equal to 0
-        //singleEvolution.evolve();
         assertEquals(0, singleEvolution.evolutionPoints);
-
+    }
+    
+    @Test
+    public void removeEvolutionPoint()
+    {
+        singleEvolution.addEvolutionPoint();
+        assertEquals(1, singleEvolution.evolutionPoints);
+        singleEvolution.removeEvolutionPoint();
+        assertEquals(0, singleEvolution.evolutionPoints);
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        singleEvolution.addEvolutionPoint();
+        
+        singleEvolution.removeEvolutionPoint();
+        assertEquals(0, singleEvolution.evolutionPoints);
+        
+//        singleEvolution.addEvolutionPoint();
+//        singleEvolution.addEvolutionPoint();
+//        singleEvolution.addEvolutionPoint();
+//        assertEquals(5, singleEvolution.evolutionPoints);
+//        
+//        //Check that after an evolution their evolution points are 0
+//        singleEvolution.evolve();
+//        assertEquals(0, singleEvolution.evolutionPoints);
     }
 }
