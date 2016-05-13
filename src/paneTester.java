@@ -33,7 +33,6 @@ public class paneTester extends Application
         Pokemon brown = new Pokemon(namesBrown, imgBrown, 10, 0);
         Pokemon aqua = new Pokemon(namesAqua, imgAqua, 5, 0);
 
-        aqua.evolve();
         Pane pane = ep.buildEvolutionPane(aqua);
 
         // Pane pane = ep.buildEvolutionPane(aqua);
