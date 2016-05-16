@@ -73,32 +73,21 @@ public class Battle
      */
     public void battle()
     {
+        // First we'll call rollForPlayers to have them roll dice to determine
+        // what "bonus points" will be added to their Pokemon for the battle
         rollForPlayers();
     }
-
 
     /**
      * Purpose: rolls for both players and determines the winner
      */
     public void rollForPlayers()
     {
-
-        // TODO testing
-        /*
-         * System.out.println("\n "); int challengerAttack =
-         * challengingPokemon.attackPoints + Die.rollBattleDie();
-         * 
-         * int defendingAttack = defendingPokemon.attackPoints +
-         * Die.rollBattleDie();
-         * 
-         * if (challengerAttack > defendingAttack) { // TODO testing
-         * System.out.println("challenger wins"); challengerWins(); } else if
-         * (challengerAttack < defendingAttack) { // TODO testing
-         * System.out.println("defender wins"); defenderWins(); } else { // TODO
-         * testing System.out.println("tie"); tie(); }
-         */
-        // TODO Uncomment the above for the final revision and comment
-        // the line below
+        // TODO Implement the dice rolling story, eventually
+        // TODO Add checks below here for different battle outcomes
+        // For now we will only call tie(), because the other stories
+        // required for fully completing the battle class haven't been
+        // implemented
         tie();
 
     }
@@ -181,7 +170,6 @@ public class Battle
         // because we're marking it as a tie result.
 
         this.result = "tie";
-//        BattleGUITest.resultScreen(null, null, true);
     }
 
 }
