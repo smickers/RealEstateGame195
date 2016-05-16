@@ -17,9 +17,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-
-
+/**
+ * Purpose: This class is used to represent the visual game board,
+ * 			and the overlaying grid that maps the tiles.
+ * 
+ * @author Paz Aloni, Stephanie McCallum
+ *
+ */
 
 public class GameBoard extends GridPane
 {
@@ -37,6 +41,9 @@ public class GameBoard extends GridPane
 	
 	Rectangle tilesOverlay[] = new Rectangle[GameMain.NUM_OF_TILES];
 	
+	/**
+	 * Constructor for a new game board
+	 */
 	public GameBoard()
 	{
 		//add the background image
@@ -70,8 +77,8 @@ public class GameBoard extends GridPane
 			//## For DEMO Only! ##
 			//####################
 			//for acceptance testing - display borders
-			tilesOverlay[i].setStroke(Color.RED);
-			this.add(new Text("\t"+i), col , row);
+			//tilesOverlay[i].setStroke(Color.RED);
+			//this.add(new Text("\t"+i), col , row);
 			
 			//### END OF DEMO ###
 			
@@ -100,10 +107,6 @@ public class GameBoard extends GridPane
 				this.add(tilesOverlay[i], col , row);
 				row++;
 			}
-			
-			
-			
-			
 		}
 		
 		
