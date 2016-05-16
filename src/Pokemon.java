@@ -81,9 +81,9 @@ public class Pokemon
     public boolean evolve()
     {
         boolean result = false;
-        
 
-        if ( !this.isMaxEvolution() && this.evolutionPoints == evolutionPointsToEvolve )
+        if (!this.isMaxEvolution()
+                && this.evolutionPoints == evolutionPointsToEvolve)
         {
             this.currentIndex++;
 
@@ -108,14 +108,14 @@ public class Pokemon
     {
         boolean result = false;
 
-        if ( !(this.currentIndex == 0))
+        if (!(this.currentIndex == 0))
         {
-        	this.currentIndex--;
+            this.currentIndex--;
 
             this.currentName = this.titles[this.currentIndex];
             this.currentImage = this.pokemonImages[this.currentIndex];
 
-            this.evolutionPoints = evolutionPointsToEvolve -1;
+            this.evolutionPoints = evolutionPointsToEvolve - 1;
 
             result = true;
         }
@@ -130,24 +130,23 @@ public class Pokemon
     public void addEvolutionPoint()
     {
         this.evolutionPoints++;
-        if(this.evolutionPoints == evolutionPointsToEvolve)
+        if (this.evolutionPoints == evolutionPointsToEvolve)
         {
             evolve();
         }
     }
-    
+
     /**
      * PurposE: remove evolution point
      */
     public void removeEvolutionPoint()
     {
         this.evolutionPoints--;
-        if(this.evolutionPoints == -1)
+        if (this.evolutionPoints == -1)
         {
             devolve();
         }
     }
-    
 
     /**
      * 
@@ -166,7 +165,7 @@ public class Pokemon
      * @param pointsToAdd
      *            - the number of points to add
      */
-    public void addToAttackPoints( int pointsToAdd )
+    public void addToAttackPoints(int pointsToAdd)
     {
         this.attackPoints += pointsToAdd;
     }
@@ -182,7 +181,7 @@ public class Pokemon
         boolean result = false;
 
         // Determine if the current name is the last name in the array of names
-        if ( this.currentName.equals(this.titles[this.titles.length - 1]) )
+        if (this.currentName.equals(this.titles[this.titles.length - 1]))
         {
             result = true;
         }

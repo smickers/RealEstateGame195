@@ -28,7 +28,7 @@ public class evolutionPane extends Thread implements Runnable
     private static String evolutionSong = "evolution.mp3";
     private static String devolutionSong = "devolutionCut.mp3";
     private static Pokemon pokemon;
-    private static ImageView iv1;
+    private static ImageView displayedPokemon;
     private static Image pokemonFirstImage;
     private static Thread evolveDevolveAnimation;
     public static final String EVOLVE_TEXT = "evolved";
@@ -60,10 +60,10 @@ public class evolutionPane extends Thread implements Runnable
         // Setting the text of the pane to show the pokemons name and
         // "is evolving"!
         Text t = new Text(pokemon.currentName + " is evolving!");
-        iv1 = new ImageView(pokemon.currentImage);
+        displayedPokemon = new ImageView(pokemon.currentImage);
         // Forcing the image to only be 200x200, to prevent scaling issues.
-        iv1.setFitHeight(200);
-        iv1.setFitWidth(200);
+        displayedPokemon.setFitHeight(200);
+        displayedPokemon.setFitWidth(200);
         // TODO Test button, this code will run automatically without the button
         // After testing is complete.
         Button button = new Button("Add Evolution Point");
@@ -72,20 +72,11 @@ public class evolutionPane extends Thread implements Runnable
         Text title = new Text("EVOLUTION!");
         // Adding everything to the pane.
         vbox.getChildren().add(title);
-        vbox.getChildren().add(iv1);
+        vbox.getChildren().add(displayedPokemon);
         vbox.getChildren().add(t);
         vbox.getChildren().add(button);
         vbox.getChildren().add(button2);
 
-        // Calling the evolve of the pokemon
-        
-
-        // Creating the thread to change the images, passing in everything
-        // needed
-        
-        // Alert alert = new Alert(AlertType.INFORMATION, "Woah, " +
-        // pokemon.currentName + " is evolving!" );
-        // alert.show();
         vbox.setAlignment(Pos.CENTER);
 
         /**
@@ -102,19 +93,20 @@ public class evolutionPane extends Thread implements Runnable
             {
                 pokemon.addEvolutionPoint();
                 System.out.println(pokemon.evolutionPoints);
-                if(pokemon.evolutionPoints == 0)
+                if (pokemon.evolutionPoints == 0)
                 {
-                     
-                        evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
-                                pokemon, pokemonFirstName, pokemonFirstImage,
-                                pokemon.currentImage, t, EVOLVE_TEXT));
-                        evolveDevolveAnimation.start();
-                    
+
+                    evolveDevolveAnimation = new Thread(
+                            new EvolutionAnimationThread(displayedPokemon,
+                                    pokemon, pokemonFirstName,
+                                    pokemonFirstImage, pokemon.currentImage, t,
+                                    EVOLVE_TEXT));
+                    evolveDevolveAnimation.start();
+
                 }
             }
 
         });
-        
 
         return vbox;
     }
@@ -142,27 +134,21 @@ public class evolutionPane extends Thread implements Runnable
         pokemonFirstImage = pokemon.currentImage;
         // Setting the text to reflect that the pokemon is devolving.
         Text t = new Text(pokemon.currentName + " is devolving!");
-        iv1 = new ImageView(pokemon.currentImage);
+        displayedPokemon = new ImageView(pokemon.currentImage);
         // Forcing the image to be 200x200
-        iv1.setFitHeight(200);
-        iv1.setFitWidth(200);
+        displayedPokemon.setFitHeight(200);
+        displayedPokemon.setFitWidth(200);
         // Temporary button for testing.
         Text title = new Text("DEVOLUTION! I didn't know that could happen");
         Button button = new Button("Add Evolution Point");
         Button button2 = new Button("Remove Evolution Point");
         button.setDisable(true);
         vbox.getChildren().add(title);
-        vbox.getChildren().add(iv1);
+        vbox.getChildren().add(displayedPokemon);
         vbox.getChildren().add(t);
         vbox.getChildren().add(button);
         vbox.getChildren().add(button2);
 
-        // Calling the devolution
-        // Creating the new thread with the pokemon being devolved.
-        
-        // Alert alert = new Alert(AlertType.INFORMATION, "Woah, " +
-        // pokemon.currentName + " is evolving!" );
-        // alert.show();
         vbox.setAlignment(Pos.CENTER);
 
         /**
@@ -177,16 +163,21 @@ public class evolutionPane extends Thread implements Runnable
             public void handle(ActionEvent event)
             {
                 pokemon.removeEvolutionPoint();
-                System.out.println(pokemon.currentName + " evolution points: " +pokemon.evolutionPoints);
-                if(pokemon.evolutionPoints == pokemon.evolutionPointsToEvolve - 1)
+                System.out.println(pokemon.currentName + " evolution points: "
+                        + pokemon.evolutionPoints);
+                if (pokemon.evolutionPoints == pokemon.evolutionPointsToEvolve 
+                        - 1)
                 {
-                    evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
-                            pokemon, pokemonFirstName, pokemonFirstImage,
-                            pokemon.currentImage, t, DEVOLVE_TEXT));
+                    evolveDevolveAnimation = new Thread(
+                            new EvolutionAnimationThread(displayedPokemon,
+                                    pokemon, pokemonFirstName,
+                                    pokemonFirstImage, pokemon.currentImage, t,
+                                    DEVOLVE_TEXT));
                     evolveDevolveAnimation.start();
-                    System.out.println("Pokemons Evo point after DEvolution: " + pokemon.evolutionPoints);
+                    System.out.println("Pokemons Evo point after DEvolution: "
+                            + pokemon.evolutionPoints);
                 }
-                
+
             }
 
         });
