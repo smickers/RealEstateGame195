@@ -45,13 +45,13 @@ public class Battle
      *            - The amount the must be paid by the battle's loser
      */
     
-    private boolean challengerReady = false;
-    private boolean defenderReady = false;
-    private Player challengingPlayer;
-    private Player defendingPlayer;
-    private Pokemon challengingPokemon;
-    private Pokemon defendingPokemon;
-    private int amountToPay;
+    public boolean challengerReady = false;
+    public boolean defenderReady = false;
+    public Player challengingPlayer;
+    public Player defendingPlayer;
+    public Pokemon challengingPokemon;
+    public Pokemon defendingPokemon;
+    public int amountToPay;
 
     /**
      * Constructor for the Battle class.
@@ -75,156 +75,13 @@ public class Battle
      * Purpose: this method will setup and display the user interface with 
      *  the information passed for the current battle. 
      */
-    public void battle()
-    {
-        // Roll a die for both players
-        // Determine which player wins
-        // Determine the outcome of the battle
-        // Do whatever needs doing according to the outcome
-
-        // Build a "pre-battle" GUI
-        //HBox that will hold the images of the two trainers.
-        HBox trainers = new HBox(50);
-        
-        //Image of the challenging trainer.
-        ImageView firstTrainer = new ImageView(
-                challengingPlayer.trainer.trainerImage);
-        Text txtVersus = new Text("vs");
-
-
-        //Image of the defending trainer.
-        ImageView secondTrainer = new ImageView(
-                defendingPlayer.trainer.trainerImage);
-
-        //Set the size of the images and preserve their ratios.
-        firstTrainer.setPreserveRatio(true);
-        secondTrainer.setPreserveRatio(true);
-        firstTrainer.setFitHeight(150);
-        secondTrainer.setFitHeight(150);
-
-        //Add the images to the trainers HBox.
-        trainers.getChildren().addAll(firstTrainer, txtVersus, secondTrainer);
-
-        // TODO Uncomment this once we have Pokemon images
-
-        // HBox pokemon = new HBox(50);
-        // ImageView firstPokemon = new
-        // ImageView(challengingPokemon.currentImage);
-        // ImageView secondPokemon = new
-        // ImageView(defendingPokemon.currentImage);
-        //
-        // pokemon.getChildren().addAll(firstPokemon, secondPokemon);
-
-        
-        Button btnContinue = new Button("Continue");
-
-        //Display the next interface when the user clicks on the continue 
-        // button.
-        btnContinue.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                System.out.println("Continue clicked!");
-                readyScreen();
-            }
-        });
-
-        //Main pane for the screen.
-        VBox toShow = new VBox(15.0);
-        // TODO Uncomment the Pokemon add in the line below once we have images
-        // TODO Figure out how to align the button in the center of the screen
-        btnContinue.setAlignment(Pos.CENTER);
-        toShow.getChildren().addAll(trainers, /* pokemon, */btnContinue);
-
-        
-        // TODO testing
-        BattleGUITest.updateScene(toShow);
-    }
-
-    /**
-     * Purpose: displays the interface that waits for both players to be ready
-     *  before the battle starts.
-     */
-    private void readyScreen()
-    {
-        // Create a new view for the ready screen
-        // TODO Change these to the Pokemon's images once we have
-        // Pokemon images
-        
-        VBox main = new VBox();
-        
-        //HBox that will hold the images of the two trainers.
-        HBox trainers = new HBox(50);
-        
-        //Image of the challenging trainer.
-        ImageView firstTrainer = new ImageView(
-                challengingPlayer.trainer.trainerImage);
-
-        //Image of the defending trainer.
-        ImageView secondTrainer = new ImageView(
-                defendingPlayer.trainer.trainerImage);
-
-        //Set the size of the images and preserve their ratios.
-        firstTrainer.setPreserveRatio(true);
-        secondTrainer.setPreserveRatio(true);
-        firstTrainer.setFitHeight(150);
-        secondTrainer.setFitHeight(150);
-
-        trainers.getChildren().addAll(firstTrainer, secondTrainer);
-
-        //HBox that will hold both of the ready buttons.
-        HBox readyButtons = new HBox(50);
-        
-        //The two ready buttons to display.
-        Button btnChallengerReady = new Button("Ready");
-        Button btnDefenderReady = new Button("Ready");
-
-        //When a ready button is clicked it will make sure that both are 
-        // clicked before proceeding to start the battle.
-        btnChallengerReady.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                challengerReady = true;
-                if (challengerReady && defenderReady)
-                {
-                    rollForPlayers();
-                }
-                btnChallengerReady.setDisable(true);
-            }
-        });
-
-        //When a ready button is clicked it will make sure that both are 
-        // clicked before proceeding to start the battle.
-        btnDefenderReady.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                defenderReady = true;
-                if (challengerReady && defenderReady)
-                {
-                    rollForPlayers();
-                }
-                btnDefenderReady.setDisable(true);
-            }
-        });
-
-        //Add the buttons to the HBox.
-        readyButtons.getChildren().addAll(btnChallengerReady, 
-                btnDefenderReady);
-        
-        //Add the buttons and images to the main pane.
-        main.getChildren().addAll(trainers, readyButtons);
-        
-        // TODO testing
-        BattleGUITest.updateScene(main);
-    }
+//    public void battle()
 
     
     /**
      * Purpose: rolls for both players and determines the winner
      */
-    private void rollForPlayers()
+    public void rollForPlayers()
     {
 
         // TODO testing
@@ -290,6 +147,10 @@ public class Battle
         {
             // devolvePokemon();
         }
+        
+        BattleGUITest.resultScreen(this.challengingPlayer, 
+                String.valueOf(amountToPay), false, this.challengingPlayer, 
+                this.defendingPlayer);
 
     }
 
@@ -317,6 +178,9 @@ public class Battle
         {
             // devolvePokemon();
         }
+        BattleGUITest.resultScreen(this.defendingPlayer, 
+                String.valueOf(amountToPay), false, this.challengingPlayer, 
+                this.defendingPlayer);
 
     }
 
@@ -326,7 +190,8 @@ public class Battle
     private void tie()
     {
         //Call the result interface with nothing being won.
-        resultScreen(null, "", true);
+        BattleGUITest.resultScreen(null, "", true, this.challengingPlayer, 
+                this.defendingPlayer);
     }
 
     /**
@@ -343,72 +208,8 @@ public class Battle
         loser.removeFromBalance(amountToPay);
 
         //Display the result interface with what was won.
-        resultScreen(winner, String.valueOf(amountToPay), false);
+        //resultScreen(winner, String.valueOf(amountToPay), false);
     }
 
-    /**
-     * Purpose: displays an interface describing the results of the battle.
-     * @param winner player that won the battle.
-     * @param winnings String describing what was won by the victor.
-     * @param isTie boolean describing whether the result of the battle was 
-     *  a tie.
-     */
-    private void resultScreen(Player winner, String winnings, boolean isTie)
-    {
-        // Create a new view for the ready screen
-        // TODO Change these to the Pokemon's images once we have
-        // Pokemon images
-        
-        //Main pane for the result screen.
-        VBox resultScreen = new VBox();
-        
-        //HBox that will hold the images of the two trainers.
-        HBox trainers = new HBox(50);
-        
-        //Image of the challenging trainer.
-        ImageView firstTrainer = new ImageView(
-                challengingPlayer.trainer.trainerImage);
-
-        //Image of the defending trainer.
-        ImageView secondTrainer = new ImageView(
-                defendingPlayer.trainer.trainerImage);
-
-        //Set the size of the images and preserve their ratios.
-        firstTrainer.setPreserveRatio(true);
-        secondTrainer.setPreserveRatio(true);
-        firstTrainer.setFitHeight(150);
-        secondTrainer.setFitHeight(150);
-
-        //Add the images to the trainers HBox.
-        trainers.getChildren().addAll(firstTrainer, secondTrainer);
-
-        //Text field that will display what the result of the battle was.
-        Text results;
-
-        //If the battle resulted in a tie display the appropriate information.
-        if (isTie)
-        {
-            results = new Text("The Battle has resulted in a tie");
-        }
-        //Else display what was won and by whom.
-        else
-        {
-            results = new Text(winner.trainer.name + " wins " + winnings);
-        }
-        
-        //Set the font for results to the standard game font.
-        results.setFont(GameFont.GAME_FONT);
-
-        // TODO testing
-        System.out.println("Challenger: \t"
-                + challengingPlayer.currentBalance());
-        System.out.println("Defender: \t" + defendingPlayer.currentBalance());
-
-        //Add the trainer images and result text to the main VBox.
-        resultScreen.getChildren().addAll(trainers, results);
-
-        // TODO this is only for testing until the board is done.
-        BattleGUITest.updateScene(resultScreen);
-    }
-
+ 
 }

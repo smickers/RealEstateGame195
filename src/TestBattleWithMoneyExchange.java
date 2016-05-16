@@ -27,6 +27,7 @@ public class TestBattleWithMoneyExchange
 
     // The cost of a Pokemon tile
     private static final int COST_OF_TILE = 200;
+    private static final int STARTING_PLAYER_BALANCE = 500;
 
     @Before
     public void setUp()
@@ -34,7 +35,7 @@ public class TestBattleWithMoneyExchange
         this.trainer = new Trainer("Ash", null, null);
 
         this.challenger = new Player(trainer);
-        this.challenger.addToBalance( 500 );
+        this.challenger.addToBalance( STARTING_PLAYER_BALANCE );
 
         this.challengerPokemon = new Pokemon(this.evols, null, 10, 1);
         
@@ -43,13 +44,12 @@ public class TestBattleWithMoneyExchange
         this.trainer2 = new Trainer("Gary", null, null);
 
         this.defender = new Player(trainer);
-        this.defender.addToBalance( 500 );
+        this.defender.addToBalance( STARTING_PLAYER_BALANCE );
 
         this.defenderPokemon = new Pokemon(this.evols, null, 10, 1);
         
         this.battle = new Battle(challenger, defender, challengerPokemon,
                 defenderPokemon, COST_OF_TILE);
-
     }
 
     @Test
@@ -58,8 +58,10 @@ public class TestBattleWithMoneyExchange
         this.battle.moneyExchange(challenger, defender);
         
         
-        assertEquals( 600, challenger.currentBalance() );
-        assertEquals( 400, defender.currentBalance() );
+        assertEquals( STARTING_PLAYER_BALANCE + (COST_OF_TILE/2), 
+                challenger.currentBalance() );
+        assertEquals( STARTING_PLAYER_BALANCE - (COST_OF_TILE/2), 
+                defender.currentBalance() );
     }
     
     @Test
@@ -67,9 +69,10 @@ public class TestBattleWithMoneyExchange
     {
         this.battle.moneyExchange(defender, challenger);
         
-        assertEquals( 600, defender.currentBalance() );
-        assertEquals( 400, challenger.currentBalance() );
-        
+        assertEquals( STARTING_PLAYER_BALANCE + (COST_OF_TILE/2), 
+                defender.currentBalance() );
+        assertEquals( STARTING_PLAYER_BALANCE - (COST_OF_TILE/2), 
+                challenger.currentBalance() );
     }
     
     
