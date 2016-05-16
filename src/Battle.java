@@ -101,7 +101,7 @@ public class Battle
             
             challengerWins();
         }
-        //If the defeder attack is stronger.
+        //If the defender attack is stronger.
         else if (challengerAttack < defendingAttack)
         {
             // TODO testing
@@ -145,7 +145,7 @@ public class Battle
         //Else the defeated Pokemon will be devolved.
         else
         {
-            // devolvePokemon();
+            devolvePokemon(defendingPokemon);
         }
         
         BattleGUITest.resultScreen(this.challengingPlayer, 
@@ -176,7 +176,7 @@ public class Battle
         //Else the defeated Pokemon will be devolved.
         else
         {
-            // devolvePokemon();
+             devolvePokemon(challengingPokemon);
         }
         BattleGUITest.resultScreen(this.defendingPlayer, 
                 String.valueOf(amountToPay), false, this.challengingPlayer, 
@@ -209,6 +209,14 @@ public class Battle
 
         //Display the result interface with what was won.
         //resultScreen(winner, String.valueOf(amountToPay), false);
+    }
+    
+    public void devolvePokemon(Pokemon loser)
+    {
+    	loser.devolve();
+    	
+    	//Depends on what is in the devolve() method
+    	//loser.evolutionPoints = loser.evolutionPointsToEvolve - 1;
     }
 
  
