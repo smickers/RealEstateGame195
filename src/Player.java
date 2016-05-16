@@ -44,7 +44,7 @@ public class Player
         pokecardsInHand = new Vector<Pokecard>();
         pokedex = new Pokedex(this);
         balance = 0;
-        System.out.println("Current balance: " + balance);
+//        System.out.println("Current balance: " + balance);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Player
     {
         // Add the Pokemon to the player's Pokedex
         pokedex.addPokemon(pokemon);
-        System.out.println("Balance after add: " + balance);
+//        System.out.println("Balance after add: " + balance);
     }
 
     /**
@@ -85,6 +85,7 @@ public class Player
      */
     public void addToBalance( int toAdd )
     {
+
         // Ensure the balance is > 0, then add it
         if ( toAdd > 0 )
         {
@@ -191,5 +192,10 @@ public class Player
     {
         return pokedex.pokemonOwned.size();
     }
+
+//    public int numberOfPokemonOwned()
+//    {
+//        return pokedex.pokemonOwned.size();
+//    }
 
 }

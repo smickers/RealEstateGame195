@@ -26,7 +26,7 @@ public class Pokedex
         // Initiate the variables related to a Pokedex
         this.player = player;
         pokemonOwned = new Vector<Pokemon>();
-        System.out.println("Initial pokemon: " + pokemonOwned.toString());
+//        System.out.println("Initial pokemon: " + pokemonOwned.toString());
     }
 
     /**
@@ -40,8 +40,8 @@ public class Pokedex
     {
         // Add the passed in Pokemon to their pokedex
         pokemonOwned.add(pokemon);
-        System.out.println("Pokemon added to hand");
-        System.out.println("Current hand: " + pokemonOwned.toString());
+//        System.out.println("Pokemon added to hand");
+//        System.out.println("Current hand: " + pokemonOwned.toString());
     }
 
     /**

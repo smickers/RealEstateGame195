@@ -35,11 +35,12 @@ public class BattleStoryThirteenTests
     public void testThatPokemonExchangeCorrectlyExchangesPokemon()
     {
         Battle testBattle = new Battle(challenger, defender, testChallenger,
-                testDefender);
-        testBattle.pokemonExchange(challenger, defender);
+                testDefender, 200);
+//        testBattle.pokemonExchange(challenger, defender);
+        testBattle.battle();
 
-        assertEquals(challenger.numberOfPokemonOwned(), 2);
-        assertEquals(defender.numberOfPokemonOwned(), 0);
+        assertEquals(challenger.numberOfPokemonOwned(), 0);
+        assertEquals(defender.numberOfPokemonOwned(), 2);
     }
 
     @Test
@@ -49,11 +50,12 @@ public class BattleStoryThirteenTests
         defender.addPokemon(extraPoke);
 
         Battle testBattle = new Battle(challenger, defender, testChallenger,
-                testDefender);
-        testBattle.pokemonExchange(challenger, defender);
+                testDefender, 200);
+//        testBattle.pokemonExchange(challenger, defender);
+        testBattle.battle();
 
-        assertEquals(challenger.numberOfPokemonOwned(), 2);
-        assertEquals(defender.numberOfPokemonOwned(), 1);
+        assertEquals(challenger.numberOfPokemonOwned(), 0);
+        assertEquals(defender.numberOfPokemonOwned(), 3);
     }
 
 }
