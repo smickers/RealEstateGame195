@@ -82,6 +82,7 @@ public class Pokemon
     {
         boolean result = false;
         
+
         if ( !this.isMaxEvolution() && this.evolutionPoints == evolutionPointsToEvolve )
         {
             this.currentIndex++;

@@ -68,7 +68,7 @@ public class evolutionPane extends Thread implements Runnable
         // After testing is complete.
         Button button = new Button("Add Evolution Point");
         Button button2 = new Button("Remove Evolution Point");
-        button2.setDisable(true);
+
         Text title = new Text("EVOLUTION!");
         // Adding everything to the pane.
         vbox.getChildren().add(title);
@@ -104,12 +104,12 @@ public class evolutionPane extends Thread implements Runnable
                 System.out.println(pokemon.evolutionPoints);
                 if(pokemon.evolutionPoints == 0)
                 {
-                    //pokemon.evolve();
+                     
+                        evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
+                                pokemon, pokemonFirstName, pokemonFirstImage,
+                                pokemon.currentImage, t, EVOLVE_TEXT));
+                        evolveDevolveAnimation.start();
                     
-                    evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
-                            pokemon, pokemonFirstName, pokemonFirstImage,
-                            pokemon.currentImage, t, EVOLVE_TEXT));
-                    evolveDevolveAnimation.start();
                 }
             }
 
@@ -177,10 +177,9 @@ public class evolutionPane extends Thread implements Runnable
             public void handle(ActionEvent event)
             {
                 pokemon.removeEvolutionPoint();
-                System.out.println(pokemon.evolutionPoints);
+                System.out.println(pokemon.currentName + " evolution points: " +pokemon.evolutionPoints);
                 if(pokemon.evolutionPoints == pokemon.evolutionPointsToEvolve - 1)
                 {
-                    pokemon.devolve();
                     evolveDevolveAnimation = new Thread(new EvolutionAnimationThread(iv1,
                             pokemon, pokemonFirstName, pokemonFirstImage,
                             pokemon.currentImage, t, DEVOLVE_TEXT));
@@ -188,7 +187,6 @@ public class evolutionPane extends Thread implements Runnable
                     System.out.println("Pokemons Evo point after DEvolution: " + pokemon.evolutionPoints);
                 }
                 
-                //button.setDisable(true);
             }
 
         });
