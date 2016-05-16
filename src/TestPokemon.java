@@ -32,7 +32,7 @@ public class TestPokemon
     @Test
     public void testThatEvolveAndDevolveChangeTheNameAndImageOfThePokemon()
     {
-        this.singleEvolution.evolutionPoints = 5;
+        this.singleEvolution.evolutionPoints = 10;
         this.singleEvolution.evolve();
         String result = this.singleEvolution.currentName;
 
@@ -109,7 +109,7 @@ public class TestPokemon
     @Test
     public void testThatIsMaxEvolutionReturnsTrueIfPokemonIsAtLastEvolution()
     {
-        this.singleEvolution.evolutionPoints = 5;
+        this.singleEvolution.evolutionPoints = 10;
         this.singleEvolution.evolve();
         boolean result = this.singleEvolution.isMaxEvolution();
 
@@ -120,7 +120,7 @@ public class TestPokemon
         boolean result2 = this.doubleEvolution.isMaxEvolution();
 
         assertEquals(true, result);
-        assertEquals(true, result);
+        assertEquals(true, result2);
     }
 
     @Test
@@ -137,41 +137,33 @@ public class TestPokemon
     @Test
     public void addEvolutionPoint()
     {
-        singleEvolution.addEvolutionPoint();
-        assertEquals(1, singleEvolution.evolutionPoints);
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-        assertEquals(4, singleEvolution.evolutionPoints);
+        doubleEvolution.addEvolutionPoint();
+        assertEquals(1, doubleEvolution.evolutionPoints);
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        assertEquals(4, doubleEvolution.evolutionPoints);
 
         // Check that after an evolution their evolution points are 0
-        singleEvolution.addEvolutionPoint();
-        assertEquals(0, singleEvolution.evolutionPoints);
+        doubleEvolution.addEvolutionPoint();
+        assertEquals(0, doubleEvolution.evolutionPoints);
     }
 
     @Test
     public void removeEvolutionPoint()
     {
-        singleEvolution.addEvolutionPoint();
-        assertEquals(1, singleEvolution.evolutionPoints);
-        singleEvolution.removeEvolutionPoint();
-        assertEquals(0, singleEvolution.evolutionPoints);
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-        singleEvolution.addEvolutionPoint();
-
-        singleEvolution.removeEvolutionPoint();
-        assertEquals(0, singleEvolution.evolutionPoints);
-
-        // singleEvolution.addEvolutionPoint();
-        // singleEvolution.addEvolutionPoint();
-        // singleEvolution.addEvolutionPoint();
-        // assertEquals(5, singleEvolution.evolutionPoints);
-        //
-        // //Check that after an evolution their evolution points are 0
-        // singleEvolution.evolve();
-        // assertEquals(0, singleEvolution.evolutionPoints);
+        doubleEvolution.addEvolutionPoint();
+        assertEquals(1, doubleEvolution.evolutionPoints);
+        doubleEvolution.removeEvolutionPoint();
+        assertEquals(0, doubleEvolution.evolutionPoints);
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        doubleEvolution.addEvolutionPoint();
+        //At this point the pokemon will evolve, so test that when removing
+        //A point, he devolves back to 4 evolution points
+        doubleEvolution.removeEvolutionPoint();
+        assertEquals(4, doubleEvolution.evolutionPoints);
     }
 }

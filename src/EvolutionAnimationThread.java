@@ -18,16 +18,15 @@ import javafx.scene.text.Text;
 public class EvolutionAnimationThread implements Runnable
 {
 
-    ImageView img;
-    Pokemon poke;
-    int time = 1;
-    Image currentPokemonState;
-    Image nextPokemonState;
-    private String dunDunDun = "dundundun.mp3";
-    private String evolve = "evolve.mp3";
-    String pokemonFirstName;
-    Text t;
-    String evOrDev;
+    private ImageView img;
+    private Pokemon  poke;
+    private Image currentPokemonState;
+    private Image nextPokemonState;
+    private String devolveSong = "dundundun.mp3";
+    private String evolveSong = "evolve.mp3";
+    private String pokemonPreEvolutionName;
+    private Text subtitle;
+    private String evolutionOrDevolution;
 
     /**
      * Constructor, grabs all the passed in information to evolve or devolve a
@@ -45,20 +44,20 @@ public class EvolutionAnimationThread implements Runnable
      *            The pokemons evolution/devolution
      * @param statusText
      *            The text in the pane that will be altered
-     * @param evorDev
+     * @param evOrDev
      *            Whether the pokemon is evolving or devolving.
      */
     public EvolutionAnimationThread(ImageView img, Pokemon poke,
             String pokemonFirstName, Image currentPokemonState,
-            Image nextPokemonState, Text statusText, String evorDev)
+            Image nextPokemonState, Text statusText, String evOrDev)
     {
         this.img = img;
         this.poke = poke;
         this.currentPokemonState = currentPokemonState;
         this.nextPokemonState = nextPokemonState;
-        this.pokemonFirstName = pokemonFirstName;
-        this.t = statusText;
-        this.evOrDev = evorDev;
+        this.pokemonPreEvolutionName = pokemonFirstName;
+        this.subtitle = statusText;
+        this.evolutionOrDevolution = evOrDev;
 
     }
 
@@ -69,6 +68,15 @@ public class EvolutionAnimationThread implements Runnable
          * Loop over and over changing the image each time, ending on the
          * pokemons final state.
          */
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e1)
+        {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         for (int i = 0; i < 25; i++)
         {
             // If the "i" is even, we want to display the pokemons "next" state,
@@ -99,19 +107,28 @@ public class EvolutionAnimationThread implements Runnable
          * "devolved", allowing us to have this thread work for both evolution
          * and devolution
          */
-        t.setText(pokemonFirstName + " has " + evOrDev + " into "
+        subtitle.setText(pokemonPreEvolutionName + " has " + evolutionOrDevolution + " into "
                 + poke.currentName + "!");
         sound music = new sound();
 
-        if (evOrDev.equals(evolutionPane.DEVOLVE_TEXT))
+        if (evolutionOrDevolution.equals(evolutionPane.DEVOLVE_TEXT))
         {
             // Play a "negative" sound effect if the pokemon was devolved
-            music.playSound(dunDunDun);
+            music.playSound(devolveSong);
         }
         else
         {
             // Play a "positive" sound effect if the pokemon was evolved.
-            music.playSound(evolve);
+            music.playSound(evolveSong);
+        }
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
     }
