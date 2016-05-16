@@ -215,8 +215,6 @@ public class Battle
     {
     	loser.devolve();
     	
-    	//Depends on what is in the devolve() method
-    	//loser.evolutionPoints = loser.evolutionPointsToEvolve - 1;
     }
 
  
