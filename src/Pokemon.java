@@ -45,7 +45,7 @@ public class Pokemon
     // pokemon.
     public int defaultAttackPoints;
 
-    private int currentIndex = 0;
+    public int currentIndex = 0;
 
     /**
      * 
@@ -64,7 +64,7 @@ public class Pokemon
 
         this.pokemonImages = pokemonImages;
         // TODO Uncomment when we have images
-        this.currentImage = this.pokemonImages[0];
+       // this.currentImage = this.pokemonImages[0];
 
         this.evolutionPointsToEvolve = evolutionPointsToEvolve;
         this.defaultAttackPoints = defaultAttackPoints;
@@ -88,7 +88,7 @@ public class Pokemon
             this.currentIndex++;
 
             this.currentName = this.titles[this.currentIndex];
-            this.currentImage = this.pokemonImages[this.currentIndex];
+            //TODO needs images: this.currentImage = this.pokemonImages[this.currentIndex];
 
             this.resetEvolutionPoints();
 
@@ -113,7 +113,7 @@ public class Pokemon
             this.currentIndex--;
 
             this.currentName = this.titles[this.currentIndex];
-            this.currentImage = this.pokemonImages[this.currentIndex];
+         //   this.currentImage = this.pokemonImages[this.currentIndex];
 
             this.evolutionPoints = evolutionPointsToEvolve - 1;
 

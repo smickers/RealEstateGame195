@@ -182,6 +182,7 @@ public class evolutionPane extends Thread implements Runnable
 
         });
 
+        BattleGUITest.updateScene(vbox);
         return vbox;
     }
 

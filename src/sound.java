@@ -22,10 +22,10 @@ public class sound {
 	 * @param fileName
 	 */
 	public static void playSound(String fileName){
-        Media m = new Media(Paths.get("src/audio/" + 
-        		fileName).toUri().toString());
-        player = new MediaPlayer(m);
-        player.play();
+//        Media m = new Media(Paths.get("src/audio/" + 
+//        		fileName).toUri().toString());
+//        player = new MediaPlayer(m);
+//        player.play();
         
     }
 	
