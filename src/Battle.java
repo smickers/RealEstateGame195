@@ -42,6 +42,7 @@ public class Battle
     public static final String POKEMON_EXCHANGE_OUTCOME = "pokemon-exchange";
     public static final String POKEMON_DEVOLVE_OUTCOME = "pokemon-devolve";
     public static final String POKEMON_TIE_OUTCOME = "tie";
+    public String outcomeMessage;
 
     /**
      * Constructor for the Battle class.
@@ -161,12 +162,18 @@ public class Battle
      */
     private void pokemonExchange()
     {
+        // TODO Look into removing all evolutionPoints from a Pokemon
+        // after it has been given to another player
+        
         // Determine which player is the winner
+        Pokemon pokemonToMove;
+        Player loser;
         if (winner.equals(challengingPlayer))
         {
             // Challenging player won - move the defending player's Pokemon
             // to the challenging player's hand
-            Pokemon pokemonToMove = defendingPokemon;
+            pokemonToMove = defendingPokemon;
+            loser = defendingPlayer;
             defendingPlayer.removePokemon(pokemonToMove);
             challengingPlayer.addPokemon(pokemonToMove);
         }
@@ -174,11 +181,14 @@ public class Battle
         {
             // Otherwise the defendingPlayer won, so we'll move the challenger's
             // Pokemon to the defender's Pokedex
-            Pokemon pokemonToMove = challengingPokemon;
+            pokemonToMove = challengingPokemon;
+            loser = challengingPlayer;
             challengingPlayer.removePokemon(pokemonToMove);
             defendingPlayer.addPokemon(pokemonToMove);
         }
         this.result = POKEMON_EXCHANGE_OUTCOME;
+        this.outcomeMessage = winner.trainer.name + " has taken " + 
+        pokemonToMove.currentName + " from " + loser.trainer.name + "!";
     }
 
     /**

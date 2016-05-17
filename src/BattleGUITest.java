@@ -57,7 +57,7 @@ public class BattleGUITest extends Application
 
         // ///////////////////////////////////////////////
 
-        String[] names = new String[] { "a", "b", "c" };
+        String[] names = new String[] { "Pikachu", "b", "c" };
         Pokemon testChallenger = new Pokemon(names, null, 5, 3);
         challenger = new Player(new Trainer("Ash", new Image(
                 "img/trainers/ash.png"), null));
@@ -245,7 +245,7 @@ public class BattleGUITest extends Application
         // Else display what was won and by whom.
         else
         {
-            results = new Text(winner.trainer.name + " wins " + winnings);
+            results = new Text(newBattle.outcomeMessage);
         }
 
         // Set the font for results to the standard game font.

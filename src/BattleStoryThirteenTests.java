@@ -57,5 +57,15 @@ public class BattleStoryThirteenTests
         assertEquals(challenger.numberOfPokemonOwned(), 0);
         assertEquals(defender.numberOfPokemonOwned(), 3);
     }
+    
+    @Test
+    public void testThatBalancesDoNotChangeAfterAPokemonHasBeenExchangeInBattle()
+    {
+        Battle testBattle = new Battle(challenger, defender, testChallenger,
+                testDefender, 200);
+        // All balances should still be zero
+        assertEquals(challenger.currentBalance(), 0);
+        assertEquals(defender.currentBalance(), 0);
+    }
 
 }
