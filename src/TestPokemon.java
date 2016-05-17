@@ -10,13 +10,13 @@ public class TestPokemon
     private Pokemon singleEvolution;
     private String[] singleTitles = { "Magikarp", "Gyarados" };
 
-    // Need actual pictures to test
+    // Cannot use actual pictures to test, JUnit refuses to load JavaFX images
     private Image[] singleImages = { null, null };
 
     private Pokemon doubleEvolution;
     private String[] doubleTitles = { "Charmander", "Charmeleon", "Charizard" };
 
-    // Need actual pictures to test
+    // Cannot use actual pictures to test, JUnit refuses to load JavaFX images
     private Image[] doubleImages = { null, null, null };
 
     @Before
@@ -30,7 +30,7 @@ public class TestPokemon
     }
 
     @Test
-    public void testThatEvolveAndDevolveChangeTheNameAndImageOfThePokemon()
+    public void testThatEvolveAndDevolveChangeTheNameOfThePokemon()
     {
         this.singleEvolution.evolutionPoints = 10;
         this.singleEvolution.evolve();
@@ -60,24 +60,6 @@ public class TestPokemon
         assertEquals("Magikarp", result4);
         assertEquals("Charmeleon", result5);
         assertEquals("Charmander", result6);
-    }
-
-    @Test
-    public void testThatAddEvolutionPointsIncrementsTheAmountOfEvolutionPoints()
-    {
-
-        this.singleEvolution.addEvolutionPoint();
-        int result = this.singleEvolution.evolutionPoints;
-
-        this.singleEvolution.addEvolutionPoint();
-        int result2 = this.singleEvolution.evolutionPoints;
-
-        this.doubleEvolution.addEvolutionPoint();
-        int result3 = this.doubleEvolution.evolutionPoints;
-
-        assertEquals(1, result);
-        assertEquals(2, result2);
-        assertEquals(1, result3);
     }
 
     @Test
