@@ -39,8 +39,6 @@ public class TestBattleWithMoneyExchange
 
         this.challengerPokemon = new Pokemon(this.evols, null, 10, 1);
         
-        
-        
         this.trainer2 = new Trainer("Gary", null, null);
 
         this.defender = new Player(trainer);
@@ -74,7 +72,26 @@ public class TestBattleWithMoneyExchange
         assertEquals( STARTING_PLAYER_BALANCE - (COST_OF_TILE/2), 
                 challenger.currentBalance() );
     }
+   
+    @Test 
+    public void testThatSufficientBalanceReturnsTrueIfPlayerHasEnoughToPay()
+    {
+        assertTrue(challenger.sufficientBalance((COST_OF_TILE/2)));
+    }
     
+    @Test 
+    public void testThatSufficientBalanceReturnsFalseIfPlayerCantAffordToPay()
+    {
+        assertFalse(challenger.sufficientBalance(STARTING_PLAYER_BALANCE + 1));
+    }
+    
+    @Test
+    public void testThatAddToBalanceWontAddNumbersLessThanZero()
+    {
+        challenger.addToBalance(-1);
+        
+        assertEquals(STARTING_PLAYER_BALANCE, challenger.currentBalance());
+    }
     
     
     

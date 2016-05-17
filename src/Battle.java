@@ -134,6 +134,10 @@ public class Battle
         if (defendingPlayer.sufficientBalance(amountToPay))
         {
             moneyExchange(challengingPlayer, defendingPlayer);
+            
+            BattleGUITest.resultScreen(this.challengingPlayer, 
+                    String.valueOf(amountToPay), false, this.challengingPlayer, 
+                    this.defendingPlayer);
         }
         //If the defeated Pokemon is at its lowest evolution, then start a 
         // Pokemon exchange.
@@ -147,11 +151,6 @@ public class Battle
         {
             // devolvePokemon();
         }
-        
-        BattleGUITest.resultScreen(this.challengingPlayer, 
-                String.valueOf(amountToPay), false, this.challengingPlayer, 
-                this.defendingPlayer);
-
     }
 
     /**
@@ -165,6 +164,10 @@ public class Battle
         if (challengingPlayer.sufficientBalance(amountToPay))
         {
             moneyExchange(defendingPlayer, challengingPlayer);
+            
+            BattleGUITest.resultScreen(this.defendingPlayer, 
+                    String.valueOf(amountToPay), false, this.challengingPlayer, 
+                    this.defendingPlayer);
         }
         //If the defeated Pokemon is at its lowest evolution, then start a 
         // Pokemon exchange.
@@ -178,9 +181,7 @@ public class Battle
         {
             // devolvePokemon();
         }
-        BattleGUITest.resultScreen(this.defendingPlayer, 
-                String.valueOf(amountToPay), false, this.challengingPlayer, 
-                this.defendingPlayer);
+
 
     }
 
