@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class DiceView extends Application {
+public class DiceView extends VBox {
 	
 	private static final int MAX_SLOT_PICS = 6;
     private Vector<Image> faces;
@@ -25,9 +25,11 @@ public class DiceView extends Application {
     //For testing only, delete later
     public boolean oneDiceRoll;
     
+    private Button roll;
+    
     public DiceView()
     {
-    	
+    	oneDiceRoll = true;
     	
         dice1 = new ImageView();
         dice2 = new ImageView();
@@ -35,76 +37,57 @@ public class DiceView extends Application {
         
         dice1.setImage(faces.get((int)(Math.random() * 5)));
         dice2.setImage(faces.get((int)(Math.random() * 5)));
+        
+        HBox dieView = new HBox();
+        //VBox base = new VBox();
+        roll = new Button("Roll Dice");
+        
+        //specifies battle or move roll
+        //1 die for battle, 2 for move
+        if( oneDiceRoll == true)
+        {
+            dieView.getChildren().addAll(dice1);
+
+            
+//            roll.setOnAction(new EventHandler<ActionEvent>()
+//                    {
+//
+//                @Override
+//                public void handle(ActionEvent arg0) {
+//                    //dieOne = new Thread();
+//                    Spinners test = new Spinners(dice1, 3);
+//                    test.start();
+//                    //dieOne.start();
+//
+//                }
+//
+//                    });
+            this.getChildren().addAll(dieView, roll);
+        }
+        else
+        {
+            dieView.getChildren().addAll(dice1, dice2);
+            
+//            roll.setOnAction(new EventHandler<ActionEvent>()
+//                    {
+//
+//                @Override
+//                public void handle(ActionEvent arg0) {
+//
+//                    Spinners test = new Spinners(dice1, 3);
+//                    test.start();
+//                    Spinners test2 = new Spinners(dice2, 3);
+//                    test2.start();
+//
+//
+//                }
+//
+//                    });
+            this.getChildren().addAll(dieView, roll);
+        }
     }
+
     
-    public DiceView(boolean oneDiceRoll)
-    {
-    	//TODO This value will be passed in
-    			//replace with this.twoDiceRoll = twoDiceRoll
-    	    	this.oneDiceRoll = false; 
-  	}
-    
-    /**
-     * will be changed to pass pane to calling method
-     */
-	@Override
-	public void start(Stage stage) throws Exception 
-	{
-		HBox dieView = new HBox();
-		VBox base = new VBox();
-		Button roll = new Button("Roll Dice");
-		
-		//specifies battle or move roll
-		//1 die for battle, 2 for move
-		if( oneDiceRoll == true)
-		{
-			dieView.getChildren().addAll(dice1);
-
-			
-			roll.setOnAction(new EventHandler<ActionEvent>()
-					{
-
-				@Override
-				public void handle(ActionEvent arg0) {
-					//dieOne = new Thread();
-					Spinners test = new Spinners(dice1, 3);
-					test.start();
-					//dieOne.start();
-
-				}
-
-					});
-			base.getChildren().addAll(dieView, roll);
-		}
-		else
-		{
-			dieView.getChildren().addAll(dice1, dice2);
-
-			
-			roll.setOnAction(new EventHandler<ActionEvent>()
-					{
-
-				@Override
-				public void handle(ActionEvent arg0) {
-
-					Spinners test = new Spinners(dice1, 3);
-					test.start();
-					Spinners test2 = new Spinners(dice2, 3);
-					test2.start();
-
-
-				}
-
-					});
-			base.getChildren().addAll(dieView, roll);
-		}
-		
-		Scene scene = new Scene(base);
-		stage.setScene(scene);
-		stage.show();
-		
-	}
-	
 	 public Image getImage(int index)
 	    {
 	        return faces.get(index);
@@ -156,6 +139,15 @@ public class DiceView extends Application {
 	        }
 	    }
 	    
+	    
+	    public void changeDice1(int num)
+	    {
+	        dice1.setImage(faces.get(num)  );
+	    }
+	    
+	    
+	    
+	    
 	    private class ChickenDinner extends Thread implements Runnable
 	    {
 	        ImageView one, two, three;
@@ -195,15 +187,41 @@ public class DiceView extends Application {
 	    private void obtainImages()
 	    {
 	        faces = new Vector<Image>(MAX_SLOT_PICS);
-	        for(int i = 1; i < MAX_SLOT_PICS; i++)
+	        for(int i = 1; i <= MAX_SLOT_PICS; i++)
 	        {
 	            faces.add(new Image("./img/img" + i + ".png"));
 	        }
 	    }
+//	
+//	public static void main(String[] args)
+//    {
+//        Application.launch(args);
+//    }
 	
-	public static void main(String[] args)
-    {
-        Application.launch(args);
-    }
+	public void addHandler(Die die)
+	{
+	    System.out.println("it made handler");
+        roll.setOnAction(new EventHandler<ActionEvent>()
+                {
+
+            @Override
+            public void handle(ActionEvent arg0) {
+                //dieOne = new Thread();
+                try
+                {
+                    System.out.println("It worked");
+                    die.rollBattleDie();
+                }
+                catch (InterruptedException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                //dieOne.start();
+
+            }
+
+                });
+	}
 
 }
