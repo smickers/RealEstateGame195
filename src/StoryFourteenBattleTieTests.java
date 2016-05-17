@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+import javafx.scene.image.Image;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +16,14 @@ public class StoryFourteenBattleTieTests
     @Before
     public void setup()
     {
-        testChallenger = new Pokemon(names, null, 5, 3);
+         Image[] singleImages = { null, null };
+        testChallenger = new Pokemon(names, singleImages, 5, 3);
         challenger = new Player(new Trainer("Test trainer A", null, null));
         challenger.addPokemon(testChallenger);
         challenger.addToBalance(500);
 
         defender = new Player(new Trainer("Test trainer B", null, null));
-        testDefender = new Pokemon(names, null, 5, 3);
+        testDefender = new Pokemon(names, singleImages, 5, 3);
         defender.addPokemon(testDefender);
         defender.addToBalance(500);
 
