@@ -40,51 +40,54 @@ public class DieTests
         assertFalse(tripped);
     }
     
-    @Test
-    public void testThatGetLocationReturnsTheTileThePlayerIsCurrentlyOn()
-    {
-        Player test = new Player(new Trainer("A", null,null));
-        test.currentLocation = 5;
-        GameBoard.gameTiles = new Tile[15];
-        for (int i = 0; i < 15; i++)
-        {
-            GameBoard.gameTiles[i] = new TestTile(i);
-        }
-        assertTrue(test.getLocation().equals(GameBoard.gameTiles[5]));
-        
-        test.currentLocation = 0;
-        
-        assertTrue(test.getLocation().equals(GameBoard.gameTiles[0]));
-        
-        test.currentLocation = 9;
-        
-        assertTrue(test.getLocation().equals(GameBoard.gameTiles[9]));
-        
-        // roll a die
-        // set player location to 0
-        // make sure player's new location is the roll value % 40
-        
-    }
+    // The below two tests have been commented out because they don't relate
+    // to the Die class
     
-    @Test
-    public void testThatWhenADieIsRolledThePlayerLocationIsUpdated()
-    {
-        Player currentPlayer = new Player(new Trainer("A", null,null));
-        
-        System.out.println("Current location: " + currentPlayer.currentLocation);
-        int oldLocation = currentPlayer.currentLocation;
-        int roll = Die.rollTwoDie();
-        System.out.println("Rolled value: " + roll);
-        //Set the player's new location to be the 
-        //current location PLUS the value returned by 
-        //the dice roll. Also, ensure that this plays 
-        //nicely with the 40 tiles on the board.
-        currentPlayer.newLocation = 
-                (currentPlayer.currentLocation + roll) 
-                % 40;
-        System.out.println("New location: " + currentPlayer.newLocation);
-        
-        assertTrue((oldLocation + roll) % 40 == currentPlayer.newLocation);
-    }
+//    @Test
+//    public void testThatGetLocationReturnsTheTileThePlayerIsCurrentlyOn()
+//    {
+//        Player test = new Player(new Trainer("A", null,null));
+//        test.currentLocation = 5;
+//        GameBoard.gameTiles = new Tile[15];
+//        for (int i = 0; i < 15; i++)
+//        {
+//            GameBoard.gameTiles[i] = new TestTile(i);
+//        }
+//        assertTrue(test.getLocation().equals(GameBoard.gameTiles[5]));
+//        
+//        test.currentLocation = 0;
+//        
+//        assertTrue(test.getLocation().equals(GameBoard.gameTiles[0]));
+//        
+//        test.currentLocation = 9;
+//        
+//        assertTrue(test.getLocation().equals(GameBoard.gameTiles[9]));
+//        
+//        // roll a die
+//        // set player location to 0
+//        // make sure player's new location is the roll value % 40
+//        
+//    }
+    
+//    @Test
+//    public void testThatWhenADieIsRolledThePlayerLocationIsUpdated()
+//    {
+//        Player currentPlayer = new Player(new Trainer("A", null,null));
+//        
+//        System.out.println("Current location: " + currentPlayer.currentLocation);
+//        int oldLocation = currentPlayer.currentLocation;
+//        int roll = Die.rollTwoDie();
+//        System.out.println("Rolled value: " + roll);
+//        //Set the player's new location to be the 
+//        //current location PLUS the value returned by 
+//        //the dice roll. Also, ensure that this plays 
+//        //nicely with the 40 tiles on the board.
+//        currentPlayer.newLocation = 
+//                (currentPlayer.currentLocation + roll) 
+//                % 40;
+//        System.out.println("New location: " + currentPlayer.newLocation);
+//        
+//        assertTrue((oldLocation + roll) % 40 == currentPlayer.newLocation);
+//    }
 
 }
