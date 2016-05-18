@@ -25,21 +25,22 @@ import javafx.util.Duration;
 
 /**
  * Purpose: This class is used to represent the visual game board,
- * 			and the overlaying grid that maps the tiles.
+ *          and the overlaying grid that maps the tiles.
  * 
- * @author Paz Aloni, Stephanie McCallum
+ * @author Paz Aloni, Stephanie McCallum, Cameron Auser
  *
  */
 
 public class GameBoard extends GridPane
 {
+
 	//High res
 	//private final static int narrowBorder = 82;
 	//private final static int wideBorder = 207;
 	
 	//Low res
-	private final static int narrowBorder = 64;
-	private final static int wideBorder = 106;
+	private final static int NARROW_BORDER = 64;
+	private final static int WIDE_BORDER = 106;
 	
 	private static final Color CLEAR = Color.TRANSPARENT;
 	
@@ -65,17 +66,17 @@ public class GameBoard extends GridPane
 			if(i%10 == 0)
 			{
 				//corner tile
-				tilesOverlay[i] = new Rectangle(wideBorder, wideBorder, CLEAR);
+				tilesOverlay[i] = new Rectangle(WIDE_BORDER, WIDE_BORDER, CLEAR);
 			}
 			else if((i/10)%2 == 0)
 			{
 				//horizontal tile
-				tilesOverlay[i] = new Rectangle(narrowBorder, wideBorder, CLEAR);
+				tilesOverlay[i] = new Rectangle(NARROW_BORDER, WIDE_BORDER, CLEAR);
 			}
 			else
 			{
 				//vertical tile
-				tilesOverlay[i] = new Rectangle(wideBorder, narrowBorder, CLEAR);
+				tilesOverlay[i] = new Rectangle(WIDE_BORDER, NARROW_BORDER, CLEAR);
 			}
 			
 			//required for token alignments
@@ -205,6 +206,5 @@ public class GameBoard extends GridPane
 			});
 		}
 	}
-	
-}
 
+}

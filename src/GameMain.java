@@ -23,7 +23,7 @@ public class GameMain
     private UpdateCenterView centerViewUpdater;
     private int currentPlayer;
     private int wPToWin;
-    
+
     public static final int NUM_OF_TILES = 40;
     
     public GameMain(Player[] players)
