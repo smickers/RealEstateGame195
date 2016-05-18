@@ -1,5 +1,4 @@
 import javafx.application.Platform;
-import javafx.scene.image.ImageView;
 
 
 
@@ -9,7 +8,8 @@ public class Die
     DiceView view;
     
     private int dice1Result;
-    int dice2Result;
+    private int dice2Result;
+    
 
     public Die(DiceView view)
     {
@@ -18,39 +18,71 @@ public class Die
     	//this.view.addHandler(this);
     }
     
-    public static int rollTwoDie()
+    public int rollTwoDie()
     {
-        int d1 = (int) Math.floor(Math.random() * 6 + 1);
-        int d2 = (int) Math.floor(Math.random() * 6 + 1);
-        int roll = d1 + d2;
+        dice1Result = (int) Math.floor(Math.random() * 6 + 1);
+        dice2Result = (int) Math.floor(Math.random() * 6 + 1);
+//        int d1 = (int) Math.floor(Math.random() * 6 + 1);
+//        int d2 = (int) Math.floor(Math.random() * 6 + 1);
+        
+        int roll = dice1Result + dice2Result;
+//        int rollTotal = d1 + d2;
+        
         return roll;
     }
     
-    public void rollBattleDie() throws InterruptedException
+    public int rollBattleDie() 
     {
-        //int roll = (int) Math.floor(Math.random() * 6 + 1);
-        Spinners roll = new Spinners( 3 );
-        roll.start();
-        //roll.join();
+        dice1Result = (int) Math.floor(Math.random() * 6 + 1);
+//        int d1 = (int) Math.floor(Math.random() * 6 + 1);
         
-        System.out.println(getDie1Result());
-    }
-    
-    public synchronized int getDie1Result()
-    {
         return dice1Result;
     }
     
+    public int startBattleRolling(DiceView view)
+    {
+        int result = rollBattleDie();
+        Spinners roll = new Spinners( 3, false );
+        
+        roll.start();
+
+        
+        System.out.println("\n"+result+"\n");
+       return result;
+    }
+    
+    public int startMoveRolling( )
+    {
+        int result = rollTwoDie();
+        
+        Spinners roll = new Spinners( 3, true );
+        
+        roll.start();
+
+//        
+//        System.out.println("\n"+dice1Result+"\n");
+//        System.out.println("\n"+dice2Result+"\n");
+        System.out.println("\n"+result+"\n");
+        
+        return result;
+        
+    }
+    
+//    public synchronized int getDie1Result()
+//    {
+//        return dice1Result;
+//    }
+    
     private class Spinners extends Thread implements Runnable
     {
-        ImageView img;
+        boolean twoDice;
         int time;
         long start;
         long end;
         
-        public Spinners( int time )
+        public Spinners( int time, boolean twoDice )
         {
-            this.img = img;
+            this.twoDice = twoDice;
             this.time = time;
             this.start = System.currentTimeMillis();
             this.end = start + (time * 1000);
@@ -68,9 +100,14 @@ public class Die
                             @Override
                             public void run()
                             {
-                                dice1Result = (int) Math.floor((Math.random() * 6) + 1);
-                                System.out.println(dice1Result);
-                                view.changeDice1(dice1Result - 1);
+                                int num = (int) Math.floor((Math.random() * 6) + 1);
+                                view.changeDice1(num - 1);
+                                
+                                if(twoDice)
+                                {
+                                    int num2 = (int) Math.floor((Math.random() * 6) + 1);
+                                    view.changeDice2(num2 - 1);
+                                }
                             }
                         });
                     try
@@ -84,7 +121,21 @@ public class Die
                     } 
                     
                 }
+                
+               
+                
+                
             }
+            view.changeDice1(dice1Result-1);
+            
+            int rollTotal = dice1Result;
+            
+            if(twoDice)
+            {
+                view.changeDice2(dice2Result-1);
+                rollTotal += dice2Result;
+            }
+            view.dispalyRoll(rollTotal);
         }
     }
     

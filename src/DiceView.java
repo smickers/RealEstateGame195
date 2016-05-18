@@ -21,26 +21,38 @@ public class DiceView extends VBox {
     private Vector<Image> faces;
     private Thread dieOne, dieTwo;
     private static ImageView dice1, dice2;
+    
+    private final int DICE_STARTING_POSITION = 1;
 
     //For testing only, delete later
-    public boolean oneDiceRoll;
+   
     
-    private Button roll;
+    private Text rollTotal;
+    
+    //TODO
+    //private Button roll;
     
     public DiceView()
     {
-    	oneDiceRoll = true;
+        //TODO CONSTRUCTOR FOR TESTING
+    }
+    
+    public DiceView(boolean oneDiceRoll)
+    {
+        this.rollTotal = new Text(" ");
+        
+    	
     	
         dice1 = new ImageView();
         dice2 = new ImageView();
         obtainImages();
         
-        dice1.setImage(faces.get((int)(Math.random() * 5)));
-        dice2.setImage(faces.get((int)(Math.random() * 5)));
+        dice1.setImage(faces.get(DICE_STARTING_POSITION));
+        dice2.setImage(faces.get(DICE_STARTING_POSITION));
         
         HBox dieView = new HBox();
         //VBox base = new VBox();
-        roll = new Button("Roll Dice");
+        //roll = new Button("Roll Dice");
         
         //specifies battle or move roll
         //1 die for battle, 2 for move
@@ -49,42 +61,16 @@ public class DiceView extends VBox {
             dieView.getChildren().addAll(dice1);
 
             
-//            roll.setOnAction(new EventHandler<ActionEvent>()
-//                    {
-//
-//                @Override
-//                public void handle(ActionEvent arg0) {
-//                    //dieOne = new Thread();
-//                    Spinners test = new Spinners(dice1, 3);
-//                    test.start();
-//                    //dieOne.start();
-//
-//                }
-//
-//                    });
-            this.getChildren().addAll(dieView, roll);
         }
         else
         {
             dieView.getChildren().addAll(dice1, dice2);
+
             
-//            roll.setOnAction(new EventHandler<ActionEvent>()
-//                    {
-//
-//                @Override
-//                public void handle(ActionEvent arg0) {
-//
-//                    Spinners test = new Spinners(dice1, 3);
-//                    test.start();
-//                    Spinners test2 = new Spinners(dice2, 3);
-//                    test2.start();
-//
-//
-//                }
-//
-//                    });
-            this.getChildren().addAll(dieView, roll);
         }
+        
+        //TODO
+        this.getChildren().addAll(dieView, rollTotal /*,roll*/);
     }
 
     
@@ -93,51 +79,7 @@ public class DiceView extends VBox {
 	        return faces.get(index);
 	        
 	    }
-	    
-	    private class Spinners extends Thread implements Runnable
-	    {
-	        ImageView img;
-	        int time;
-	        long start;
-	        long end;
-	        
-	        public Spinners(ImageView img, int time)
-	        {
-	            this.img = img;
-	            this.time = time;
-	            this.start = System.currentTimeMillis();
-	            this.end = start + (time * 1000);
-	        }
-	        
-	        @Override
-	        public void run()
-	        {
-	            while(System.currentTimeMillis() < end)
-	            {
-	                for (int i = 0; i < time; i++)
-	                {
-	                    Platform.runLater(new Runnable()
-	                        {
-	                            @Override
-	                            public void run()
-	                            {
-	                                img.setImage(faces.get((int)(Math.random() * 5)));
-	                            }
-	                        });
-	                    try
-	                    {
-	                    	
-	                        Thread.sleep(130);
-	                    }
-	                    catch (InterruptedException e)
-	                    {
-	                        currentThread().interrupt();
-	                    } 
-	                    
-	                }
-	            }
-	        }
-	    }
+
 	    
 	    
 	    public void changeDice1(int num)
@@ -145,44 +87,13 @@ public class DiceView extends VBox {
 	        dice1.setImage(faces.get(num)  );
 	    }
 	    
-	    
-	    
-	    
-	    private class ChickenDinner extends Thread implements Runnable
+	    public void changeDice2(int num)
 	    {
-	        ImageView one, two, three;
-	        Text text;
-	        public ChickenDinner(ImageView one, ImageView two, Text text)
-	        {
-	            this.one = one;
-	            this.two = two;
-	            this.text = text; 
-	        }
-	        @Override
-	        public void run()
-	        {
-	            while(true)
-	            {
-	                try
-	                {
-	                    dieOne.join();
-	                    dieTwo.join();
-	                }
-	                catch (InterruptedException e)
-	                {
-	                    System.out.println("Whoops, " + e + ".");
-	                }
-	                
-	                try
-	                {
-	                    Thread.currentThread();
-	                    Thread.sleep(5000);
-	                }
-	                catch (InterruptedException e)
-	                {}
-	            }
-	        } 
+	        dice2.setImage(faces.get(num)  );
 	    }
+	    
+	    
+	   
 	    
 	    private void obtainImages()
 	    {
@@ -192,36 +103,11 @@ public class DiceView extends VBox {
 	            faces.add(new Image("./img/img" + i + ".png"));
 	        }
 	    }
-//	
-//	public static void main(String[] args)
-//    {
-//        Application.launch(args);
-//    }
-	
-	public void addHandler(Die die)
-	{
-	    System.out.println("it made handler");
-        roll.setOnAction(new EventHandler<ActionEvent>()
-                {
+	    
+	    public void dispalyRoll(int rollTotal)
+	    {
+	        this.rollTotal.setText("You rolled a: " + rollTotal); 
+	    }
 
-            @Override
-            public void handle(ActionEvent arg0) {
-                //dieOne = new Thread();
-                try
-                {
-                    System.out.println("It worked");
-                    die.rollBattleDie();
-                }
-                catch (InterruptedException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                //dieOne.start();
-
-            }
-
-                });
-	}
 
 }
