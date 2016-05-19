@@ -23,76 +23,66 @@ public class GameMain
     private UpdateCenterView centerViewUpdater;
     private int currentPlayer;
     private int wPToWin;
+    public Player player1, player2, player3, player4;
     
     public static final int NUM_OF_TILES = 40;
     
-    public GameMain(Player[] players)
+    public GameMain(ArrayList<String> playerNames)
     {
         //The main game should not only set up the players, but
         //it should also set up the number of WinPoints necessary to win
         //the game (based on how many players are playing the game)
-        if(players.length == 2)
+        if(playerNames.size() == 2)
         {
             wPToWin = 4;
+//            this.players.add(new Player(playerNames.get(0), 1));
+//            this.players.add(new Player(playerNames.get(1), 1));
+            
         }
-        else if (players.length == 3)
+        else if (playerNames.size() == 3)
         {
             wPToWin = 3;
         }
-        else if (players.length == 4)
+        else if (playerNames.size() == 4)
         {
             wPToWin = 2;
         }
+        for(String p : playerNames)
+        {
+        	//playernames index of will make their turn order 0,1,2,3 instead of 1,2,3,4.
+        	//If you don't want this, just +1 it every time.
+        	players.add(new Player(p, playerNames.indexOf(p)));
+        }
         
-        initializeBoard();
-        initializePokemon();
+        
+//        initializeBoard();
+        //initializePokemon();
 //        play();
+        
        
     }
     
-    private void initializeBoard()
-    {
-        
-    }
-    
+//    private void initializeBoard()
+//    {
+//        
+//    }
+//    
+    /**
+     * Will create every base evolution of every pokemon, no need to make the 
+     * 2nd and third evolutions
+     */
     private void initializePokemon()
     {
         
     }
     
-//    public void initializeGame()
-//    {
-//        
-//    }
-    
-    public void play()
+    /**
+     * Will set up the turn order of the game
+     */
+    public void initializeGame()
     {
-        //While there is a player to play, and the current player does not have
-        //enough Win Points to win the game ...
-        while((players.get(currentPlayer) != null) && 
-                (players.get(currentPlayer).winPoints <= wPToWin))
-        {
-            //For each player who is playing the game ...
-            for (Player currentPlayer : players)
-            {
-                //when player clicks "roll dice" button...
-                
-                //Roll the dice to retrieve a number of tiles to move.
-                int roll = Die.rollTwoDie();
-                
-                //move the Player's token around the board
-                
-                //Update the player's current location with the current roll,
-                //and ensure that it plays nice with the board wraparound of
-                //40 tiles.
-                currentPlayer.currentLocation = (currentPlayer.currentLocation
-                        + roll) % 40;
-                
-                // Run the action method on that tile for the player that
-                // just rolled and moved
-                // TODO Uncomment line below this once GameBoard has been finished
-                //gameBoard.tileAtIndex(currentPlayer.currentLocation).action(currentPlayer);
-            }
-        }
+        
     }
+    
+   
 }

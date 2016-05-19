@@ -29,6 +29,8 @@ public class Player
     public int winPoints;
     // The player's current location
     public int currentLocation;
+    public int turnOrder;
+    public String name;
 
     /**
      * 
@@ -37,13 +39,15 @@ public class Player
      * @param trainer
      *            - the trainer to create the player with .
      */
-    public Player(Trainer trainer)
+    public Player(String name, int turnOrder)
     {
         // Initialize the variables associated with a player
-        this.trainer = trainer;
+        this.name = name;
+        this.turnOrder = turnOrder;
         pokecardsInHand = new Vector<Pokecard>();
         pokedex = new Pokedex(this);
         balance = 0;
+        //TODO This syso shouldn't be here, delete it.
         System.out.println("Current balance: " + balance);
     }
 
@@ -58,6 +62,7 @@ public class Player
     {
         // Add the Pokemon to the player's Pokedex
         pokedex.addPokemon(pokemon);
+      //TODO This syso shouldn't be here, delete it.
         System.out.println("Balance after add: " + balance);
     }
 

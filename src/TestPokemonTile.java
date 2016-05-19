@@ -22,7 +22,7 @@ public class TestPokemonTile
     @Before
     public void setUp()
     {
-        this.trainer = new Trainer("Ash", null, null);
+        this.trainer = new Trainer("Ash", null, null, 1);
 
         this.player = new Player(trainer);
 

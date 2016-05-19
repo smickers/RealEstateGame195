@@ -44,7 +44,8 @@ public class UpdateCenterView extends Application
         Pokemon testPokemon = new Pokemon(names, null, 5, 3);
         PokemonTile test = new PokemonTile(testPokemon, 50, null,
                 "Test Pokemon", null);
-        Player testPlayer = new Player(new Trainer("Test trainer", null, null));
+        //Added turn order dummy variable as 1 --Kyler N.
+        Player testPlayer = new Player(new Trainer("Test trainer", null, null, 1));
         testPlayer.addToBalance(5000);
         test.action(testPlayer);
         // //////////////////////////////////////////////////

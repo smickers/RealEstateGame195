@@ -25,6 +25,7 @@ public class TrainerSelectScreen
 {
 	//The list of trainers who will be in the game
 	static ArrayList<String> trainers = new ArrayList<String>();
+	public ArrayList<ImageView> trainerToken = new ArrayList<ImageView>();
 
 	static	int count;
 	static Button button;
@@ -200,7 +201,8 @@ public class TrainerSelectScreen
 
 				System.out.println(trainers.toString());
 
-				GameBoard gb = new GameBoard();
+				//GameBoard gb = new GameBoard();
+				GameMain gm = new GameMain(trainers);
 				MainWindow mw = new MainWindow();
 
 				Stage stage1 = new Stage();
