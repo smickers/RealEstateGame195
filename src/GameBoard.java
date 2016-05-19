@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,6 +28,13 @@ import javafx.stage.Stage;
 
 public class GameBoard extends GridPane
 {
+    static final Image[] FACES = {new Image("./img/img1.png"),
+        new Image("./img/img2.png"),
+        new Image("./img/img3.png"),
+        new Image("./img/img4.png"),
+        new Image("./img/img5.png"),
+        new Image("./img/img6.png")};
+    
 	//High res
 	//private final static int narrowBorder = 82;
 	//private final static int wideBorder = 207;
@@ -111,6 +119,57 @@ public class GameBoard extends GridPane
 		
 		
 	}
+	
+	public void rollDie()
+	{
+	    Spinners rollDie = new Spinners(3);
+	    rollDie.start();
+	}
+	
+  private class Spinners extends Thread implements Runnable
+  {
+      boolean twoDice;
+      int time;
+      long start;
+      long end;
+      
+      public Spinners( int time )
+      {
+        
+          this.time = time;
+          this.start = System.currentTimeMillis();
+          this.end = start + (time * 1000);
+      }
+      
+      @Override
+      public void run()
+      {
+          while(System.currentTimeMillis() < end)
+          {
+              for (int i = 0; i < time; i++)
+              {
+                  Platform.runLater(new Runnable()
+                      {
+                          @Override
+                          public void run()
+                          {
+
+                          }
+                      });
+                  try
+                  {
+                      
+                      Thread.sleep(130);
+                  }
+                  catch (InterruptedException e)
+                  {
+                      currentThread().interrupt();
+                  } 
+                  
+              }
+          }
+      }
+  }
 	
 	
 }
