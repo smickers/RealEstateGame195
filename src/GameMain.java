@@ -78,7 +78,7 @@ public class GameMain
                 //when player clicks "roll dice" button...
                 
                 //Roll the dice to retrieve a number of tiles to move.
-                int roll = Die.rollTwoDie();
+                int roll = Die.roll();
                 
                 //move the Player's token around the board
                 

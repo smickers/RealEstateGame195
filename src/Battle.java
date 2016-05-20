@@ -87,10 +87,10 @@ public class Battle
         // TODO testing
         System.out.println("\n ");
         int challengerAttack = challengingPokemon.attackPoints
-                + Die.rollBattleDie();
+                + Die.roll();
 
         int defendingAttack = defendingPokemon.attackPoints
-                + Die.rollBattleDie();
+                + Die.roll();
 
         //If the challenger attack is stronger
         if (challengerAttack > defendingAttack)

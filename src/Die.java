@@ -27,6 +27,54 @@
 //        
 //        int roll = dice1Result + dice2Result;
 ////        int rollTotal = d1 + d2;
+//import javafx.application.Platform;
+//
+//
+//
+//
+public class Die
+{
+	public Die()
+	{
+		
+	}
+	
+	public static int roll()
+	{
+		int roll = (int) Math.floor(Math.random() * 6 );
+		//System.out.println(roll);
+		return roll;
+	}
+	 public static int rollTwo()
+	 {
+		 int result = roll() + roll();
+		 //System.out.println(result);
+		 return result;
+	 }
+
+}
+//    DiceView view;
+//    
+//    private int dice1Result;
+//    private int dice2Result;
+//    
+//
+//    public Die(DiceView view)
+//    {
+//    	this.view = view;
+//    	dice1Result = 0;
+//    	//this.view.addHandler(this);
+//    }
+//    
+//    public int rollTwoDie()
+//    {
+//        dice1Result = (int) Math.floor(Math.random() * 6 + 1);
+//        dice2Result = (int) Math.floor(Math.random() * 6 + 1);
+////        int d1 = (int) Math.floor(Math.random() * 6 + 1);
+////        int d2 = (int) Math.floor(Math.random() * 6 + 1);
+//        
+//        int roll = dice1Result + dice2Result;
+////        int rollTotal = d1 + d2;
 //        
 //        return roll;
 //    }

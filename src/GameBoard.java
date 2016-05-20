@@ -171,6 +171,62 @@ public class GameBoard extends GridPane
       }
   }
 	
+	public DieView die1 = new DieView();
+	public DieView die2 = new DieView();
+	
+	public void rollDie()
+	{
+	    Spinners rollDie = new Spinners(3);
+	    rollDie.start();
+	}
+	
+  private class Spinners extends Thread implements Runnable
+  {
+      boolean twoDice;
+      int time;
+      long start;
+      long end;
+      
+      public Spinners( int time )
+      {
+        
+          this.time = time;
+          this.start = System.currentTimeMillis();
+          this.end = start + (time * 1000);
+      }
+      
+      @Override
+      public void run()
+      {
+          while(System.currentTimeMillis() < end)
+          {
+              for (int i = 0; i < time; i++)
+              {
+                  Platform.runLater(new Runnable()
+                      {
+                          @Override
+                          public void run()
+                          {
+                        	  die1.setFace((int) Math.floor(Math.random() * 6 ));
+                        	  die2.setFace((int) Math.floor(Math.random() * 6 ));
+                          }
+                      });
+                  try
+                  {
+                      
+                      Thread.sleep(130);
+                  }
+                  catch (InterruptedException e)
+                  {
+                      currentThread().interrupt();
+                  } 
+                  
+              }
+          }
+          
+      }
+  }
+	
 	
 }
 
