@@ -17,10 +17,10 @@ public class Trainer
 {
 
     public String name;
-    public Image trainerImage;
-    public Image trainerToken;
+    public String trainerImage;
+    public String trainerToken;
     
-    public Trainer(String name, Image trainerImage, Image trainerToken)
+    public Trainer(String name, String trainerImage, String trainerToken)
     {
         this.name = name;
         this.trainerImage = trainerImage;

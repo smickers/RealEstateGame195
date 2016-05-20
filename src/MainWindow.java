@@ -65,7 +65,7 @@ public class MainWindow extends Application
      * @param pane
      * @param song - path name of audio
      */
-    public void newStart(Stage stage, Pane pane, String song)
+    public static void newStart(Stage stage, Pane pane, String song)
     {
     	sound.stop();
     	setScene(pane);

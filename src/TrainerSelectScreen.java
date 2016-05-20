@@ -25,7 +25,8 @@ public class TrainerSelectScreen
 {
     //The list of trainers who will be in the game
     static ArrayList<String> trainers = new ArrayList<String>();
-
+ 
+    static public ArrayList<Player> UsedTrainers;
     static  int count;
     static Button button;
 
@@ -36,6 +37,8 @@ public class TrainerSelectScreen
      */
     public static Pane displayScreen(Stage stage)
     {
+    	UsedTrainers = new ArrayList<Player>();
+    	
         VBox main = new VBox();
         HBox trainerImages = new HBox();
 
@@ -45,22 +48,22 @@ public class TrainerSelectScreen
         title.setFitHeight(150);
 
         ImageView trainerOne = new ImageView(new Image
-                ("img/trainers/ash.png"));
+                ("trainers/ash.png"));
         trainerOne.setFitWidth(150);
         trainerOne.setFitHeight(400);
 
         ImageView trainerTwo = new ImageView(new Image
-                ("img/trainers/gary.png"));
+                ("trainers/gary.png"));
         trainerTwo.setFitWidth(150);
         trainerTwo.setFitHeight(400);
 
         ImageView trainerThree = new ImageView(new Image
-                ("img/trainers/may.png"));
+                ("trainers/may.png"));
         trainerThree.setFitWidth(150);
         trainerThree.setFitHeight(400);
 
         ImageView trainerFour = new ImageView(new Image
-                ("img/trainers/hilda.png"));
+                ("trainers/hilda.png"));
         trainerFour.setFitWidth(200);
         trainerFour.setFitHeight(450);
 
@@ -183,32 +186,44 @@ public class TrainerSelectScreen
 
                 if (trainerOne.getEffect()!= null)
                 {
+                	Trainer Ash = new Trainer("Ash", "trainers/ash.png", "trainers/ash.png");
+                	Player ash = new Player(Ash);
+                	UsedTrainers.add(ash);
                     trainers.add("Ash");
+                    
                 }
                 if (trainerTwo.getEffect()!= null)
                 {
+                	Trainer Gary = new Trainer("Gary", "trainers/gary.png", "trainers/gary.png");
+                	Player gary = new Player(Gary);
+                	UsedTrainers.add(gary);
                     trainers.add("Gary");
                 }
                 if (trainerThree.getEffect()!= null)
                 {
+                	Trainer May = new Trainer("May", "trainers/may.png", "trainers/may.png");
+                	Player may = new Player(May);
+                	UsedTrainers.add(may);
                     trainers.add("May");
                 }
                 if (trainerFour.getEffect()!= null)
                 {
+                	Trainer Hilda = new Trainer("Hilda", "trainers/hilda.png", "trainers/hilda.png");
+                	Player hilda = new Player(Hilda);
+                	UsedTrainers.add(hilda);
                     trainers.add("Hilda");
                 }
-
+                
                 System.out.println(trainers.toString());
+               // returnTrainers();
+               // GameBoard gb = new GameBoard(UsedTrainers);
+              //  MainWindow mw = new MainWindow();
 
-                GameBoard gb = new GameBoard();
-                MainWindow mw = new MainWindow();
+              //  Stage stage1 = new Stage();
 
-                Stage stage1 = new Stage();
-
-                stage.close();
-                mw.newStart(stage1, new GameBoard(), 
-                        "palette-town.mp3");
-
+             //   stage.close();
+             
+                GameMain gm = new GameMain(UsedTrainers);
             }
                 });
 
@@ -233,6 +248,12 @@ public class TrainerSelectScreen
             button.setDisable(true);
         }
     }
+    
+//    public static void returnTrainers()
+//    {
+//    	GameMainTest gmt = new GameMainTest();
+//    	gmt.setPlayers(trainers);
+//    }
 
 
 }

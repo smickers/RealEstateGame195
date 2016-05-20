@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -41,6 +43,10 @@ public class GameBoard extends GridPane
     // Low res
     private final static int NARROW_BORDER = 64;
     private final static int WIDE_BORDER = 106;
+    private final static int CENTER_COL = 1;
+    private final static int CENTER_ROW = 1;
+    private final static int CENTER_PANE_COLSPAN = 9;
+    private final static int CNETER_PANE_ROWSPAN = 9;
 
     private static final Color CLEAR = Color.TRANSPARENT;
 
@@ -50,10 +56,25 @@ public class GameBoard extends GridPane
     Rectangle tilesOverlay[] = new Rectangle[GameMain.NUM_OF_TILES];
 
     /**
+     * Travis code
+     */
+    
+    ImageView token1,token2,token3,token4;
+    ImageView[] tokenArray = {token1,token2,token3,token4};
+    
+    
+    /**
+     * End of travis code
+     */
+    
+
+    
+    /**
      * Constructor for a new game board
      */
-    public GameBoard()
+    public GameBoard(ArrayList<Player> players)
     {
+    
         // add the background image
         this.add(new ImageView(BACKGROUND_IMAGE), 0, 0, 40, 40);
 
@@ -85,6 +106,7 @@ public class GameBoard extends GridPane
 
             // required for token alignments
             tilesOverlay[i].setStroke(CLEAR);
+          
 
             // ####################
             // ## For DEMO Only! ##
@@ -123,14 +145,24 @@ public class GameBoard extends GridPane
         }
 
         // for testing purposes ONLY
-        ImageView testerToken = new ImageView(
-                new Image("/images/pkoeball1.png"));
-        placeToken(testerToken, 0);
-        placeToken(new ImageView(new Image("/images/pkoeball2.png")), 0);
-        placeToken(new ImageView(new Image("/images/pkoeball3.png")), 0);
-        placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
+//        ImageView testerToken = new ImageView(
+//                new Image("/images/pkoeball1.png"));
+//        placeToken(testerToken, 0);
+//        placeToken(new ImageView(new Image("/images/pkoeball2.png")), 0);
+//        placeToken(new ImageView(new Image("/images/pkoeball3.png")), 0);
+//        placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
 
-        testMovementByClicks(testerToken);
+//        testMovementByClicks(testerToken);
+        
+
+    	//Travis again
+    	for (int i = 0; i < players.size(); i++)
+    	{
+    		tokenArray[i] =(players.get(i).token);
+    		
+    		placeToken(tokenArray[i], 0);
+    	}
+    	this.setGridLinesVisible(true);
     }
 
     /**
@@ -195,6 +227,7 @@ public class GameBoard extends GridPane
         // start the fade effect
         ft.play();
     }
+    
 
     // ### FOR TESTING PURPOSES ONLY ###
     // add click listeners to move a single token on the board
@@ -212,6 +245,22 @@ public class GameBoard extends GridPane
                 }
             });
         }
+    }
+    
+    public void displayPane(Pane pane, int col, int row, int colspan, int rowspan)
+    {
+//    	ImageView i = new ImageView(new Image("trainers/ash.png"));
+//    	i.setVisible(true);  	
+//    	this.add(i, 6, 6);
+
+    	pane.setPrefSize(586, 586);
+    	this.setGridLinesVisible(true);
+    
+    	System.out.println("display Pane has been called");
+    	
+    	//this.getChildren().clear();
+    	this.add(pane, col + CENTER_COL, row + CENTER_ROW, colspan,rowspan);
+    
     }
 
 }

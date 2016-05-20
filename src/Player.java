@@ -1,5 +1,7 @@
 import java.util.Vector;
 
+import javafx.scene.image.ImageView;
+
 /*
  *  [File header includes information about the file being submitted.]
  *  Date submitted: May 11, 2016
@@ -29,6 +31,9 @@ public class Player
     public int winPoints;
     // The player's current location
     public int currentLocation;
+    
+    //The imageView associated with the Player
+    public ImageView token;
 
     /**
      * 
@@ -43,8 +48,15 @@ public class Player
         this.trainer = trainer;
         pokecardsInHand = new Vector<Pokecard>();
         pokedex = new Pokedex(this);
-        balance = 0;
+        balance = 1000;
         System.out.println("Current balance: " + balance);
+        
+        /** Travis
+         * 
+         */
+        token = new ImageView(trainer.trainerToken);
+        token.setFitHeight(75);
+        token.setFitWidth(75);
     }
 
     /**
