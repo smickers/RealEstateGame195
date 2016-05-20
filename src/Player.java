@@ -97,6 +97,7 @@ public class Player
      */
     public void addToBalance( int toAdd )
     {
+
         // Ensure the balance is > 0, then add it
         if ( toAdd > 0 )
         {
@@ -180,6 +181,11 @@ public class Player
     {
         // Just return their balance
         return balance;
+    }
+
+    public int numberOfPokemonOwned()
+    {
+        return pokedex.pokemonOwned.size();
     }
 
 }

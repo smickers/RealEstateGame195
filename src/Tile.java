@@ -13,5 +13,5 @@ public abstract class Tile
     }
     
     public abstract void action(Player player);
-    
+
 }
