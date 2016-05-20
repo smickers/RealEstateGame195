@@ -42,9 +42,23 @@ public class BattleGUITest extends Application
     private static Battle newBattle;
 
     private static HashMap<String, String> trainerImages;
+    
 
     public static void main( String[] args )
     {
+    	trainerImages = new HashMap<String, String>();
+        trainerImages.put(GameMain.ASH_NAME, "img/trainers/ash.png");
+        trainerImages.put(GameMain.GARY_NAME, "img/trainers/Gary.png");
+        trainerImages.put(GameMain.MAY_NAME, "img/trainers/May.png");
+        trainerImages.put(GameMain.HILDA_NAME, "img/trainers/hilda.png");
+        
+        challenger = new Player("Ash", 0);
+        challenger.addToBalance(5000);
+        
+        defender = new Player("Hilda", 1);
+        defender.addToBalance(5000);
+        
+        
         Application.launch(args);
     }
 
@@ -58,22 +72,17 @@ public class BattleGUITest extends Application
         scene = new Scene(main);
         stage.setScene(scene);
         stage.show();
-        trainerImages = new HashMap<String, String>();
-        trainerImages.put(GameMain.ASH_NAME, "img.trainer/ash.png");
-        trainerImages.put(GameMain.GARY_NAME, "img.trainer/Gary.png");
-        trainerImages.put(GameMain.MAY_NAME, "img.trainer/May.png");
-        trainerImages.put(GameMain.HILDA_NAME, "img.trainer/hilda.png");
+        
         // ///////////////////////////////////////////////
 
         String[] names = new String[] { "a", "b", "c" };
         Pokemon testChallenger = new Pokemon(names, null, 5, 3);
-        challenger = new Player("Ash", 0);
-        challenger.addToBalance(5000);
+        
         // test.action(challenger);
 
-        defender = new Player("Hilda", 1);
+        
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
-        defender.addToBalance(5000);
+        
 
         // Set up the battle we're using here
         newBattle = new Battle(challenger, defender, testChallenger,
