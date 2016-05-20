@@ -23,24 +23,9 @@ GameBoard board;
     	board = new GameBoard();
     	
     	
-      roll.setOnAction(new EventHandler<ActionEvent>()
-      {
-
-  @Override
-  public void handle(ActionEvent ae) {
-      //dieOne = new Thread();
-	  	  roll.setDisable(true);
-
-          System.out.println("It worked");
-          //die.startBattleRolling();
-          board.rollDie();
+      Button btnRoll = board.btnRoll;
+      board.testAddListener();
       
-
-      //dieOne.start();
-
-  }
-
-      });
         VBox main = new VBox();
         HBox dice = new HBox();
         dice.getChildren().addAll(board.die1, board.die2);
@@ -51,7 +36,7 @@ GameBoard board;
          
         
         
-        main.getChildren().addAll(dice, roll);
+        main.getChildren().addAll(dice, btnRoll);
         
         
         //Die die = new Die(view);

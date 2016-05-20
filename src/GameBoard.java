@@ -1,8 +1,10 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -122,6 +124,8 @@ public class GameBoard extends GridPane
 	
 	public DieView die1 = new DieView();
 	public DieView die2 = new DieView();
+	public Button btnRoll = new Button();
+	public GameMain gm = new GameMain();
 	
 	public void rollDie()
 	{
@@ -129,9 +133,32 @@ public class GameBoard extends GridPane
 	    rollDie.start();
 	}
 	
+	public void testAddListener()
+	{
+		 btnRoll.setOnAction(new EventHandler<ActionEvent>()
+			      {
+
+			  @Override
+			  public void handle(ActionEvent ae) {
+			      //dieOne = new Thread();
+				  	  btnRoll.setDisable(true);
+
+			          System.out.println("It worked");
+			          //die.startBattleRolling();
+			          
+			          rollDie();
+			      
+
+			      //dieOne.start();
+
+			  }
+
+			      });
+	}
+	
   private class Spinners extends Thread implements Runnable
   {
-      boolean twoDice;
+
       int time;
       long start;
       long end;
@@ -172,7 +199,12 @@ public class GameBoard extends GridPane
                   
               }
           }
-          
+          TurnOutcome outcome = gm.getTurnOutcome();
+          System.out.println(outcome.getDieOne() + 1);
+          System.out.println(outcome.getDieTwo() + 1);
+          die1.setFace(outcome.getDieOne());
+          die2.setFace(outcome.getDieTwo());
+        
       }
   }
 	

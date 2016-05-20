@@ -26,6 +26,11 @@ public class GameMain
     
     public static final int NUM_OF_TILES = 40;
     
+    public GameMain()
+    {
+    	//TODO Testing purposes only 
+    }
+    
     public GameMain(Player[] players)
     {
         //The main game should not only set up the players, but
@@ -100,7 +105,12 @@ public class GameMain
     {
     	int result1 = (int) Math.floor(Math.random() * 6 );
     	int result2 = (int) Math.floor(Math.random() * 6 );
-    	int index = players.get(currentPlayer).currentLocation + result1 + result2; 
+    	//int index = players.get(currentPlayer).currentLocation + result1 + result2; 
+    	
+    	//Testing//
+    	int index = 1;
+    	///////////
+    	
     	TurnOutcome outcome = new TurnOutcome(result1, result2, index);
 		return outcome;
     	
