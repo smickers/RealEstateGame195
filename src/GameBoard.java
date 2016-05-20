@@ -122,94 +122,61 @@ public class GameBoard extends GridPane
 		
 	}
 	
-	public void rollDie()
-	{
-	    Spinners rollDie = new Spinners(3);
-	    rollDie.start();
-	}
-	
-  private class Spinners extends Thread implements Runnable
-  {
-      boolean twoDice;
-      int time;
-      long start;
-      long end;
-      
-      public Spinners( int time )
-      {
-        
-          this.time = time;
-          this.start = System.currentTimeMillis();
-          this.end = start + (time * 1000);
-      }
-      
-      @Override
-      public void run()
-      {
-          while(System.currentTimeMillis() < end)
-          {
-              for (int i = 0; i < time; i++)
-              {
-                  Platform.runLater(new Runnable()
-                      {
-                          @Override
-                          public void run()
-                          {
-                              
-                          }
-                      });
-                  try
-                  {
-                      
-                      Thread.sleep(130);
-                  }
-                  catch (InterruptedException e)
-                  {
-                      currentThread().interrupt();
-                  } 
-                  
-              }
-          }
-      }
-  }
-	
+	//Variable holding the Image of the first die
 	public DieView die1 = new DieView();
+	//Variable holding the Image of the second die.
 	public DieView die2 = new DieView();
+	//Variable holding the button that will be used to roll the dice.
 	public Button btnRoll = new Button("Roll");
+	//TODO reference to GameMain that will will 
 	public GameMain gm = new GameMain();
 	
+	/**
+	 * Purpose: to start the thread that will visually display the dice being 
+	 *  rolled.
+	 */
 	public void rollDie()
 	{
+	    //Create a thread that will roll the dice that will last 3 seconds.
 	    Spinners rollDie = new Spinners(3);
+	    
+	    //Start the thread.
 	    rollDie.start();
 	}
 	
-	public void testAddListener()
-	{
-		 btnRoll.setOnAction(new EventHandler<ActionEvent>()
-			      {
-
-			  @Override
-			  public void handle(ActionEvent ae) {
-			      //dieOne = new Thread();
-				  	  btnRoll.setDisable(true);
-				  	  btnRoll.setText("Roll");
-			          System.out.println("It worked");
-			          //die.startBattleRolling();
-			          
-			          rollDie();
-			      
-
-			      //dieOne.start();
-
-			  }
-
-			      });
-	}
+	//TODO test method to try roll dice button, will be replaced by a larger
+	// class to add all listeners.
 	
+    /**
+     * Purpose: to add a handler to the roll dice button that will roll the
+     *  dice.
+     */
+    public void testAddListener()
+    {
+        btnRoll.setOnAction(new EventHandler<ActionEvent>()
+        {
+
+            @Override
+            public void handle(ActionEvent ae)
+            {
+                //Disable the roll button so it can't be clicked again.
+                btnRoll.setDisable(true);
+                
+                //Start the dice rolling.
+                rollDie();
+            }
+        });
+    }
+    
+	//TODO make a separate class. 
+    /**
+     * Purpose: 
+     * @author Hilary Fehr, Nathan MacNeil
+     *
+     */
   private class Spinners extends Thread implements Runnable
   {
-
+      
       int time;
       long start;
       long end;
@@ -234,8 +201,12 @@ public class GameBoard extends GridPane
                           @Override
                           public void run()
                           {
-                        	  die1.setFace((int) Math.floor(Math.random() * 6 ));
-                        	  die2.setFace((int) Math.floor(Math.random() * 6 ));
+                              //Set the image of both dice to be randomly
+                              // selected images.
+                        	  die1.setFace((int) Math.floor(Math.random() * 
+                        	          DieView.MAX_SIDES_TO_DICE ));
+                        	  die2.setFace((int) Math.floor(Math.random() * 
+                        	          DieView.MAX_SIDES_TO_DICE ));
                           }
                       });
                   try

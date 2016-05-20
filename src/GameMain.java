@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 /**
- * @author cst104
+ * @author cst104, Hilary Fehr, Nathan MacNeil
  *
  */
 public class GameMain
@@ -101,17 +101,29 @@ public class GameMain
         }
     }
     
+    /**
+     * Purpose: to construct a new instance of TurnOutcome to provide to the 
+     *  GUI
+     * @return outcome TurnOutcome object holding the results of both dice, and
+     *  the position the current player will end at.
+     */
     public TurnOutcome getTurnOutcome()
     {
+        //Set the final results for both dice to be two 
+        // randomly generated numbers.
     	int result1 = (int) Math.floor(Math.random() * 6 );
     	int result2 = (int) Math.floor(Math.random() * 6 );
+    	
+    	//TODO uncomment when valid array of player can be used.
     	//int index = players.get(currentPlayer).currentLocation + result1 + result2; 
     	
     	//Testing//
     	int index = 1;
     	///////////
     	
+    	//Construct the TurnOutcome.
     	TurnOutcome outcome = new TurnOutcome(result1, result2, index);
+    	
 		return outcome;
     	
     }
