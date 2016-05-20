@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class DiceViewTest extends Application
 {
-
+GameBoard board;
     public static void main(String[] args)
     {
         Application.launch(args);
@@ -19,16 +19,36 @@ public class DiceViewTest extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        
+    	board = new GameBoard();
+    	
+    	
+      roll.setOnAction(new EventHandler<ActionEvent>()
+      {
+
+  @Override
+  public void handle(ActionEvent ae) {
+      //dieOne = new Thread();
+	  	  roll.setDisable(true);
+
+          System.out.println("It worked");
+          //die.startBattleRolling();
+          board.rollDie();
+      
+
+      //dieOne.start();
+
+  }
+
+      });
         VBox main = new VBox();
         
         
         DieView view = new DieView();
         
-        GameBoard board = new GameBoard();
+         
         
         
-        main.getChildren().addAll(view, roll);
+        main.getChildren().addAll(board.die1, roll);
         
         
         //Die die = new Die(view);

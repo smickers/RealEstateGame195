@@ -120,6 +120,9 @@ public class GameBoard extends GridPane
 		
 	}
 	
+	public DieView die1 = new DieView();
+	public DieView die2 = new DieView();
+	
 	public void rollDie()
 	{
 	    Spinners rollDie = new Spinners(3);
@@ -153,7 +156,8 @@ public class GameBoard extends GridPane
                           @Override
                           public void run()
                           {
-
+                        	  die1.setFace((int) Math.floor(Math.random() * 6 ));
+                        	  die2.setFace((int) Math.floor(Math.random() * 6 ));
                           }
                       });
                   try
@@ -168,6 +172,7 @@ public class GameBoard extends GridPane
                   
               }
           }
+          
       }
   }
 	
