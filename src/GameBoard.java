@@ -124,7 +124,7 @@ public class GameBoard extends GridPane
 	
 	public DieView die1 = new DieView();
 	public DieView die2 = new DieView();
-	public Button btnRoll = new Button();
+	public Button btnRoll = new Button("Roll");
 	public GameMain gm = new GameMain();
 	
 	public void rollDie()
@@ -142,7 +142,7 @@ public class GameBoard extends GridPane
 			  public void handle(ActionEvent ae) {
 			      //dieOne = new Thread();
 				  	  btnRoll.setDisable(true);
-
+				  	  btnRoll.setText("Roll");
 			          System.out.println("It worked");
 			          //die.startBattleRolling();
 			          
