@@ -17,8 +17,7 @@ import java.util.Vector;
  */
 public class Player
 {
-    // The trainer related to this player
-    public Trainer trainer;
+
     // The player's Pokedex
     private Pokedex pokedex;
     // The pokecards that the player has in their hand
@@ -41,14 +40,22 @@ public class Player
      */
     public Player(String name, int turnOrder)
     {
+    	
         // Initialize the variables associated with a player
-        this.name = name;
+    	if(name == null)
+    	{
+    		this.name = "missingNo";
+    	}
+    	else
+    	{
+    		this.name = name;
+    	}
+        
         this.turnOrder = turnOrder;
         pokecardsInHand = new Vector<Pokecard>();
         pokedex = new Pokedex(this);
         balance = 0;
-        //TODO This syso shouldn't be here, delete it.
-        System.out.println("Current balance: " + balance);
+        
     }
 
     /**
