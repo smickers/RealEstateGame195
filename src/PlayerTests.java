@@ -10,7 +10,7 @@ public class PlayerTests
     @Before
     public void setUp()
     {
-        playerToTest = new Player("Ash", 0);
+        playerToTest = new Player("Ash");
     }
 
     @Test

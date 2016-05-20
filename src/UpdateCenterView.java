@@ -45,7 +45,7 @@ public class UpdateCenterView extends Application
         PokemonTile test = new PokemonTile(testPokemon, 50, null,
                 "Test Pokemon", null);
 
-        Player testPlayer = new Player("Ash", 0);
+        Player testPlayer = new Player("Ash");
 
         testPlayer.addToBalance(5000);
         test.action(testPlayer);

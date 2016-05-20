@@ -18,11 +18,11 @@ public class StoryFourteenBattleTieTests
     {
          Image[] singleImages = { null, null };
         testChallenger = new Pokemon(names, singleImages, 5, 3);
-        challenger = new Player("Ash", 0);
+        challenger = new Player("Ash");
         challenger.addPokemon(testChallenger);
         challenger.addToBalance(500);
 
-        defender = new Player("May", 1);
+        defender = new Player("May");
         testDefender = new Pokemon(names, singleImages, 5, 3);
         defender.addPokemon(testDefender);
         defender.addToBalance(500);

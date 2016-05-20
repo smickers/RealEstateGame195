@@ -48,7 +48,7 @@ public class GameMain
         for(String p : playerNames)
         {
         	//turn order is 0, 1, 2, 3. NOT 1,2,3,4 --Kyler N
-        	players.add(new Player(p, playerNames.indexOf(p)));
+        	players.add(new Player(p));
         }
         
         System.out.println("outputting players:");
