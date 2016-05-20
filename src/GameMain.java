@@ -95,4 +95,14 @@ public class GameMain
             }
         }
     }
+    
+    public TurnOutcome getTurnOutcome()
+    {
+    	int result1 = (int) Math.floor(Math.random() * 6 );
+    	int result2 = (int) Math.floor(Math.random() * 6 );
+    	int index = players.get(currentPlayer).currentLocation + result1 + result2; 
+    	TurnOutcome outcome = new TurnOutcome(result1, result2, index);
+		return outcome;
+    	
+    }
 }
