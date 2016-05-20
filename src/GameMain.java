@@ -29,14 +29,13 @@ public class GameMain
     
     public GameMain(ArrayList<String> playerNames)
     {
+    	players = new ArrayList<Player>();
         //The main game should not only set up the players, but
         //it should also set up the number of WinPoints necessary to win
         //the game (based on how many players are playing the game)
         if(playerNames.size() == 2)
         {
             wPToWin = 4;
-//            this.players.add(new Player(playerNames.get(0), 1));
-//            this.players.add(new Player(playerNames.get(1), 1));
             
         }
         else if (playerNames.size() == 3)
@@ -50,14 +49,16 @@ public class GameMain
         for(String p : playerNames)
         {
         	//playernames index of will make their turn order 0,1,2,3 instead of 1,2,3,4.
-        	//If you don't want this, just +1 it every time.
+        	//If you don't want this, just +1 it every time. --Kyler
         	players.add(new Player(p, playerNames.indexOf(p)));
         }
         
+        System.out.println("outputting players:");
+        for(Player p : players)
+        {
+        	System.out.println(p.name + " With turn position of " + p.turnOrder);
+        }
         
-//        initializeBoard();
-        //initializePokemon();
-//        play();
         
        
     }

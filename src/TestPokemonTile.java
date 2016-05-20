@@ -22,9 +22,9 @@ public class TestPokemonTile
     @Before
     public void setUp()
     {
-        this.trainer = new Trainer("Ash", null, null, 1);
+        //this.trainer = new Trainer("Ash", null, null, 1);
 
-        this.player = new Player(trainer);
+        this.player = new Player("Ash", 0);
 
         this.pokemon = new Pokemon(this.evols, null, 10, 1);
 
@@ -87,7 +87,7 @@ public class TestPokemonTile
     {
         this.tile.changeOwner(this.player);
 
-        String result = this.player.trainer.name;
+        String result = this.player.name;
 
         assertEquals("Ash", result);
 
