@@ -34,6 +34,7 @@ public class StoryFourteenBattleTieTests
     {
         Battle battle = new Battle(challenger, defender, testChallenger,
                 testDefender, 100);
+        //NOT IN THE SCOPE OF S19 - IGNORE DURING DEMO
         battle.battle();
 
         // Check number of Pokemon, and balance of both players
