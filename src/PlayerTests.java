@@ -50,6 +50,14 @@ public class PlayerTests
         assertEquals(0, playerToTest.turnOrder);
     }
     
+    @Test
+    public void testForEmptyStringPlayerException()
+    {
+        playerToTest = new Player("", 0);
+        assertEquals("missingNo", playerToTest.name);
+        assertEquals(0, playerToTest.turnOrder);
+    }
+    
     ////////////////////////////////////////
     //         END S19 TESTS              //
     ////////////////////////////////////////

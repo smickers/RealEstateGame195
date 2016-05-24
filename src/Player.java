@@ -42,7 +42,7 @@ public class Player
     {
     	
         // Initialize the variables associated with a player
-    	if(name == null)
+    	if(name == null || name == "")
     	{
     		this.name = "missingNo";
     	}
