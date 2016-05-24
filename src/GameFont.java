@@ -21,4 +21,5 @@ import javafx.scene.text.Font;
 public class GameFont
 {
     public static final Font GAME_FONT = new Font("Comic Sans MS", 26.0);
+    public static final Font SMALL_GAME_FONT = new Font("Comic Sans MS", 18.0);
 }

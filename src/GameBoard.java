@@ -162,7 +162,7 @@ public class GameBoard extends GridPane
     		
     		placeToken(tokenArray[i], 0);
     	}
-    	this.setGridLinesVisible(true);
+//    	this.setGridLinesVisible(true);
     }
 
     /**
@@ -254,7 +254,7 @@ public class GameBoard extends GridPane
 //    	this.add(i, 6, 6);
 
     	pane.setPrefSize(586, 586);
-    	this.setGridLinesVisible(true);
+//    	this.setGridLinesVisible(true);
     
     	System.out.println("display Pane has been called");
     	

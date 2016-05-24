@@ -55,8 +55,8 @@ public class Player
          * 
          */
         token = new ImageView(trainer.trainerToken);
-        token.setFitHeight(75);
-        token.setFitWidth(75);
+//        token.setFitHeight(75);
+//        token.setFitWidth(75);
     }
 
     /**

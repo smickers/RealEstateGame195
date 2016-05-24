@@ -186,7 +186,7 @@ public class TrainerSelectScreen
 
                 if (trainerOne.getEffect()!= null)
                 {
-                	Trainer Ash = new Trainer("Ash", "trainers/ash.png", "trainers/ash.png");
+                	Trainer Ash = new Trainer("Ash", "trainers/ash.png", "images/pkoeball1.png");
                 	Player ash = new Player(Ash);
                 	UsedTrainers.add(ash);
                     trainers.add("Ash");
@@ -194,21 +194,23 @@ public class TrainerSelectScreen
                 }
                 if (trainerTwo.getEffect()!= null)
                 {
-                	Trainer Gary = new Trainer("Gary", "trainers/gary.png", "trainers/gary.png");
+                	Trainer Gary = new Trainer("Gary", "trainers/gary.png", "images/pkoeball2.png");
                 	Player gary = new Player(Gary);
                 	UsedTrainers.add(gary);
                     trainers.add("Gary");
                 }
                 if (trainerThree.getEffect()!= null)
                 {
-                	Trainer May = new Trainer("May", "trainers/may.png", "trainers/may.png");
+                	Trainer May = new Trainer("May", "trainers/may.png", "images/pkoeball3.png");
+                	
                 	Player may = new Player(May);
                 	UsedTrainers.add(may);
                     trainers.add("May");
                 }
                 if (trainerFour.getEffect()!= null)
                 {
-                	Trainer Hilda = new Trainer("Hilda", "trainers/hilda.png", "trainers/hilda.png");
+//                	Trainer Hilda = new Trainer("Hilda", "trainers/hilda.png", "trainers/hilda.png");
+                	Trainer Hilda = new Trainer("Hilda", "trainers/hilda.png", "images/pkoeball4.png");
                 	Player hilda = new Player(Hilda);
                 	UsedTrainers.add(hilda);
                     trainers.add("Hilda");
