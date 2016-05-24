@@ -32,7 +32,12 @@ public class TurnOutcome
 	 */
 	public int getDieOne()
 	{
-		return result1;
+	    int result = result1;
+	    if( result > 6 || result < 1)
+	    {
+	        result = 1;
+	    }
+		return result;
 	}
 	
 	/**
@@ -41,7 +46,12 @@ public class TurnOutcome
 	 */
 	public int getDieTwo()
 	{
-		return result2;
+	    int result = result2;
+	    if( result > 6 || result < 1)
+	    {
+	        result = 1;
+	    }
+		return result;
 	}
 	
 	/**

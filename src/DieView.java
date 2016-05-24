@@ -26,6 +26,11 @@ public class DieView extends ImageView
         
         //Set the initial image to be the starting position for the dice.
         this.setImage(this.faces[STARTING_POSITION_FOR_DICE]);
+        
+        this.preserveRatioProperty();
+        this.setFitWidth( 170 );
+        this.setFitHeight( 170 );
+        
     }
     
   

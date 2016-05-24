@@ -119,7 +119,7 @@ public class GameBoard extends GridPane
 			}
 		}
 		
-		
+		this.setGridLinesVisible(true);
 	}
 	
 	//Variable holding the Image of the first die

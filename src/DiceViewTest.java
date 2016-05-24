@@ -29,7 +29,7 @@ GameBoard board;
       
         VBox main = new VBox();
         HBox dice = new HBox();
-        dice.getChildren().addAll(board.die1/*, board.die2*/);
+        dice.getChildren().addAll(board.die1, board.die2);
         
         
         DieView view = new DieView();
