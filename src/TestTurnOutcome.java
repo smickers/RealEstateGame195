@@ -7,44 +7,41 @@ import org.junit.Test;
 
 public class TestTurnOutcome
 {
-    private GameMain gameMain;
-    private TurnOutcome outcome;
-    
-    private TurnOutcome errorOutcome;
+    private TurnOutcome firstOutcome;
+    private TurnOutcome secondOutcome;
 
     @Before
     public void setUp() throws Exception
     {
-        gameMain = new GameMain();
-        outcome = new TurnOutcome( 3 , 5, 8);
-        errorOutcome = new TurnOutcome(-5, 20, 45);
+        firstOutcome = new TurnOutcome( 6 , 4, 10);
+        
+        secondOutcome = new TurnOutcome(1, 3, 25);
+        
     }
 
     @Test
     public void testGetTurnOutcomeReturnsTheValueOfTheFirstDice()
     {
-        assertTrue( this.outcome.getDieOne() == 3);
+        assertTrue( this.firstOutcome.getDieOne() == 6);
+        
+        assertTrue( this.secondOutcome.getDieOne() == 1);
     }
     
     @Test
     public void testGetTurnOutcomeReturnsTheValueOfTheSecondDice()
     {
-        assertTrue( this.outcome.getDieTwo() == 5);
+        assertTrue( this.firstOutcome.getDieTwo() == 4);
+        
+        assertTrue( this.secondOutcome.getDieTwo() == 3);
     }
     
     @Test
     public void testGetTurnOutcomeReturnsTheValueOfTheIndex()
     {
-        assertTrue( this.outcome.getIndex() == 8);
-    }
-    
-    @Test
-    public void testGetTurnOutcomeReturnsOneIfAPassedInValueIsOutOfRange()
-    {
-        assertTrue( this.errorOutcome.getDieOne() == 1);
+        assertTrue( this.firstOutcome.getIndex() == 10);
         
-        assertTrue( this.errorOutcome.getDieTwo() == 1);
-        
+        assertTrue( this.secondOutcome.getIndex() == 25);
     }
+
 
 }

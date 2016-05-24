@@ -33,10 +33,7 @@ public class TurnOutcome
 	public int getDieOne()
 	{
 	    int result = result1;
-	    if( result > 6 || result < 1)
-	    {
-	        result = 1;
-	    }
+
 		return result;
 	}
 	
@@ -47,10 +44,7 @@ public class TurnOutcome
 	public int getDieTwo()
 	{
 	    int result = result2;
-	    if( result > 6 || result < 1)
-	    {
-	        result = 1;
-	    }
+
 		return result;
 	}
 	

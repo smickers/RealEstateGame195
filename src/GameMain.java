@@ -1,14 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- *  [File header includes information about the file being submitted.]
- *  Date submitted:
- *  Assignment number:
- *  Course name:  COSC 190
- *  Instructors: Sharon McDonald, Nelson Wong
- * 
- */
+
 
 /**
  * @author cst104, Hilary Fehr, Nathan MacNeil
@@ -95,8 +88,10 @@ public class GameMain
                 
                 // Run the action method on that tile for the player that
                 // just rolled and moved
-                // TODO Uncomment line below this once GameBoard has been finished
-                //gameBoard.tileAtIndex(currentPlayer.currentLocation).action(currentPlayer);
+                // TODO Uncomment line below this once GameBoard has been 
+                //  finished
+                //gameBoard.tileAtIndex(currentPlayer.currentLocation)
+                //  .action(currentPlayer);
             }
         }
     }
@@ -111,11 +106,14 @@ public class GameMain
     {
         //Set the final results for both dice to be two 
         // randomly generated numbers.
-    	int result1 = (int) Math.floor(Math.random() * 6 );
-    	int result2 = (int) Math.floor(Math.random() * 6 );
+    	int result1 = (int) Math.floor(Math.random() * 
+    	        DieView.MAX_SIDES_TO_DICE );
+    	int result2 = (int) Math.floor(Math.random() * 
+    	        DieView.MAX_SIDES_TO_DICE );
     	
     	//TODO uncomment when valid array of player can be used.
-    	//int index = players.get(currentPlayer).currentLocation + result1 + result2; 
+    	//int index = players.get(currentPlayer).currentLocation 
+    	// + result1 + result2; 
     	
     	//Testing//
     	int index = 1;

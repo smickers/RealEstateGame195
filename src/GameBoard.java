@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * Purpose: This class is used to represent the visual game board,
  * 			and the overlaying grid that maps the tiles.
  * 
- * @author Paz Aloni, Stephanie McCallum
+ * @author Paz Aloni, Stephanie McCallum, Hilary Fehr, Nathan MacNeil
  *
  */
 
@@ -47,7 +47,8 @@ public class GameBoard extends GridPane
 	
 	private static final Color CLEAR = Color.TRANSPARENT;
 	
-	private static final Image BACKGROUND_IMAGE = new Image("images/monopolyBoard.png");
+	private static final Image BACKGROUND_IMAGE = 
+	        new Image("images/monopolyBoard.png");
 	
 	Rectangle tilesOverlay[] = new Rectangle[GameMain.NUM_OF_TILES];
 	
@@ -59,7 +60,8 @@ public class GameBoard extends GridPane
 		//add the background image
 		this.add(new ImageView(BACKGROUND_IMAGE), 0, 0, 40, 40);
 		
-		//keeps track inside the loop of rows and columns to add in the grid pane
+		//keeps track inside the loop of rows and columns to add in the grid 
+		// pane
 		int col = 10;
 		int row = 10;
 		
@@ -74,12 +76,14 @@ public class GameBoard extends GridPane
 			else if((i/10)%2 == 0)
 			{
 				//horizontal tile
-				tilesOverlay[i] = new Rectangle(narrowBorder, wideBorder, CLEAR);
+				tilesOverlay[i] = new Rectangle(narrowBorder, wideBorder,
+				        CLEAR);
 			}
 			else
 			{
 				//vertical tile
-				tilesOverlay[i] = new Rectangle(wideBorder, narrowBorder, CLEAR);
+				tilesOverlay[i] = new Rectangle(wideBorder, narrowBorder,
+				        CLEAR);
 			}
 			
 			
@@ -122,6 +126,8 @@ public class GameBoard extends GridPane
 		this.setGridLinesVisible(true);
 	}
 	
+	//TODO move to top after demo.
+	
 	//Variable holding the Image of the first die
 	public DieView die1 = new DieView();
 	//Variable holding the Image of the second die.
@@ -138,7 +144,7 @@ public class GameBoard extends GridPane
 	public void rollDie()
 	{
 	    //Create a thread that will roll the dice that will last 3 seconds.
-	    Spinners rollDie = new Spinners(3);
+	    Spinners rollDie = new Spinners(2);
 	    
 	    //Start the thread.
 	    rollDie.start();
@@ -221,9 +227,15 @@ public class GameBoard extends GridPane
                   
               }
           }
-          TurnOutcome outcome = gm.getTurnOutcome();
+          
+          //Create a new turn outcome.
+          TurnOutcome outcome = new GameMain().getTurnOutcome();
+          
+          //TODO testing
           System.out.println(outcome.getDieOne() + 1);
           System.out.println(outcome.getDieTwo() + 1);
+          
+          //Set the faces of the die to the results returned.
           die1.setFace(outcome.getDieOne());
           die2.setFace(outcome.getDieTwo());
         
