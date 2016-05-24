@@ -24,7 +24,7 @@ public class TestPokemonTile
     {
         //this.trainer = new Trainer("Ash", null, null, 1);
 
-        this.player = new Player("Ash");
+        this.player = new Player("Ash", 0);
 
         this.pokemon = new Pokemon(this.evols, null, 10, 1);
 

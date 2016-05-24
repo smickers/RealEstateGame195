@@ -52,10 +52,10 @@ public class BattleGUITest extends Application
         trainerImages.put(GameMain.MAY_NAME, "img/trainers/May.png");
         trainerImages.put(GameMain.HILDA_NAME, "img/trainers/hilda.png");
         
-        challenger = new Player("Ash");
+        challenger = new Player("Ash", 0);
         challenger.addToBalance(5000);
         
-        defender = new Player("Hilda");
+        defender = new Player("Hilda", 3);
         defender.addToBalance(5000);
         
         

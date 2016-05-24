@@ -38,7 +38,7 @@ public class Player
      * @param trainer
      *            - the trainer to create the player with .
      */
-    public Player(String name)
+    public Player(String name, int turnOrder)
     {
     	
         // Initialize the variables associated with a player

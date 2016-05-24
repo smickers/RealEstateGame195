@@ -21,7 +21,7 @@ public class GameMain
     public static final String GARY_NAME = "Gary";
     public static final String MAY_NAME = "May";
     public static final String HILDA_NAME = "Hilda";
-    private ArrayList<Player> players;
+    public static ArrayList<Player> players;
     private Pokemon[] pokemon;
     private GameBoard gameBoard;
     private UpdateCenterView centerViewUpdater;
@@ -40,7 +40,7 @@ public class GameMain
     	 * There was an if statement block here that set the
     	 * win points to win based on the number of players in the
     	 * game, however it ends up that it's actually just
-    	 * 6 - the amount of players. --Kyler N
+    	 * 6 (minus) the amount of players. --Kyler N
     	 */
     	wPToWin = 6 - playerNames.size();
         System.out.println("Win points needed = " + wPToWin);
@@ -48,7 +48,7 @@ public class GameMain
         for(String p : playerNames)
         {
         	//turn order is 0, 1, 2, 3. NOT 1,2,3,4 --Kyler N
-        	players.add(new Player(p));
+        	players.add(new Player(p, playerNames.indexOf(p)));
         }
         
         System.out.println("outputting players:");

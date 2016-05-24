@@ -10,9 +10,50 @@ public class PlayerTests
     @Before
     public void setUp()
     {
-        playerToTest = new Player("Ash");
+        playerToTest = new Player("Ash", 0);
     }
-
+    
+    ////////////////////////////////////////
+    //          S19 TESTS                 //
+    ////////////////////////////////////////
+    
+    @Test
+    public void testThatPlayerAshWasCreatedInPositionZero()
+    {
+        assertEquals("Ash", playerToTest.name);
+        assertEquals(0, playerToTest.turnOrder);
+    }
+    
+    @Test
+    public void testThatGaryWasCreatedInPositionThree()
+    {
+        playerToTest = new Player("Gary", 3);
+        assertEquals("Gary", playerToTest.name);
+        assertEquals(3, playerToTest.turnOrder);
+    }
+    
+    @Test
+    public void testThatGaryWasCreatedInBoundaryPositionFour()
+    {
+        //Gary player is created, as this will allow for the game to support 
+        //more than 4 players in the long run
+        playerToTest = new Player("Gary", 4);
+        assertEquals("Gary", playerToTest.name);
+        assertEquals(4, playerToTest.turnOrder);
+    }
+    
+    @Test
+    public void testForNullPlayerException()
+    {
+        playerToTest = new Player(null, 0);
+        assertEquals("missingNo", playerToTest.name);
+        assertEquals(0, playerToTest.turnOrder);
+    }
+    
+    ////////////////////////////////////////
+    //         END S19 TESTS              //
+    ////////////////////////////////////////
+    
     @Test
     public void testThatPlayerBalanceCanBeAddedTo()
     {

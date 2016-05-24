@@ -33,7 +33,7 @@ public class TestBattleWithMoneyExchange
     {
         this.trainer = new Trainer("Ash", null, null);
 
-        this.challenger = new Player("Ash");
+        this.challenger = new Player("Ash", 0);
         this.challenger.addToBalance( 500 );
 
         this.challengerPokemon = new Pokemon(this.evols, null, 10, 1);
@@ -42,7 +42,7 @@ public class TestBattleWithMoneyExchange
         
         this.trainer2 = new Trainer("Gary", null, null);
 
-        this.defender = new Player("Gary");
+        this.defender = new Player("Gary", 1);
         this.defender.addToBalance( 500 );
 
         this.defenderPokemon = new Pokemon(this.evols, null, 10, 1);
