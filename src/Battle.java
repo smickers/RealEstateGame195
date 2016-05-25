@@ -1,12 +1,3 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
 /*
  *  [File header includes information about the file being submitted.]
  *  Date submitted: May 11, 2016
@@ -28,7 +19,6 @@ public class Battle
     /**
      * 
      * Purpose: This method contains the logic of walking through a battle.
-     * 
      * @param challengingPlayer
      *            - The player who has landed on the tile
      * @param defendingPlayer
@@ -38,8 +28,8 @@ public class Battle
      * @param defendingPokemon
      *            - The Pokemon represented by the tile landed on
      */
-    private boolean challengerReady = false;
-    private boolean defenderReady = false;
+//    private boolean challengerReady = false;
+//    private boolean defenderReady = false;
     private Player challengingPlayer;
     private Player defendingPlayer;
     private Pokemon challengingPokemon;
@@ -47,6 +37,10 @@ public class Battle
     private int amountToPay;
     public String result;
     public Player winner;
+    public static final String POKEMON_EXCHANGE_OUTCOME = "pokemon-exchange";
+    public static final String POKEMON_DEVOLVE_OUTCOME = "pokemon-devolve";
+    public static final String POKEMON_TIE_OUTCOME = "tie";
+    public String outcomeMessage;
 
     /**
      * Constructor for the Battle class.
@@ -90,6 +84,8 @@ public class Battle
         // implemented
         tie();
 
+        //this.winner = defendingPlayer;
+        //pokemonExchange();
     }
 
     /**
@@ -146,7 +142,7 @@ public class Battle
      * @param loser
      *            player that lost the battle.
      */
-    public void moneyExchange( Player winner, Player loser )
+    private void moneyExchange( Player winner, Player loser )
     {
         // Increase the winner's balance.
         winner.addToBalance(amountToPay);
@@ -155,6 +151,42 @@ public class Battle
 
         // Display the result interface with the appropriate information.
         BattleGUITest.resultScreen(winner, String.valueOf(amountToPay), false);
+    }
+    
+    /**
+     * 
+     * Purpose: Manage a Pokemon exchange outcome. This includes moving
+     * the loser's Pokemon from the loser's hand to the winner's hand.
+     */
+    private void pokemonExchange()
+    {
+        // TODO Look into removing all evolutionPoints from a Pokemon
+        // after it has been given to another player
+        
+        // Determine which player is the winner
+        Pokemon pokemonToMove;
+        Player loser;
+        if (winner.equals(challengingPlayer))
+        {
+            // Challenging player won - move the defending player's Pokemon
+            // to the challenging player's hand
+            pokemonToMove = defendingPokemon;
+            loser = defendingPlayer;
+            defendingPlayer.removePokemon(pokemonToMove);
+            challengingPlayer.addPokemon(pokemonToMove);
+        }
+        else
+        {
+            // Otherwise the defendingPlayer won, so we'll move the challenger's
+            // Pokemon to the defender's Pokedex
+            pokemonToMove = challengingPokemon;
+            loser = challengingPlayer;
+            challengingPlayer.removePokemon(pokemonToMove);
+            defendingPlayer.addPokemon(pokemonToMove);
+        }
+        this.result = POKEMON_EXCHANGE_OUTCOME;
+        this.outcomeMessage = winner.name + " has taken " + 
+                pokemonToMove.currentName + " from " + loser.name + "!";
     }
 
     /**
@@ -169,7 +201,9 @@ public class Battle
         // nulls since it won't use the passed in player or String,
         // because we're marking it as a tie result.
 
-        this.result = "tie";
+        this.result = POKEMON_TIE_OUTCOME;
     }
 
+ 
 }
+

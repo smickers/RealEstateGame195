@@ -40,6 +40,11 @@ public class GameBoard extends GridPane
     // private final static int narrowBorder = 82;
     // private final static int wideBorder = 207;
 
+    static final Image[] FACES = { new Image("./img/img1.png"),
+            new Image("./img/img2.png"), new Image("./img/img3.png"),
+            new Image("./img/img4.png"), new Image("./img/img5.png"),
+            new Image("./img/img6.png") };
+
     // Low res
     private final static int NARROW_BORDER = 64;
     private final static int WIDE_BORDER = 106;
@@ -223,7 +228,7 @@ public class GameBoard extends GridPane
         {
             DropShadow ds = new DropShadow(50, Color.rgb(255, 0, 0));
             token.setEffect(ds);
-    
+
             int loc = i;
             tilesOverlay[i].setOnMouseClicked(new EventHandler<MouseEvent>()
             {
@@ -244,30 +249,41 @@ public class GameBoard extends GridPane
         this.add(pane, col + CENTER_COL, row + CENTER_ROW, colspan, rowspan);
 
     }
-    
+
     /**
      * Purpose: rolls dice, returns values to GameMain
      */
-    public int[] rollDice()
+    public int rollDice()
     {
-        //Create first die, set face
-        
-        //Update GUI
-        
-        //Create second die, set face
-        
-        //Update GUI
-        
-        
-        
-        //waits for threads to complete
-        
-        //Get turn outcome (die values)
-        
-        //Set die1 and die2 faces with turn outcomes
-        
-       // return new int[]{die1.value, die2.value};
-        return null;
+        // Create first die, set face
+        DieView die1 = new DieView();
+        // Create second die, set face
+        DieView die2 = new DieView();
+        // Update GUI
+        int die1Value = (int) (Math.random() * 6) + 1;
+        System.out.println("die1Value: " + die1Value);
+        int die2Value = (int) (Math.random() * 6) + 1;
+        System.out.println("die2Value: " + die2Value);
+
+        die1.setFace(die1Value - 1);
+        die2.setFace(die2Value - 1);
+
+        HBox hb = new HBox();
+
+        hb.getChildren().add(die1);
+        hb.getChildren().add(die2);
+
+        displayPane(hb, 0, 8, 2, 1);
+
+        // Update GUI
+
+        // waits for threads to complete
+
+        // Get turn outcome (die values)
+
+        // Set die1 and die2 faces with turn outcomes
+
+        return die1Value + die2Value;
 
     }
 

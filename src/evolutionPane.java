@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
  */
 
 /**
- * @author Kyler, Travis!
+ * @author Kyler, Travis
  *
  */
 public class evolutionPane extends Thread implements Runnable
@@ -182,6 +182,7 @@ public class evolutionPane extends Thread implements Runnable
 
         });
 
+        BattleGUITest.updateScene(vbox);
         return vbox;
     }
 

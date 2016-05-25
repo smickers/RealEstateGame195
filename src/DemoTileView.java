@@ -22,7 +22,10 @@ public class DemoTileView extends VBox
 
     public DemoTileView(Player current, int tilesMoved)
     {
+        Text topTitle = new Text("DEMO DEMO DEMO DEMO DEMO DEMO DEMO");
+        topTitle.setFont(GameFont.GAME_FONT);
         Text preTitle = new Text("THIS IS A DEMO FOR MOVING THE TOKENS");
+        preTitle.setFont(GameFont.SMALL_GAME_FONT);
         title = new Text("You " + tilesMoved
                 + " spaces and landed on a Pokemon Card Tile");
         this.setAlignment(Pos.CENTER);
@@ -30,14 +33,15 @@ public class DemoTileView extends VBox
         info.setFont(GameFont.SMALL_GAME_FONT);
         ImageView trainerImg = new ImageView(current.trainer.trainerImage);
         trainerImg.setPreserveRatio(true);
-        trainerImg.setFitHeight(465);
+        trainerImg.setFitHeight(/* 465 */325);
+        this.getChildren().add(topTitle);
         this.getChildren().add(trainerImg);
         this.getChildren().add(preTitle);
         this.getChildren().add(title);
         this.getChildren().add(info);
         this.setBackground(new Background(new BackgroundFill(Color
                 .web("FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
-        this.setMaxWidth(586);
+        // this.setMaxWidth(586);
 
     }
 

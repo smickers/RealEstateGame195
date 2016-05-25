@@ -83,46 +83,24 @@ public class GameMain
     public void play()
     {
         // BEGIN TEST CODE
-        Button btnMoveToken = new Button("Move token");
+        // TODO Begin: this section needs to be moved to GameBoard
+        Button btnMoveToken = new Button("Roll Dice");
+
         btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
         {
-            public void handle( ActionEvent event )
+
+            @Override
+            public void handle( ActionEvent arg0 )
             {
-                if ( temp != null )
-                {
-                    gameBoard.getChildren().remove(temp);
-                }
 
-               
+                int playerRoll = gameBoard.rollDice();
+                calculateNewLocation(playerRoll);
 
-                System.out.println("It is "
-                        + players.get(currentPlayer).trainer.name + "'s  turn");
-                System.out.println(players.get(currentPlayer).currentBalance()
-                        + " current balance");
+                // call tile action
 
-                int tilesToMove = (int) (Math.random() * 12 + 1);
-                // int tilesToMove = 3;
-                calculateNewLocation(tilesToMove);
-                // add number to player's location
-                // players.get(0).currentLocation += tilesToMove;
-                // pass location into gameboard
-                // StackPane temp = new StackPane();
-                // Text topInfo = new Text("It's " +
-                // players.get(currentPlayer).trainer.name + " turn!");
-                // temp.getChildren().add(topInfo);
-                // gameBoard.getChildren();
-                // gameBoard.displayPane(temp, 0, 0, 9, 1);
-                // indicatePlayerTurn();
-
-                
-                //gameBoard.rollDice();
-                //calculate index
-                //moveToken(players.get(currentPlayer).token, calculateNewLocation());
-                
                 gameBoard.displayPane(
-                        new DemoTileView(players.get(currentPlayer),
-                                tilesToMove), 0, 0, 9, 8);
-                System.out.println("Tiles to move: " + tilesToMove);
+                        new DemoTileView(players.get(currentPlayer), playerRoll),
+                        0, 0, 9, 8);
 
                 currentPlayer++;
 
@@ -131,14 +109,62 @@ public class GameMain
                     currentPlayer = 0;
                 }
 
-                // gameBoard.moveToken(gameBoard.tokenArray[0],
-                // players.get(0).currentLocation);
-
-                
-                  
-                
-
             }
+         // TODO END: this section needs to be moved to GameBoard
+            
+            // public void handle( ActionEvent event )
+            // {
+            // if ( temp != null )
+            // {
+            // gameBoard.getChildren().remove(temp);
+            // }
+            //
+            //
+            //
+            // System.out.println("It is "
+            // + players.get(currentPlayer).trainer.name + "'s  turn");
+            // System.out.println(players.get(currentPlayer).currentBalance()
+            // + " current balance");
+            //
+            // int tilesToMove = (int) (Math.random() * 12 + 1);
+            // // int tilesToMove = 3;
+            // calculateNewLocation(tilesToMove);
+            // // add number to player's location
+            // // players.get(0).currentLocation += tilesToMove;
+            // // pass location into gameboard
+            // // StackPane temp = new StackPane();
+            // // Text topInfo = new Text("It's " +
+            // // players.get(currentPlayer).trainer.name + " turn!");
+            // // temp.getChildren().add(topInfo);
+            // // gameBoard.getChildren();
+            // // gameBoard.displayPane(temp, 0, 0, 9, 1);
+            // // indicatePlayerTurn();
+            //
+            //
+            // //gameBoard.rollDice();
+            // //calculate index
+            // //moveToken(players.get(currentPlayer).token,
+            // calculateNewLocation());
+            //
+            // gameBoard.displayPane(
+            // new DemoTileView(players.get(currentPlayer),
+            // tilesToMove), 0, 0, 9, 8);
+            // System.out.println("Tiles to move: " + tilesToMove);
+            //
+            // currentPlayer++;
+            //
+            // if ( currentPlayer == players.size() )
+            // {
+            // currentPlayer = 0;
+            // }
+            //
+            // // gameBoard.moveToken(gameBoard.tokenArray[0],
+            // // players.get(0).currentLocation);
+            //
+            //
+            //
+            //
+
         });
 
         StackPane temp = new StackPane();
@@ -173,9 +199,13 @@ public class GameMain
      */
     public void calculateNewLocation( int rollTotal )
     {
+        System.out.println("ROLL TOTAL IN CALCULATE :" + rollTotal);
+        System.out.println(players.get(currentPlayer).currentLocation);
+
         // Add roll
         players.get(currentPlayer).currentLocation += rollTotal;
 
+        System.out.println(players.get(currentPlayer).currentLocation);
         // tiles stop at 39, allows player to pass go
         if ( players.get(currentPlayer).currentLocation > 39 )
         {
@@ -183,9 +213,10 @@ public class GameMain
             passGo();
         }
 
-        // Call token action
+        // Move token
         gameBoard.moveToken(players.get(currentPlayer).token,
                 players.get(currentPlayer).currentLocation);
+
     }
 
     /**

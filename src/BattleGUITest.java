@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,8 +41,24 @@ public class BattleGUITest extends Application
     private static boolean defenderReady = false;
     private static Battle newBattle;
 
+    private static HashMap<String, String> trainerImages;
+    
+
     public static void main( String[] args )
     {
+    	trainerImages = new HashMap<String, String>();
+        trainerImages.put(GameMain.ASH_NAME, "img/trainers/ash.png");
+        trainerImages.put(GameMain.GARY_NAME, "img/trainers/Gary.png");
+        trainerImages.put(GameMain.MAY_NAME, "img/trainers/May.png");
+        trainerImages.put(GameMain.HILDA_NAME, "img/trainers/hilda.png");
+        
+        challenger = new Player("Ash", 0);
+        challenger.addToBalance(5000);
+        
+        defender = new Player("Hilda", 3);
+        defender.addToBalance(5000);
+        
+        
         Application.launch(args);
     }
 
@@ -54,20 +72,17 @@ public class BattleGUITest extends Application
         scene = new Scene(main);
         stage.setScene(scene);
         stage.show();
-
+        
         // ///////////////////////////////////////////////
 
         String[] names = new String[] { "a", "b", "c" };
         Pokemon testChallenger = new Pokemon(names, null, 5, 3);
-        challenger = new Player(new Trainer("Ash", new Image(
-                "img/trainers/ash.png"), null));
-        challenger.addToBalance(5000);
+        
         // test.action(challenger);
 
-        defender = new Player(new Trainer("Hidla", new Image(
-                "img/trainers/hilda.png"), null));
+        
         Pokemon testDefender = new Pokemon(names, null, 5, 3);
-        defender.addToBalance(5000);
+        
 
         // Set up the battle we're using here
         newBattle = new Battle(challenger, defender, testChallenger,
@@ -77,11 +92,11 @@ public class BattleGUITest extends Application
 
         // Build a "pre-battle" GUI
         HBox trainers = new HBox(10);
-        ImageView firstTrainer = new ImageView(challenger.trainer.trainerImage);
+        ImageView firstTrainer = new ImageView(trainerImages.get(challenger.name));
         Text txtVersus = new Text("vs");
         txtVersus.setFont(GameFont.GAME_FONT);
 
-        ImageView secondTrainer = new ImageView(defender.trainer.trainerImage);
+        ImageView secondTrainer = new ImageView(trainerImages.get(defender.name));
 
         firstTrainer.setPreserveRatio(true);
         secondTrainer.setPreserveRatio(true);
@@ -144,9 +159,9 @@ public class BattleGUITest extends Application
         // TODO Change these to the Pokemon's images once we have
         // Pokemon images
         HBox trainers = new HBox(50);
-        ImageView firstTrainer = new ImageView(challenger.trainer.trainerImage);
+        ImageView firstTrainer = new ImageView(trainerImages.get(challenger.name));
 
-        ImageView secondTrainer = new ImageView(defender.trainer.trainerImage);
+        ImageView secondTrainer = new ImageView(trainerImages.get(defender.name));
 
         firstTrainer.setPreserveRatio(true);
         secondTrainer.setPreserveRatio(true);
@@ -158,7 +173,7 @@ public class BattleGUITest extends Application
         HBox readyButtons = new HBox(50);
         Button btnChallengerReady = new Button("Ready");
         Button btnDefenderReady = new Button("Ready");
-
+//TODO Requires implementation with new system redesign
         btnChallengerReady.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle( ActionEvent event )
@@ -219,10 +234,10 @@ public class BattleGUITest extends Application
         HBox trainers = new HBox(50);
 
         // Image of the challenging trainer.
-        ImageView firstTrainer = new ImageView(challenger.trainer.trainerImage);
+        ImageView firstTrainer = new ImageView(trainerImages.get(challenger.name));
 
         // Image of the defending trainer.
-        ImageView secondTrainer = new ImageView(defender.trainer.trainerImage);
+        ImageView secondTrainer = new ImageView(trainerImages.get(defender.name));
 
         // Set the size of the images and preserve their ratios.
         firstTrainer.setPreserveRatio(true);
@@ -244,7 +259,7 @@ public class BattleGUITest extends Application
         // Else display what was won and by whom.
         else
         {
-            results = new Text(winner.trainer.name + " wins " + winnings);
+            results = new Text(winner.name + " wins " + winnings);
         }
 
         // Set the font for results to the standard game font.

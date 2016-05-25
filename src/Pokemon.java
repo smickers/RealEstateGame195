@@ -64,7 +64,7 @@ public class Pokemon
 
         this.pokemonImages = pokemonImages;
         // TODO Uncomment when we have images
-        this.currentImage = this.pokemonImages[0];
+        //this.currentImage = this.pokemonImages[0];
 
         this.evolutionPointsToEvolve = evolutionPointsToEvolve;
         this.defaultAttackPoints = defaultAttackPoints;

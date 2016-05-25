@@ -1,25 +1,26 @@
+
+/**
+ * @author cst104, Hilary Fehr, Nathan MacNeil
+ *
+ */
 public class Die
 {
-    
-
     public Die()
     {
-    	
+
     }
-    
-    public static int rollTwoDie()
+
+    public static int roll()
     {
-        int d1 = (int) Math.floor(Math.random() * 6 + 1);
-        int d2 = (int) Math.floor(Math.random() * 6 + 1);
-        int roll = d1 + d2;
+        int roll = (int) Math.floor(Math.random() * 6);
+        // System.out.println(roll);
         return roll;
     }
-    
-    public static int rollBattleDie()
+
+    public static int rollTwo()
     {
-        int roll = (int) Math.floor(Math.random() * 6 + 1);
-        return roll;
+        int result = roll() + roll();
+        // System.out.println(result);
+        return result;
     }
-    
-   
 }

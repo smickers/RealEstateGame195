@@ -26,7 +26,6 @@ public class Pokedex
         // Initiate the variables related to a Pokedex
         this.player = player;
         pokemonOwned = new Vector<Pokemon>();
-        System.out.println("Initial pokemon: " + pokemonOwned.toString());
     }
 
     /**
