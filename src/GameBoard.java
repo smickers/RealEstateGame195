@@ -131,6 +131,7 @@ public class GameBoard extends GridPane
         placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
 
         testMovementByClicks(testerToken);
+        
     }
 
     /**

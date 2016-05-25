@@ -1,12 +1,3 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
 /*
  *  [File header includes information about the file being submitted.]
  *  Date submitted: May 11, 2016
@@ -29,10 +20,6 @@ public class Battle
      * 
      * Purpose: This method contains the logic of walking through a battle.
      * 
-     * @param challengerPlayerReady
-     *            - Whether the player is ready to start the battle
-     * @param defenderPlayerReady
-     *            - Whether the player is ready to start the battle  
      * @param challengingPlayer
      *            - The player who has landed on the tile
      * @param defendingPlayer
@@ -41,20 +28,24 @@ public class Battle
      *            - The Pokemon of the player who has landed on the tile
      * @param defendingPokemon
      *            - The Pokemon represented by the tile landed on
-     * @param amountToPay
-     *            - The amount the must be paid by the battle's loser
      */
-    
-    public boolean challengerReady = false;
-    public boolean defenderReady = false;
-    public Player challengingPlayer;
-    public Player defendingPlayer;
-    public Pokemon challengingPokemon;
-    public Pokemon defendingPokemon;
-    public int amountToPay;
+//    private boolean challengerReady = false;
+//    private boolean defenderReady = false;
+    private Player challengingPlayer;
+    private Player defendingPlayer;
+    private Pokemon challengingPokemon;
+    private Pokemon defendingPokemon;
+    private int amountToPay;
+    public String result;
+    public Player winner;
+    public static final String POKEMON_EXCHANGE_OUTCOME = "pokemon-exchange";
+    public static final String POKEMON_DEVOLVE_OUTCOME = "pokemon-devolve";
+    public static final String POKEMON_TIE_OUTCOME = "tie";
+    public String outcomeMessage;
 
     /**
      * Constructor for the Battle class.
+     * 
      * @param challengingPlayer
      * @param defendingPlayer
      * @param challengingPokemon
@@ -72,158 +63,146 @@ public class Battle
     }
 
     /**
-     * Purpose: this method will setup and display the user interface with 
-     *  the information passed for the current battle. 
+     * Purpose: this method will setup and display the user interface with the
+     * information passed for the current battle.
      */
-//    public void battle()
+    public void battle()
+    {
+        // First we'll call rollForPlayers to have them roll dice to determine
+        // what "bonus points" will be added to their Pokemon for the battle
+        rollForPlayers();
+    }
 
-    
     /**
      * Purpose: rolls for both players and determines the winner
      */
     public void rollForPlayers()
     {
+        // TODO Implement the dice rolling story, eventually
+        // TODO Add checks below here for different battle outcomes
+        // For now we will only call tie(), because the other stories
+        // required for fully completing the battle class haven't been
+        // implemented
+        tie();
 
-        // TODO testing
-        System.out.println("\n ");
-        int challengerAttack = challengingPokemon.attackPoints
-                + Die.rollBattleDie();
-
-        int defendingAttack = defendingPokemon.attackPoints
-                + Die.rollBattleDie();
-
-        //If the challenger attack is stronger
-        if (challengerAttack > defendingAttack)
-        {
-            // TODO testing
-            System.out.println("challenger wins");
-            
-            
-            challengerWins();
-        }
-        //If the defender attack is stronger.
-        else if (challengerAttack < defendingAttack)
-        {
-            // TODO testing
-            System.out.println("defender wins");
-            
-            
-            defenderWins();
-        }
-        //Else it will be a tie.
-        else
-        {
-            // TODO testing
-            System.out.println("tie");
-            
-            
-            tie();
-        }
-
+        //this.winner = defendingPlayer;
+        //pokemonExchange();
     }
 
     /**
-     * Purpose: determines the result of the battle based on the condition of 
-     *  the loser.
+     * Purpose: determines the result of the battle based on the condition of
+     * the loser.
      */
     private void challengerWins()
     {
 
-        //If the loser has enough in their balance to pay the winner, then
-        // start a money exchange.
-        if (defendingPlayer.sufficientBalance(amountToPay))
+        if ( defendingPlayer.sufficientBalance(amountToPay) )
         {
             moneyExchange(challengingPlayer, defendingPlayer);
-//            BattleGUITest.resultScreen(this.challengingPlayer, 
-//                    String.valueOf(amountToPay), false, this.challengingPlayer, 
-//                    this.defendingPlayer);
         }
-        //If the defeated Pokemon is at its lowest evolution, then start a 
-        // Pokemon exchange.
-        else if (defendingPokemon.currentIndex == 0)
+        else if ( defendingPokemon.currentIndex == 0 )
         {
-        	devolvePokemon(defendingPokemon);
-            evolutionPane.buildDevolutionPane(defendingPokemon);
-            System.out.println(defendingPokemon);
             // TODO
             // pokemonExchange();
         }
-        //Else the defeated Pokemon will be devolved.
         else
         {
-            devolvePokemon(defendingPokemon);
-            evolutionPane.buildDevolutionPane(defendingPokemon);
-            System.out.println(defendingPokemon);
+            // devolvePokemon();
         }
-        
-       
 
     }
 
     /**
-     * Purpose: determines the result of the battle based on the condition of 
-     *  the loser.
+     * Purpose: determines the result of the battle based on the condition of
+     * the loser.
      */
     private void defenderWins()
     {
-        //If the loser has enough in their balance to pay the winner, then
-        // start a money exchange.
-        if (challengingPlayer.sufficientBalance(amountToPay))
+        if ( defendingPlayer.sufficientBalance(amountToPay) )
         {
             moneyExchange(defendingPlayer, challengingPlayer);
-//            BattleGUITest.resultScreen(this.defendingPlayer, 
-//                    String.valueOf(amountToPay), false, this.challengingPlayer, 
-//                    this.defendingPlayer);
         }
-        //If the defeated Pokemon is at its lowest evolution, then start a 
-        // Pokemon exchange.
-        else if( challengingPokemon.currentIndex == 0 )
+        else if ( defendingPokemon.currentIndex == 0 )
         {
             // TODO
             // pokemonExchange();
         }
-        //Else the defeated Pokemon will be devolved.
         else
         {
-             devolvePokemon(challengingPokemon);
-             evolutionPane.buildDevolutionPane(challengingPokemon);
+            // devolvePokemon();
         }
-        
 
     }
 
     /**
-     * Purpose: makes sure the correct result screen is displayed for a tie.
+     * Purpose: provides the functionality for a battle resulting in an exchange
+     * of money.
+     * 
+     * @param winner
+     *            player that won the battle.
+     * @param loser
+     *            player that lost the battle.
      */
-    private void tie()
+    private void moneyExchange( Player winner, Player loser )
     {
-        //Call the result interface with nothing being won.
-//        BattleGUITest.resultScreen(null, "", true, this.challengingPlayer, 
-//                this.defendingPlayer);
-    }
-
-    /**
-     * Purpose: provides the functionality for a battle resulting in an 
-     *  exchange of money.
-     * @param winner player that won the battle.
-     * @param loser player that lost the battle.
-     */
-    public void moneyExchange(Player winner, Player loser)
-    {
-        //Increase the winner's balance.
+        // Increase the winner's balance.
         winner.addToBalance(amountToPay);
-        //Decrease the loser's balance.
+        // Decrease the loser's balance.
         loser.removeFromBalance(amountToPay);
 
-        //Display the result interface with what was won.
-        //resultScreen(winner, String.valueOf(amountToPay), false);
+        // Display the result interface with the appropriate information.
+        BattleGUITest.resultScreen(winner, String.valueOf(amountToPay), false);
     }
     
-    public void devolvePokemon(Pokemon loser)
+    /**
+     * 
+     * Purpose: Manage a Pokemon exchange outcome. This includes moving
+     * the loser's Pokemon from the loser's hand to the winner's hand.
+     */
+    private void pokemonExchange()
     {
-    	loser.devolve();
-    	
+        // TODO Look into removing all evolutionPoints from a Pokemon
+        // after it has been given to another player
+        
+        // Determine which player is the winner
+        Pokemon pokemonToMove;
+        Player loser;
+        if (winner.equals(challengingPlayer))
+        {
+            // Challenging player won - move the defending player's Pokemon
+            // to the challenging player's hand
+            pokemonToMove = defendingPokemon;
+            loser = defendingPlayer;
+            defendingPlayer.removePokemon(pokemonToMove);
+            challengingPlayer.addPokemon(pokemonToMove);
+        }
+        else
+        {
+            // Otherwise the defendingPlayer won, so we'll move the challenger's
+            // Pokemon to the defender's Pokedex
+            pokemonToMove = challengingPokemon;
+            loser = challengingPlayer;
+            challengingPlayer.removePokemon(pokemonToMove);
+            defendingPlayer.addPokemon(pokemonToMove);
+        }
+        this.result = POKEMON_EXCHANGE_OUTCOME;
+        this.outcomeMessage = winner.name + " has taken " + 
+                pokemonToMove.currentName + " from " + loser.name + "!";
     }
 
- 
+    /**
+     * 
+     * Purpose: This method will be called if a tie occurs. This means that no
+     * money will change hands, no Pokemon will change hands and no Pokemon will
+     * be evolved or devolved.
+     */
+    public void tie()
+    {
+        // Just call resultScreen. We can get away with passing in
+        // nulls since it won't use the passed in player or String,
+        // because we're marking it as a tie result.
+
+        this.result = POKEMON_TIE_OUTCOME;
+    }
+
 }
