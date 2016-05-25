@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 public class GameMain
 {
 
+    public static final String ASH_NAME = "Ash";
+    public static final String GARY_NAME = "Gary";
+    public static final String MAY_NAME = "May";
+    public static final String HILDA_NAME = "Hilda";
     private ArrayList<Player> players;
     private Pokemon[] pokemon;
     private GameBoard gameBoard;

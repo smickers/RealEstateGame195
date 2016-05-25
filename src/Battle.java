@@ -185,8 +185,8 @@ public class Battle
             defendingPlayer.addPokemon(pokemonToMove);
         }
         this.result = POKEMON_EXCHANGE_OUTCOME;
-        this.outcomeMessage = winner.name + " has taken " + 
-                pokemonToMove.currentName + " from " + loser.name + "!";
+        this.outcomeMessage = winner.trainer.name + " has taken " + 
+                pokemonToMove.currentName + " from " + loser.trainer.name + "!";
     }
 
     /**
