@@ -22,28 +22,20 @@ public class DiceViewTest extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-    	board = new GameBoard();
-    	
-    	
-      Button btnRoll = board.btnRoll;
-      board.testAddListener();
-      
+        board = new GameBoard();
+
+        Button btnRoll = board.btnRoll;
+        board.testAddListener();
+
         VBox main = new VBox();
         HBox dice = new HBox();
         dice.getChildren().addAll(board.die1, board.die2);
-        
-        
-      
-        
+
         main.getChildren().addAll(dice, btnRoll);
-  
-        
+
         Scene scn = new Scene(main);
         stage.setScene(scn);
         stage.show();
-        
+
     }
-    
-
-
 }

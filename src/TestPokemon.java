@@ -69,12 +69,14 @@ public class TestPokemon
     @Test
     public void testThatAddEvolutionPointsIncrementsTheAmountOfEvolutionPoints()
     {
+        this.singleEvolution.evolutionPointsToEvolve = 5;
         this.singleEvolution.addEvolutionPoint();
         int result = this.singleEvolution.evolutionPoints;
         
         this.singleEvolution.addEvolutionPoint();
         int result2 = this.singleEvolution.evolutionPoints;
         
+        this.doubleEvolution.evolutionPointsToEvolve = 5;
         this.doubleEvolution.addEvolutionPoint();
         int result3 = this.doubleEvolution.evolutionPoints;
         
