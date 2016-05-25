@@ -174,47 +174,47 @@ public class BattleGUITest extends Application
         Button btnChallengerReady = new Button("Ready");
         Button btnDefenderReady = new Button("Ready");
 //TODO Requires implementation with new system redesign
-//        btnChallengerReady.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//            public void handle( ActionEvent event )
-//            {
-//                challengerReady = true;
-//                if ( challengerReady && defenderReady )
-//                {
-//                    newBattle.rollForPlayers();
-//                    if ( newBattle.result.equals("tie") )
-//                    {
-//                        resultScreen(null, null, true);
-//                    }
-//                    else
-//                    {
-//                        resultScreen(newBattle.winner, "", false);
-//                    }
-//                }
-//                btnChallengerReady.setDisable(true);
-//            }
-//        });
+        btnChallengerReady.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle( ActionEvent event )
+            {
+                challengerReady = true;
+                if ( challengerReady && defenderReady )
+                {
+                    newBattle.rollForPlayers();
+                    if ( newBattle.result.equals("tie") )
+                    {
+                        resultScreen(null, null, true);
+                    }
+                    else
+                    {
+                        resultScreen(newBattle.winner, "", false);
+                    }
+                }
+                btnChallengerReady.setDisable(true);
+            }
+        });
 
-//        btnDefenderReady.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//            public void handle( ActionEvent event )
-//            {
-//                defenderReady = true;
-//                if ( challengerReady && defenderReady )
-//                {
-//                    newBattle.rollForPlayers();
-//                    if ( newBattle.result.equals("tie") )
-//                    {
-//                        resultScreen(null, null, true);
-//                    }
-//                    else
-//                    {
-//                        resultScreen(newBattle.winner, "", false);
-//                    }
-//                }
-//                btnDefenderReady.setDisable(true);
-//            }
-//        });
+        btnDefenderReady.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle( ActionEvent event )
+            {
+                defenderReady = true;
+                if ( challengerReady && defenderReady )
+                {
+                    newBattle.rollForPlayers();
+                    if ( newBattle.result.equals("tie") )
+                    {
+                        resultScreen(null, null, true);
+                    }
+                    else
+                    {
+                        resultScreen(newBattle.winner, "", false);
+                    }
+                }
+                btnDefenderReady.setDisable(true);
+            }
+        });
 
         readyButtons.getChildren().addAll(btnChallengerReady, btnDefenderReady);
         BattleGUITest.updateScene(readyButtons);
