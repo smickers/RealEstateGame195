@@ -1,15 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
-/*
- *  [File header includes information about the file being submitted.]
- *  Course name:  COSC 190
- *  Instructors: Sharon McDonald, Nelson Wong
- * 
- */
-
-
 /**
 
  * @author Stephanie M, Kyler Nyhagen, Nathan MacNeil, Hilary Fehr

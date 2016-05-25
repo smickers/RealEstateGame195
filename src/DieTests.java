@@ -7,50 +7,52 @@ public class DieTests
 {
     private Die die;
     private DiceView view;
-    @Before
-    public void setUp()
-    {
-        view = new DiceView();
-        die = new Die(view);
-    }
+    //TODO Turn this into a unit test for Die()
     
-    @Test
-    public void testThatRollBattleDieAlwaysReturnsBetweenOneAndSixInclusive()
-    {
-        int[] numbersRolled = new int[] { 0, 0, 0, 0, 0, 0 };
-
-        try
-        {
-            for ( int i = 0; i < 1000; i++ )
-            {
-                //int value = Die.rollBattleDie();
-                int value = die.rollBattleDie();
-                numbersRolled[value - 1]++;
-            }
-            assertTrue(true);
-        }
-        catch ( Exception e )
-        {
-            assertTrue(false);
-        }
-    }
-    
-    @Test
-    public void testThatRollTwoDieAlwaysReturnsBetweenTwoAndTwelveInclusive()
-    {
-        boolean tripped = false;
-        for (int i = 0; i < 1000; i++)
-        {
-           // int value = Die.rollTwoDie();
-            int value = die.rollTwoDie();
-            if (value > 12 || value < 2)
-            {
-                tripped = true;
-            }
-        }
-        assertFalse(tripped);
-    }
-    
+//    @Before
+//    public void setUp()
+//    {
+//        view = new DiceView();
+//        die = new Die(view);
+//    }
+//    
+//    @Test
+//    public void testThatRollBattleDieAlwaysReturnsBetweenOneAndSixInclusive()
+//    {
+//        int[] numbersRolled = new int[] { 0, 0, 0, 0, 0, 0 };
+//
+//        try
+//        {
+//            for ( int i = 0; i < 1000; i++ )
+//            {
+//                //int value = Die.rollBattleDie();
+//                int value = die.rollBattleDie();
+//                numbersRolled[value - 1]++;
+//            }
+//            assertTrue(true);
+//        }
+//        catch ( Exception e )
+//        {
+//            assertTrue(false);
+//        }
+//    }
+//    
+//    @Test
+//    public void testThatRollTwoDieAlwaysReturnsBetweenTwoAndTwelveInclusive()
+//    {
+//        boolean tripped = false;
+//        for (int i = 0; i < 1000; i++)
+//        {
+//           // int value = Die.rollTwoDie();
+//            int value = die.rollTwoDie();
+//            if (value > 12 || value < 2)
+//            {
+//                tripped = true;
+//            }
+//        }
+//        assertFalse(tripped);
+//    }
+//    
 //    @Test
 //    public void testThatGetLocationReturnsTheTileThePlayerIsCurrentlyOn()
 //    {
