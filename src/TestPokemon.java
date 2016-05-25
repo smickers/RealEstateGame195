@@ -13,35 +13,39 @@ public class TestPokemon
     private String[] singleTitles = {"Magikarp", "Gyarados" };
 
     //Need actual pictures to test 
-    private Image[] singleImages = {new Image("pic"), new Image("pic")};
+    private Image[] singleImages = {null, null};
 
     private Pokemon doubleEvolution; 
     private String[] doubleTitles = {"Charmander", "Charmeleon", "Charizard" };
     
     //Need actual pictures to test 
-    private Image[] doubleImages = {new Image(""), new Image("")};
+    private Image[] doubleImages = {null, null, null};
     
     
     @Before
     public void setUp() throws Exception
     {
         this.singleEvolution = new Pokemon(this.singleTitles, 
-                this.singleImages, 10, 1);
+                this.singleImages, 1, 1);
         
         this.doubleEvolution = new Pokemon(this.doubleTitles, 
-                doubleImages, 5, 1);
+                doubleImages, 1, 1);
     } 
 
     @Test
     public void testThatEvolveAndDevolveChangeTheNameAndImageOfThePokemon()
     {
-        this.singleEvolution.evolve();
+        this.singleEvolution.addEvolutionPoint();
+       //this.singleEvolution.evolve();
         String result = this.singleEvolution.currentName;
+        
+        this.doubleEvolution.addEvolutionPoint();
         
         this.doubleEvolution.evolve();
         String result2 = this.doubleEvolution.currentName;
         
-        this.doubleEvolution.evolve();
+        this.doubleEvolution.addEvolutionPoint();
+       // this.doubleEvolution.evolve();
         String result3 = this.doubleEvolution.currentName;
         
         assertEquals("Gyarados", result);
@@ -108,15 +112,19 @@ public class TestPokemon
     @Test
     public void testThatIsMaxEvolutionReturnsTrueIfPokemonIsAtLastEvolution()
     {
-        this.singleEvolution.evolve();
+     
+        this.singleEvolution.addEvolutionPoint();
+        //this.singleEvolution.evolve();
         boolean result = this.singleEvolution.isMaxEvolution();
         
-        this.doubleEvolution.evolve();
-        this.doubleEvolution.evolve();
+        this.doubleEvolution.addEvolutionPoint();
+        this.doubleEvolution.addEvolutionPoint();
+//        this.doubleEvolution.evolve();
+//        this.doubleEvolution.evolve();
         boolean result2 = this.doubleEvolution.isMaxEvolution();
         
         assertEquals(true, result);
-        assertEquals(true, result);
+        assertEquals(true, result2);
     }
     
     @Test
