@@ -15,24 +15,26 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * Purpose: This holds the main method, and is  used to start the
- * game and update the GUI
+ * Purpose: This holds the main method, and is used to start the game and update
+ * the GUI
  *
  * Date: May 9 2016
+ * 
  * @author cst109 Hilary, cst152 Travis, cstCAM
  */
 public class MainWindow extends Application
 {
-    
+
     public static Scene scene = new Scene(new StackPane());
 
     /**
      * Purpose: Launches initial window
+     * 
      * @param args
      */
     public static void main( String[] args )
     {
-    	
+
         Application.launch(args);
     }
 
@@ -42,13 +44,14 @@ public class MainWindow extends Application
     @Override
     public void start( Stage stage )
     {
-       setScene(SplashScreen.buildSplashScreen(stage));
-       stage.setScene(scene);
-       stage.show();
+        setScene(SplashScreen.buildSplashScreen(stage));
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
      * Purpose: Validates newPane and sets scene to newPane
+     * 
      * @param newPane
      */
     public static void setScene( Pane newPane )
@@ -58,22 +61,23 @@ public class MainWindow extends Application
             scene = new Scene(newPane);
         }
     }
-    
+
     /**
      * Purpose: additional start screens
+     * 
      * @param stage
      * @param pane
-     * @param song - path name of audio
+     * @param song
+     *            - path name of audio
      */
-    public static void newStart(Stage stage, Pane pane, String song)
+    public static void newStart( Stage stage, Pane pane, String song )
     {
-    	sound.stop();
-    	setScene(pane);
-    	stage.setScene(scene);
-    	stage.show();
-    	sound.playSound(song);
-    	
+        sound.stop();
+        setScene(pane);
+        stage.setScene(scene);
+        stage.show();
+        sound.playSound(song);
+
     }
-    
 
 }

@@ -55,26 +55,15 @@ public class GameBoard extends GridPane
 
     Rectangle tilesOverlay[] = new Rectangle[GameMain.NUM_OF_TILES];
 
-    /**
-     * Travis code
-     */
-    
-    ImageView token1,token2,token3,token4;
-    ImageView[] tokenArray = {token1,token2,token3,token4};
-    
-    
-    /**
-     * End of travis code
-     */
-    
+    ImageView token1, token2, token3, token4;
+    ImageView[] tokenArray = { token1, token2, token3, token4 };
 
-    
     /**
      * Constructor for a new game board
      */
     public GameBoard(ArrayList<Player> players)
     {
-    
+
         // add the background image
         this.add(new ImageView(BACKGROUND_IMAGE), 0, 0, 40, 40);
 
@@ -106,7 +95,6 @@ public class GameBoard extends GridPane
 
             // required for token alignments
             tilesOverlay[i].setStroke(CLEAR);
-          
 
             // ####################
             // ## For DEMO Only! ##
@@ -145,24 +133,23 @@ public class GameBoard extends GridPane
         }
 
         // for testing purposes ONLY
-//        ImageView testerToken = new ImageView(
-//                new Image("/images/pkoeball1.png"));
-//        placeToken(testerToken, 0);
-//        placeToken(new ImageView(new Image("/images/pkoeball2.png")), 0);
-//        placeToken(new ImageView(new Image("/images/pkoeball3.png")), 0);
-//        placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
+        // ImageView testerToken = new ImageView(
+        // new Image("/images/pkoeball1.png"));
+        // placeToken(testerToken, 0);
+        // placeToken(new ImageView(new Image("/images/pkoeball2.png")), 0);
+        // placeToken(new ImageView(new Image("/images/pkoeball3.png")), 0);
+        // placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
 
-//        testMovementByClicks(testerToken);
-        
+        // testMovementByClicks(testerToken);
 
-    	//Travis again
-    	for (int i = 0; i < players.size(); i++)
-    	{
-    		tokenArray[i] =(players.get(i).token);
-    		
-    		placeToken(tokenArray[i], 0);
-    	}
-//    	this.setGridLinesVisible(true);
+        // Travis again
+        for ( int i = 0; i < players.size(); i++ )
+        {
+            tokenArray[i] = (players.get(i).token);
+
+            placeToken(tokenArray[i], 0);
+        }
+        // this.setGridLinesVisible(true);
     }
 
     /**
@@ -227,7 +214,6 @@ public class GameBoard extends GridPane
         // start the fade effect
         ft.play();
     }
-    
 
     // ### FOR TESTING PURPOSES ONLY ###
     // add click listeners to move a single token on the board
@@ -235,6 +221,9 @@ public class GameBoard extends GridPane
     {
         for ( int i = 0; i < tilesOverlay.length; i++ )
         {
+            DropShadow ds = new DropShadow(50, Color.rgb(255, 0, 0));
+            token.setEffect(ds);
+    
             int loc = i;
             tilesOverlay[i].setOnMouseClicked(new EventHandler<MouseEvent>()
             {
@@ -245,22 +234,41 @@ public class GameBoard extends GridPane
                 }
             });
         }
+        token.setEffect(null);
+    }
+
+    public void displayPane( Pane pane, int col, int row, int colspan,
+            int rowspan )
+    {
+        pane.setPrefSize(586, 586);
+        this.add(pane, col + CENTER_COL, row + CENTER_ROW, colspan, rowspan);
+
     }
     
-    public void displayPane(Pane pane, int col, int row, int colspan, int rowspan)
+    /**
+     * Purpose: rolls dice, returns values to GameMain
+     */
+    public int[] rollDice()
     {
-//    	ImageView i = new ImageView(new Image("trainers/ash.png"));
-//    	i.setVisible(true);  	
-//    	this.add(i, 6, 6);
+        //Create first die, set face
+        
+        //Update GUI
+        
+        //Create second die, set face
+        
+        //Update GUI
+        
+        
+        
+        //waits for threads to complete
+        
+        //Get turn outcome (die values)
+        
+        //Set die1 and die2 faces with turn outcomes
+        
+       // return new int[]{die1.value, die2.value};
+        return null;
 
-    	pane.setPrefSize(586, 586);
-//    	this.setGridLinesVisible(true);
-    
-    	System.out.println("display Pane has been called");
-    	
-    	//this.getChildren().clear();
-    	this.add(pane, col + CENTER_COL, row + CENTER_ROW, colspan,rowspan);
-    
     }
 
 }
