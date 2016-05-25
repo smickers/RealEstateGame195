@@ -14,7 +14,7 @@ public class BuyingPokemonPane extends VBox
 {
     public BuyingPokemonPane( Player player, Pokemon pokemon, int price , PokemonTile tile )
     {
-        Text name = new Text(player.trainer.name);
+        Text name = new Text(player.name);
         this.getChildren().add(name);
         
         Rectangle tempImg = new Rectangle();

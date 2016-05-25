@@ -87,10 +87,10 @@ public class Battle
         // TODO testing
         System.out.println("\n ");
         int challengerAttack = challengingPokemon.attackPoints
-                + Die.roll();
+                + Die.rollBattleDie();
 
         int defendingAttack = defendingPokemon.attackPoints
-                + Die.roll();
+                + Die.rollBattleDie();
 
         //If the challenger attack is stronger
         if (challengerAttack > defendingAttack)
@@ -134,9 +134,9 @@ public class Battle
         if (defendingPlayer.sufficientBalance(amountToPay))
         {
             moneyExchange(challengingPlayer, defendingPlayer);
-            BattleGUITest.resultScreen(this.challengingPlayer, 
-                    String.valueOf(amountToPay), false, this.challengingPlayer, 
-                    this.defendingPlayer);
+//            BattleGUITest.resultScreen(this.challengingPlayer, 
+//                    String.valueOf(amountToPay), false, this.challengingPlayer, 
+//                    this.defendingPlayer);
         }
         //If the defeated Pokemon is at its lowest evolution, then start a 
         // Pokemon exchange.
@@ -171,9 +171,9 @@ public class Battle
         if (challengingPlayer.sufficientBalance(amountToPay))
         {
             moneyExchange(defendingPlayer, challengingPlayer);
-            BattleGUITest.resultScreen(this.defendingPlayer, 
-                    String.valueOf(amountToPay), false, this.challengingPlayer, 
-                    this.defendingPlayer);
+//            BattleGUITest.resultScreen(this.defendingPlayer, 
+//                    String.valueOf(amountToPay), false, this.challengingPlayer, 
+//                    this.defendingPlayer);
         }
         //If the defeated Pokemon is at its lowest evolution, then start a 
         // Pokemon exchange.
@@ -198,8 +198,8 @@ public class Battle
     private void tie()
     {
         //Call the result interface with nothing being won.
-        BattleGUITest.resultScreen(null, "", true, this.challengingPlayer, 
-                this.defendingPlayer);
+//        BattleGUITest.resultScreen(null, "", true, this.challengingPlayer, 
+//                this.defendingPlayer);
     }
 
     /**
@@ -227,3 +227,11 @@ public class Battle
 
  
 }
+
+//            BattleGUITest.resultScreen(this.challengingPlayer, 
+//                    String.valueOf(amountToPay), false, this.challengingPlayer, 
+//                    this.defendingPlayer);
+
+        //Call the result interface with nothing being won.
+//        BattleGUITest.resultScreen(null, "", true, this.challengingPlayer, 
+//                this.defendingPlayer);

@@ -44,9 +44,13 @@ public class UpdateCenterView extends Application
         Pokemon testPokemon = new Pokemon(names, null, 5, 3);
         PokemonTile test = new PokemonTile(testPokemon, 50, null,
                 "Test Pokemon", null);
-        Player testPlayer = new Player(new Trainer("Test trainer", null, null));
+
+        Player testPlayer = new Player("Ash", 0);
+
         testPlayer.addToBalance(5000);
         test.action(testPlayer);
+        
+        
         // //////////////////////////////////////////////////
 
         // Test when Pokemon is already owned
