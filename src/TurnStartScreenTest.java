@@ -19,7 +19,7 @@ public class TurnStartScreenTest extends Application {
 		
 		
 		
-		Pane pane = TurnStartScreen.displayStart(stage,new Player(new Trainer("Ash","trainers/ash.png","ashPixie.png")));
+		Pane pane = TurnStartScreen.displayStart(stage,new Player("Ash", 0));
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.show();

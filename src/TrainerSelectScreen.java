@@ -189,7 +189,7 @@ public class TrainerSelectScreen
                 {
                     Trainer Ash = new Trainer("Ash", "trainers/ash.png",
                             "images/pkoeball1.png");
-                    Player ash = new Player(Ash);
+                    Player ash = new Player("Ash", 0);
                     UsedTrainers.add(ash);
 
                 }
@@ -197,7 +197,7 @@ public class TrainerSelectScreen
                 {
                     Trainer Gary = new Trainer("Gary", "trainers/gary.png",
                             "images/pkoeball2.png");
-                    Player gary = new Player(Gary);
+                    Player gary = new Player("Gary", 0);
                     UsedTrainers.add(gary);
 
                 }
@@ -206,7 +206,7 @@ public class TrainerSelectScreen
                     Trainer May = new Trainer("May", "trainers/may.png",
                             "images/pkoeball3.png");
 
-                    Player may = new Player(May);
+                    Player may = new Player("May", 0);
                     UsedTrainers.add(may);
 
                 }
@@ -215,7 +215,7 @@ public class TrainerSelectScreen
 
                     Trainer Hilda = new Trainer("Hilda", "trainers/hilda.png",
                             "images/pkoeball4.png");
-                    Player hilda = new Player(Hilda);
+                    Player hilda = new Player("Hilda", 0);
                     UsedTrainers.add(hilda);
 
                 }

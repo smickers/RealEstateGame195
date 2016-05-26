@@ -103,7 +103,7 @@ public class GameMain
 
         currentText = new StackPane();
         Text topInfo = new Text("It's "
-                + players.get(currentPlayer).trainer.name + "'s turn!");
+                + players.get(currentPlayer).name + "'s turn!");
         topInfo.setFont(GameFont.GAME_FONT);
         currentText.getChildren().add(topInfo);
         gameBoard.displayPane(currentText, 0, 0, 9, 1);

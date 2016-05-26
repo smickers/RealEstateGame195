@@ -19,8 +19,7 @@ import javafx.scene.image.ImageView;
  */
 public class Player
 {
-    // The trainer related to this player
-    public Trainer trainer;
+
     // The player's Pokedex
     private Pokedex pokedex;
     // The pokecards that the player has in their hand
@@ -31,9 +30,8 @@ public class Player
     public int winPoints;
     // The player's current location
     public int currentLocation;
-    
-    //The imageView associated with the Player
-    public ImageView token;
+    public int turnOrder;
+    public String name;
 
     /**
      * 
@@ -42,21 +40,24 @@ public class Player
      * @param trainer
      *            - the trainer to create the player with .
      */
-    public Player(Trainer trainer)
+    public Player(String name, int turnOrder)
     {
+        
         // Initialize the variables associated with a player
-        this.trainer = trainer;
+        if(name == null || name == "")
+        {
+            this.name = "missingNo";
+        }
+        else
+        {
+            this.name = name;
+        }
+        
+        this.turnOrder = turnOrder;
         pokecardsInHand = new Vector<Pokecard>();
         pokedex = new Pokedex(this);
-        balance = 1000;
-        System.out.println("Current balance: " + balance);
+        balance = 0;
         
-        /** Travis
-         * 
-         */
-        token = new ImageView(trainer.trainerToken);
-//        token.setFitHeight(75);
-//        token.setFitWidth(75);
     }
 
     /**
