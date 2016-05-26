@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -9,6 +10,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,12 +64,14 @@ public class GameBoard extends GridPane
 
     ImageView token1, token2, token3, token4;
     ImageView[] tokenArray = { token1, token2, token3, token4 };
+    GameMain gm;
 
     /**
      * Constructor for a new game board
      */
-    public GameBoard(ArrayList<Player> players)
+    public GameBoard(ArrayList<Player> players, GameMain gm)
     {
+        this.gm = gm;
 
         // add the background image
         this.add(new ImageView(BACKGROUND_IMAGE), 0, 0, 40, 40);
@@ -154,7 +158,39 @@ public class GameBoard extends GridPane
 
             placeToken(tokenArray[i], 0);
         }
-        // this.setGridLinesVisible(true);
+         this.setGridLinesVisible(true);
+        
+        
+        
+        
+        Button btnMoveToken = new Button("Roll Dice");
+
+        btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
+        {
+
+            @Override
+            public void handle( ActionEvent arg0 )
+            {
+
+                rollDice();
+                gm.currentPlayer++;
+
+                if ( gm.currentPlayer == players.size() )
+                {
+                    gm.currentPlayer = 0;
+                }
+
+            }
+        
+        });
+        
+    
+        StackPane temp = new StackPane();
+        temp.setPrefHeight(50);
+        temp.setPrefWidth(50);
+        temp.getChildren().add(btnMoveToken);
+        this.add(temp, 4 , 9 , 1, 1);
+
     }
 
     /**
@@ -253,16 +289,19 @@ public class GameBoard extends GridPane
     /**
      * Purpose: rolls dice, returns values to GameMain
      */
-    public int rollDice()
+    public boolean rollDice()
     {
+
+        TurnOutcome turnOutcome = gm.getTurnOutcome();
+
         // Create first die, set face
         DieView die1 = new DieView();
         // Create second die, set face
         DieView die2 = new DieView();
         // Update GUI
-        int die1Value = (int) (Math.random() * 6) + 1;
+        int die1Value = turnOutcome.getDieOne();
         System.out.println("die1Value: " + die1Value);
-        int die2Value = (int) (Math.random() * 6) + 1;
+        int die2Value = turnOutcome.getDieTwo();
         System.out.println("die2Value: " + die2Value);
 
         die1.setFace(die1Value - 1);
@@ -275,6 +314,9 @@ public class GameBoard extends GridPane
 
         displayPane(hb, 0, 8, 2, 1);
 
+        displayPane(new DemoTileView(gm.players.get(gm.currentPlayer),
+                turnOutcome.getDieOne() + turnOutcome.getDieTwo()), 0, 0, 9, 8);
+
         // Update GUI
 
         // waits for threads to complete
@@ -283,8 +325,9 @@ public class GameBoard extends GridPane
 
         // Set die1 and die2 faces with turn outcomes
 
-        return die1Value + die2Value;
+        return true;
 
     }
 
+  
 }

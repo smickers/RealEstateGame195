@@ -21,11 +21,11 @@ public class GameMain
     public static final String GARY_NAME = "Gary";
     public static final String MAY_NAME = "May";
     public static final String HILDA_NAME = "Hilda";
-    private ArrayList<Player> players;
+    public ArrayList<Player> players;
     private Pokemon[] pokemon;
     private GameBoard gameBoard;
     private UpdateCenterView centerViewUpdater;
-    private int currentPlayer;
+    public int currentPlayer;
     private int wPToWin;
     private boolean hasAnyoneWon = false; // if any player has won this will be
     // true
@@ -37,7 +37,7 @@ public class GameMain
     public GameMain(ArrayList<Player> p)
     {
         Stage stage1 = new Stage();
-        gameBoard = new GameBoard(p);
+        gameBoard = new GameBoard(p, this);
         MainWindow.newStart(stage1, gameBoard, "palette-town.mp3");
 
         players = p;
@@ -88,32 +88,30 @@ public class GameMain
     {
         // BEGIN TEST CODE
         // TODO Begin: this section needs to be moved to GameBoard
-        Button btnMoveToken = new Button("Roll Dice");
-
-        btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
-        {
-
-            @Override
-            public void handle( ActionEvent arg0 )
-            {
-
-                int playerRoll = gameBoard.rollDice();
-                calculateNewLocation(playerRoll);
-
-                // call tile action
-
-                gameBoard.displayPane(
-                        new DemoTileView(players.get(currentPlayer), playerRoll),
-                        0, 0, 9, 8);
-
-                currentPlayer++;
-
-                if ( currentPlayer == players.size() )
-                {
-                    currentPlayer = 0;
-                }
-
-            }
+//        Button btnMoveToken = new Button("Roll Dice");
+//
+//        btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
+//        {
+//
+//            @Override
+//            public void handle( ActionEvent arg0 )
+//            {
+//
+//                gameBoard.rollDice();
+//                calculateNewLocation(playerRoll);
+//
+//                // call tile action
+//
+//            
+//
+//                currentPlayer++;
+//
+//                if ( currentPlayer == players.size() )
+//                {
+//                    currentPlayer = 0;
+//                }
+//
+//            }
          // TODO END: this section needs to be moved to GameBoard
             
             // public void handle( ActionEvent event )
@@ -169,12 +167,9 @@ public class GameMain
             //
             //
 
-        });
+        //});
 
-        StackPane temp = new StackPane();
-        temp.getChildren().add(btnMoveToken);
-
-        gameBoard.displayPane(temp, 3, 8, 3, 1);
+       
 
     }
 
@@ -201,7 +196,7 @@ public class GameMain
      * 
      * @param rollTotal
      */
-    public void calculateNewLocation( int rollTotal )
+    public int calculateNewLocation( int rollTotal )
     {
         System.out.println("ROLL TOTAL IN CALCULATE :" + rollTotal);
         System.out.println(players.get(currentPlayer).currentLocation);
@@ -220,6 +215,8 @@ public class GameMain
         // Move token
         gameBoard.moveToken(players.get(currentPlayer).token,
                 players.get(currentPlayer).currentLocation);
+        
+        return players.get(currentPlayer).currentLocation;
 
     }
 
@@ -253,5 +250,13 @@ public class GameMain
     {
         // Display Passed Go
         players.get(currentPlayer).addToBalance(200);
+    }
+    
+    public TurnOutcome getTurnOutcome()
+    {
+        int roll1 = (int) ((Math.random() * 6)+1);
+        int roll2 = (int) ((Math.random() * 6)+1);
+        
+        return new TurnOutcome(roll1, roll2, calculateNewLocation(roll1 + roll2) );
     }
 }
