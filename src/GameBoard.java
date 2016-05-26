@@ -144,7 +144,9 @@ public class GameBoard extends GridPane
 
         for ( int i = 0; i < players.size(); i++ )
         {
-            tokenArray[i] = (players.get(i).token);
+            String imgLocation = ImageReference.getPlayerToken(players.get(i));
+            ImageView temp = new ImageView(new Image(imgLocation));
+            tokenArray[i] = temp;
 
             placeToken(tokenArray[i], 0);
         }
@@ -367,7 +369,8 @@ public class GameBoard extends GridPane
             die1.setFace(outcome.getDieOne() - 1);
             die2.setFace(outcome.getDieTwo() - 1);
 
-            moveToken(gm.players.get(gm.currentPlayer).token,
+            String temp = ImageReference.getPlayerToken(gm.players.get(gm.currentPlayer));
+            moveToken(/*gm.players.get(gm.currentPlayer).token*/tokenArray[gm.currentPlayer],
                   gm.players.get(gm.currentPlayer).currentLocation);
                     
             Platform.runLater(new Runnable()

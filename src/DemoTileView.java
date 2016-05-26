@@ -1,6 +1,7 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -22,16 +23,16 @@ public class DemoTileView extends VBox
 
     public DemoTileView(Player current, int tilesMoved)
     {
-        Text topTitle = new Text("DEMO DEMO DEMO DEMO DEMO DEMO DEMO");
+        Text topTitle = new Text("DEMO DEMO DEMO DEMO DEMO DEMO");
         topTitle.setFont(GameFont.GAME_FONT);
         Text preTitle = new Text("THIS IS A DEMO FOR MOVING THE TOKENS");
         preTitle.setFont(GameFont.SMALL_GAME_FONT);
-        title = new Text("You moved " + tilesMoved
+        ImageView trainerImg = new ImageView(new Image(ImageReference.getPlayerImage(current)));
+        title = new Text(current.name + ", you moved " + tilesMoved
                 + " spaces and landed on a Pokemon Card Tile");
         this.setAlignment(Pos.CENTER);
         title.setFont(GameFont.SMALL_GAME_FONT);
         info.setFont(GameFont.SMALL_GAME_FONT);
-        ImageView trainerImg = new ImageView(current.trainer.trainerImage);
         trainerImg.setPreserveRatio(true);
         trainerImg.setFitHeight(/* 465 */325);
         this.getChildren().add(topTitle);
