@@ -40,6 +40,8 @@ public class GameMain
         gameBoard = new GameBoard(p, this);
         MainWindow.newStart(stage1, gameBoard, "palette-town.mp3");
 
+        currentPlayer = 0;
+        
         players = p;
         // The main game should not only set up the p, but
         // it should also set up the number of WinPoints necessary to win
@@ -86,90 +88,6 @@ public class GameMain
 
     public void play()
     {
-        // BEGIN TEST CODE
-        // TODO Begin: this section needs to be moved to GameBoard
-//        Button btnMoveToken = new Button("Roll Dice");
-//
-//        btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
-//        {
-//
-//            @Override
-//            public void handle( ActionEvent arg0 )
-//            {
-//
-//                gameBoard.rollDice();
-//                calculateNewLocation(playerRoll);
-//
-//                // call tile action
-//
-//            
-//
-//                currentPlayer++;
-//
-//                if ( currentPlayer == players.size() )
-//                {
-//                    currentPlayer = 0;
-//                }
-//
-//            }
-         // TODO END: this section needs to be moved to GameBoard
-            
-            // public void handle( ActionEvent event )
-            // {
-            // if ( temp != null )
-            // {
-            // gameBoard.getChildren().remove(temp);
-            // }
-            //
-            //
-            //
-            // System.out.println("It is "
-            // + players.get(currentPlayer).trainer.name + "'s  turn");
-            // System.out.println(players.get(currentPlayer).currentBalance()
-            // + " current balance");
-            //
-            // int tilesToMove = (int) (Math.random() * 12 + 1);
-            // // int tilesToMove = 3;
-            // calculateNewLocation(tilesToMove);
-            // // add number to player's location
-            // // players.get(0).currentLocation += tilesToMove;
-            // // pass location into gameboard
-            // // StackPane temp = new StackPane();
-            // // Text topInfo = new Text("It's " +
-            // // players.get(currentPlayer).trainer.name + " turn!");
-            // // temp.getChildren().add(topInfo);
-            // // gameBoard.getChildren();
-            // // gameBoard.displayPane(temp, 0, 0, 9, 1);
-            // // indicatePlayerTurn();
-            //
-            //
-            // //gameBoard.rollDice();
-            // //calculate index
-            // //moveToken(players.get(currentPlayer).token,
-            // calculateNewLocation());
-            //
-            // gameBoard.displayPane(
-            // new DemoTileView(players.get(currentPlayer),
-            // tilesToMove), 0, 0, 9, 8);
-            // System.out.println("Tiles to move: " + tilesToMove);
-            //
-            // currentPlayer++;
-            //
-            // if ( currentPlayer == players.size() )
-            // {
-            // currentPlayer = 0;
-            // }
-            //
-            // // gameBoard.moveToken(gameBoard.tokenArray[0],
-            // // players.get(0).currentLocation);
-            //
-            //
-            //
-            //
-
-        //});
-
-       
 
     }
 
@@ -213,8 +131,8 @@ public class GameMain
         }
 
         // Move token
-        gameBoard.moveToken(players.get(currentPlayer).token,
-                players.get(currentPlayer).currentLocation);
+//        gameBoard.moveToken(players.get(currentPlayer).token,
+//                players.get(currentPlayer).currentLocation);
         
         return players.get(currentPlayer).currentLocation;
 

@@ -65,6 +65,7 @@ public class GameBoard extends GridPane
     ImageView token1, token2, token3, token4;
     ImageView[] tokenArray = { token1, token2, token3, token4 };
     GameMain gm;
+    Pane currentPane;
 
     /**
      * Constructor for a new game board
@@ -141,28 +142,14 @@ public class GameBoard extends GridPane
             }
         }
 
-        // for testing purposes ONLY
-        // ImageView testerToken = new ImageView(
-        // new Image("/images/pkoeball1.png"));
-        // placeToken(testerToken, 0);
-        // placeToken(new ImageView(new Image("/images/pkoeball2.png")), 0);
-        // placeToken(new ImageView(new Image("/images/pkoeball3.png")), 0);
-        // placeToken(new ImageView(new Image("/images/pkoeball4.png")), 0);
-
-        // testMovementByClicks(testerToken);
-
-        // Travis again
         for ( int i = 0; i < players.size(); i++ )
         {
             tokenArray[i] = (players.get(i).token);
 
             placeToken(tokenArray[i], 0);
         }
-         this.setGridLinesVisible(true);
-        
-        
-        
-        
+        // this.setGridLinesVisible(true);
+
         Button btnMoveToken = new Button("Roll Dice");
 
         btnMoveToken.setOnAction(new EventHandler<ActionEvent>()
@@ -173,23 +160,22 @@ public class GameBoard extends GridPane
             {
 
                 rollDice();
-                gm.currentPlayer++;
-
-                if ( gm.currentPlayer == players.size() )
-                {
-                    gm.currentPlayer = 0;
-                }
+                // gm.currentPlayer++;
+                //
+                // if ( gm.currentPlayer == players.size() )
+                // {
+                // gm.currentPlayer = 0;
+                // }
 
             }
-        
+
         });
-        
-    
+
         StackPane temp = new StackPane();
         temp.setPrefHeight(50);
         temp.setPrefWidth(50);
         temp.getChildren().add(btnMoveToken);
-        this.add(temp, 4 , 9 , 1, 1);
+        this.add(temp, 4, 9, 1, 1);
 
     }
 
@@ -281,9 +267,18 @@ public class GameBoard extends GridPane
     public void displayPane( Pane pane, int col, int row, int colspan,
             int rowspan )
     {
+        currentPane = pane;
         pane.setPrefSize(586, 586);
         this.add(pane, col + CENTER_COL, row + CENTER_ROW, colspan, rowspan);
 
+    }
+
+    public void removeCurrentPane()
+    {
+        if ( currentPane != null )
+        {
+            this.getChildren().remove(currentPane);
+        }
     }
 
     /**
@@ -292,21 +287,11 @@ public class GameBoard extends GridPane
     public boolean rollDice()
     {
 
-        TurnOutcome turnOutcome = gm.getTurnOutcome();
-
         // Create first die, set face
         DieView die1 = new DieView();
         // Create second die, set face
         DieView die2 = new DieView();
         // Update GUI
-        int die1Value = turnOutcome.getDieOne();
-        System.out.println("die1Value: " + die1Value);
-        int die2Value = turnOutcome.getDieTwo();
-        System.out.println("die2Value: " + die2Value);
-
-        die1.setFace(die1Value - 1);
-        die2.setFace(die2Value - 1);
-
         HBox hb = new HBox();
 
         hb.getChildren().add(die1);
@@ -314,20 +299,94 @@ public class GameBoard extends GridPane
 
         displayPane(hb, 0, 8, 2, 1);
 
-        displayPane(new DemoTileView(gm.players.get(gm.currentPlayer),
-                turnOutcome.getDieOne() + turnOutcome.getDieTwo()), 0, 0, 9, 8);
-
-        // Update GUI
-
-        // waits for threads to complete
-
-        // Get turn outcome (die values)
-
-        // Set die1 and die2 faces with turn outcomes
+        Thread t = new Thread(new Spinners(10, die1, die2));
+        t.start();
 
         return true;
 
     }
 
-  
+    // TODO make a separate class.
+    /**
+     * Purpose:
+     * 
+     * @author Hilary Fehr, Nathan MacNeil
+     *
+     */
+    private class Spinners extends Thread
+    {
+
+        int time;
+        DieView die1;
+        DieView die2;
+
+        public Spinners(int time, DieView die1, DieView die2)
+        {
+            this.time = time;
+            this.die1 = die1;
+            this.die2 = die2;
+        }
+
+        @Override
+        public void run()
+        {
+
+            for ( int i = 0; i < time; i++ )
+            {
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        // Set the image of both dice to be randomly
+                        // selected images.
+                        die1.setFace((int) Math.floor(Math.random()
+                                * DieView.MAX_SIDES_TO_DICE));
+                        die2.setFace((int) Math.floor(Math.random()
+                                * DieView.MAX_SIDES_TO_DICE));
+                    }
+                });
+                try
+                {
+
+                    Thread.sleep(130);
+                }
+                catch ( InterruptedException e )
+                {
+                    currentThread().interrupt();
+                }
+
+            }
+
+            // }
+
+            // Create a new turn outcome.
+            TurnOutcome outcome = gm.getTurnOutcome();
+
+            // Set the faces of the die to the results returned.
+            die1.setFace(outcome.getDieOne() - 1);
+            die2.setFace(outcome.getDieTwo() - 1);
+
+            moveToken(gm.players.get(gm.currentPlayer).token,
+                  gm.players.get(gm.currentPlayer).currentLocation);
+                    
+            Platform.runLater(new Runnable()
+            {
+                public void run()
+                {
+                    GameBoard.this.displayPane(
+                            new DemoTileView(gm.players.get(gm.currentPlayer),
+                                    outcome.getDieOne() + outcome.getDieTwo()),
+                            0, 0, 9, 8);
+
+                    gm.currentPlayer++;
+                    if ( gm.currentPlayer == gm.players.size() )
+                    {
+                        gm.currentPlayer = 0;
+                    }
+                }
+            });
+
+        }
+    }
 }

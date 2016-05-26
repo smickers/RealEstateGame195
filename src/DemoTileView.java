@@ -26,7 +26,7 @@ public class DemoTileView extends VBox
         topTitle.setFont(GameFont.GAME_FONT);
         Text preTitle = new Text("THIS IS A DEMO FOR MOVING THE TOKENS");
         preTitle.setFont(GameFont.SMALL_GAME_FONT);
-        title = new Text("You " + tilesMoved
+        title = new Text("You moved " + tilesMoved
                 + " spaces and landed on a Pokemon Card Tile");
         this.setAlignment(Pos.CENTER);
         title.setFont(GameFont.SMALL_GAME_FONT);
