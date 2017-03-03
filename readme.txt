@@ -1,5 +1,9 @@
-<<<<<<< HEAD
+Clone of school project repository for first-year capstone project: board game built entirely in Java.
+
+Note that we do not own MONOPOLY or POKéMON, and that this project is intended for educational purposes only.
+######################
 # Welcome to COSA195 #
+######################
 ***
 You are the RED group
 
@@ -12,6 +16,5 @@ Hilary
 Nathan
 Stephanie
 Travis
->>>>>>> branch 'master' of https://TravisKeyser@bitbucket.org/cstprojects/red.git
-
-
+Kyler
+Paz
